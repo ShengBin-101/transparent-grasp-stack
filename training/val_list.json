@@ -1,0 +1,7357 @@
+{
+ "split": "val",
+ "val_scenes": [
+  1,
+  19,
+  37,
+  54,
+  69,
+  92,
+  109,
+  120
+ ],
+ "n_val_frames": 3228,
+ "stride": 5,
+ "n": 600,
+ "samples": [
+  {
+   "scene": 1,
+   "perspective": 0,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p000_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 5,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p005_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 12,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p012_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 17,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p017_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 23,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p023_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 28,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p028_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 33,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p033_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 38,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p038_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 43,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p043_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 48,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p048_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 53,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p053_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 58,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p058_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 63,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p063_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 70,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p070_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 75,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p075_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 80,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p080_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 85,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p085_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 90,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p090_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 95,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p095_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 101,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p101_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 106,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p106_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 111,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p111_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 116,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p116_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 121,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p121_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 129,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p129_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 134,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p134_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 139,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p139_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 146,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p146_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 151,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p151_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 158,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p158_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 163,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p163_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 168,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p168_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 173,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p173_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 178,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p178_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 186,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p186_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 191,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p191_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 196,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p196_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 201,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p201_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 208,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p208_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 213,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p213_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 218,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p218_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 223,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p223_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 228,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p228_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 235,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p235_c1"
+  },
+  {
+   "scene": 1,
+   "perspective": 1,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p001_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 6,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p006_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 11,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p011_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 16,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p016_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 21,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p021_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 27,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p027_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 32,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p032_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 37,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p037_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 42,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p042_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 47,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p047_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 52,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p052_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 57,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p057_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 62,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p062_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 69,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p069_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 74,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p074_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 79,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p079_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 84,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p084_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 91,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p091_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 99,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p099_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 104,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p104_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 109,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p109_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 114,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p114_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 125,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p125_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 131,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p131_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 136,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p136_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 142,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p142_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 151,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p151_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 161,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p161_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 172,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p172_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 179,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p179_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 186,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p186_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 191,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p191_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 196,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p196_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 205,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p205_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 214,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p214_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 219,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p219_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 227,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p227_c2"
+  },
+  {
+   "scene": 1,
+   "perspective": 235,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    32,
+    42,
+    47,
+    0
+   ],
+   "key": "s001_p235_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 0,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p000_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 5,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p005_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 10,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p010_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 15,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p015_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 20,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p020_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 25,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p025_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 30,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p030_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 35,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p035_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 40,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p040_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 45,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p045_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 50,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p050_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 55,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p055_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 60,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p060_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 65,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p065_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 70,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p070_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 75,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p075_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 80,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p080_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 85,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p085_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 90,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p090_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 95,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p095_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 100,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p100_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 110,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p110_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 115,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p115_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 120,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p120_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 125,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p125_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 130,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p130_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 143,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p143_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 148,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p148_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 153,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p153_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 158,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p158_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 170,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p170_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 175,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p175_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 180,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p180_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 185,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p185_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 190,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p190_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 201,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p201_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 206,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p206_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 211,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p211_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 216,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p216_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 221,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p221_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 232,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p232_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 237,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p237_c1"
+  },
+  {
+   "scene": 19,
+   "perspective": 2,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p002_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 7,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p007_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 12,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p012_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 17,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p017_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 22,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p022_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 27,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p027_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 32,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p032_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 37,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p037_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 42,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p042_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 47,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p047_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 52,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p052_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 57,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p057_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 62,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p062_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 67,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p067_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 72,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p072_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 77,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p077_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 82,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p082_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 87,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p087_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 92,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p092_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 97,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p097_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 102,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p102_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 107,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p107_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 112,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p112_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 117,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p117_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 122,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p122_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 127,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p127_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 132,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p132_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 137,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p137_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 142,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p142_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 147,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p147_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 152,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p152_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 157,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p157_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 164,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p164_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 169,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p169_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 174,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p174_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 179,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p179_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 184,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p184_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 189,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p189_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 202,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p202_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 207,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p207_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 212,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p212_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 217,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p217_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 222,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p222_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 233,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p233_c2"
+  },
+  {
+   "scene": 19,
+   "perspective": 238,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    25,
+    50,
+    15
+   ],
+   "key": "s019_p238_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 3,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p003_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 8,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p008_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 13,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p013_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 18,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p018_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 23,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p023_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 28,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p028_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 33,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p033_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 38,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p038_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 43,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p043_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 48,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p048_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 53,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p053_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 58,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p058_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 63,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p063_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 68,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p068_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 73,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p073_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 78,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p078_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 83,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p083_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 88,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p088_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 93,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p093_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 98,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p098_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 103,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p103_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 108,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p108_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 113,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p113_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 118,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p118_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 123,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p123_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 128,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p128_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 133,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p133_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 138,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p138_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 143,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p143_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 148,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p148_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 153,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p153_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 158,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p158_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 163,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p163_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 168,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p168_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 173,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p173_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 178,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p178_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 183,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p183_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 188,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p188_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 193,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p193_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 198,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p198_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 203,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p203_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 208,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p208_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 213,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p213_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 218,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p218_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 223,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p223_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 228,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p228_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 233,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p233_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 238,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p238_c1"
+  },
+  {
+   "scene": 37,
+   "perspective": 3,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p003_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 8,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p008_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 13,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p013_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 18,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p018_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 23,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p023_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 28,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p028_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 33,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p033_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 38,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p038_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 43,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p043_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 48,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p048_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 53,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p053_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 58,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p058_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 63,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p063_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 68,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p068_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 73,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p073_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 78,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p078_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 83,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p083_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 88,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p088_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 93,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p093_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 98,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p098_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 103,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p103_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 108,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p108_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 113,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p113_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 118,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p118_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 123,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p123_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 128,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p128_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 134,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p134_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 139,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p139_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 144,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p144_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 149,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p149_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 154,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p154_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 159,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p159_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 164,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p164_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 169,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p169_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 174,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p174_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 179,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p179_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 184,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p184_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 189,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p189_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 194,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p194_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 199,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p199_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 204,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p204_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 209,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p209_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 214,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p214_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 219,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p219_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 224,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p224_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 229,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p229_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 234,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p234_c2"
+  },
+  {
+   "scene": 37,
+   "perspective": 239,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    16,
+    11,
+    19
+   ],
+   "key": "s037_p239_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 4,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p004_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 9,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p009_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 14,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p014_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 19,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p019_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 24,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p024_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 29,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p029_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 34,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p034_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 39,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p039_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 44,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p044_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 49,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p049_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 54,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p054_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 59,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p059_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 64,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p064_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 69,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p069_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 74,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p074_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 79,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p079_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 84,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p084_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 89,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p089_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 94,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p094_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 99,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p099_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 104,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p104_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 109,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p109_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 114,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p114_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 119,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p119_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 124,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p124_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 129,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p129_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 134,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p134_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 139,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p139_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 144,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p144_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 149,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p149_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 154,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p154_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 159,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p159_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 164,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p164_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 169,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p169_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 174,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p174_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 179,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p179_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 184,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p184_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 189,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p189_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 194,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p194_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 199,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p199_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 204,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p204_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 209,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p209_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 214,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p214_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 219,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p219_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 224,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p224_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 229,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p229_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 234,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p234_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 239,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p239_c1"
+  },
+  {
+   "scene": 54,
+   "perspective": 4,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p004_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 9,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p009_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 14,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p014_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 19,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p019_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 25,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p025_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 30,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p030_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 35,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p035_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 40,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p040_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 45,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p045_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 50,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p050_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 55,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p055_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 60,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p060_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 65,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p065_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 70,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p070_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 75,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p075_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 80,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p080_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 85,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p085_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 90,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p090_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 95,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p095_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 100,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p100_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 105,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p105_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 110,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p110_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 115,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p115_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 120,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p120_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 126,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p126_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 131,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p131_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 136,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p136_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 141,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p141_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 146,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p146_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 151,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p151_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 156,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p156_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 161,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p161_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 166,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p166_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 171,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p171_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 176,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p176_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 181,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p181_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 186,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p186_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 191,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p191_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 196,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p196_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 201,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p201_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 206,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p206_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 211,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p211_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 216,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p216_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 221,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p221_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 226,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p226_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 231,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p231_c2"
+  },
+  {
+   "scene": 54,
+   "perspective": 236,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    12,
+    58,
+    15
+   ],
+   "key": "s054_p236_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 1,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p001_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 6,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p006_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 11,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p011_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 16,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p016_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 21,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p021_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 26,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p026_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 31,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p031_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 36,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p036_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 41,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p041_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 46,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p046_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 51,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p051_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 56,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p056_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 61,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p061_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 66,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p066_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 71,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p071_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 76,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p076_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 81,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p081_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 86,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p086_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 91,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p091_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 96,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p096_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 101,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p101_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 106,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p106_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 111,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p111_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 116,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p116_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 121,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p121_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 126,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p126_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 131,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p131_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 136,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p136_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 141,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p141_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 146,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p146_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 151,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p151_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 156,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p156_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 161,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p161_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 166,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p166_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 171,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p171_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 176,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p176_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 181,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p181_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 186,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p186_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 191,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p191_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 196,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p196_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 201,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p201_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 206,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p206_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 211,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p211_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 216,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p216_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 221,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p221_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 226,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p226_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 231,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p231_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 236,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p236_c1"
+  },
+  {
+   "scene": 69,
+   "perspective": 1,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p001_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 6,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p006_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 11,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p011_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 16,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p016_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 21,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p021_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 26,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p026_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 31,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p031_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 36,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p036_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 41,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p041_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 46,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p046_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 51,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p051_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 56,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p056_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 61,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p061_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 66,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p066_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 71,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p071_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 76,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p076_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 81,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p081_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 86,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p086_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 91,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p091_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 96,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p096_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 101,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p101_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 106,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p106_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 111,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p111_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 116,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p116_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 121,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p121_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 126,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p126_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 131,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p131_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 136,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p136_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 141,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p141_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 146,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p146_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 151,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p151_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 156,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p156_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 161,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p161_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 166,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p166_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 171,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p171_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 176,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p176_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 181,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p181_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 186,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p186_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 191,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p191_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 196,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p196_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 201,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p201_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 206,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p206_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 211,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p211_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 216,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p216_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 221,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p221_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 226,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p226_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 231,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p231_c2"
+  },
+  {
+   "scene": 69,
+   "perspective": 236,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    58,
+    47,
+    36
+   ],
+   "key": "s069_p236_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 1,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p001_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 6,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p006_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 25,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p025_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 30,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p030_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 35,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p035_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 40,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p040_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 59,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p059_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 64,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p064_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 85,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p085_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 90,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p090_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 95,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p095_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 113,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p113_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 118,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p118_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 123,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p123_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 128,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p128_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 145,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p145_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 150,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p150_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 155,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p155_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 166,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p166_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 175,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p175_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 180,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p180_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 185,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p185_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 196,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p196_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 207,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p207_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 212,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p212_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 217,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p217_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 224,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p224_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 235,
+   "camera": 1,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p235_c1"
+  },
+  {
+   "scene": 92,
+   "perspective": 0,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p000_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 5,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p005_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 24,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p024_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 29,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p029_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 34,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p034_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 39,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p039_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 58,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p058_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 63,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p063_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 68,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p068_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 89,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p089_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 94,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p094_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 99,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p099_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 115,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p115_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 120,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p120_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 125,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p125_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 135,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p135_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 146,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p146_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 151,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p151_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 156,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p156_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 167,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p167_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 176,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p176_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 181,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p181_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 186,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p186_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 203,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p203_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 208,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p208_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 213,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p213_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 218,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p218_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 225,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p225_c2"
+  },
+  {
+   "scene": 92,
+   "perspective": 236,
+   "camera": 2,
+   "scene_type": "cluttered",
+   "model_list": [
+    39,
+    50,
+    7,
+    26
+   ],
+   "key": "s092_p236_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 1,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p001_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 6,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p006_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 26,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p026_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 31,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p031_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 36,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p036_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 55,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p055_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 60,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p060_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 65,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p065_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 70,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p070_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 85,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p085_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 90,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p090_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 95,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p095_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 108,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p108_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 117,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p117_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 122,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p122_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 127,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p127_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 136,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p136_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 143,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p143_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 148,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p148_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 153,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p153_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 158,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p158_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 166,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p166_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 173,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p173_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 178,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p178_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 183,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p183_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 188,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p188_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 193,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p193_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 198,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p198_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 205,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p205_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 210,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p210_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 215,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p215_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 220,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p220_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 225,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p225_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 232,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p232_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 237,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p237_c1"
+  },
+  {
+   "scene": 109,
+   "perspective": 2,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p002_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 7,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p007_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 27,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p027_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 32,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p032_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 37,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p037_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 57,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p057_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 63,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p063_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 68,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p068_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 83,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p083_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 88,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p088_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 93,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p093_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 98,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p098_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 115,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p115_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 120,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p120_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 125,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p125_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 130,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p130_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 143,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p143_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 148,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p148_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 153,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p153_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 158,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p158_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 166,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p166_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 173,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p173_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 178,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p178_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 183,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p183_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 188,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p188_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 193,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p193_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 198,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p198_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 205,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p205_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 210,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p210_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 215,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p215_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 220,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p220_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 225,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p225_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 232,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p232_c2"
+  },
+  {
+   "scene": 109,
+   "perspective": 237,
+   "camera": 2,
+   "scene_type": "isolated",
+   "model_list": [
+    32,
+    38,
+    22
+   ],
+   "key": "s109_p237_c2"
+  },
+  {
+   "scene": 120,
+   "perspective": 2,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    33,
+    19,
+    22
+   ],
+   "key": "s120_p002_c1"
+  },
+  {
+   "scene": 120,
+   "perspective": 7,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    33,
+    19,
+    22
+   ],
+   "key": "s120_p007_c1"
+  },
+  {
+   "scene": 120,
+   "perspective": 16,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    33,
+    19,
+    22
+   ],
+   "key": "s120_p016_c1"
+  },
+  {
+   "scene": 120,
+   "perspective": 25,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    33,
+    19,
+    22
+   ],
+   "key": "s120_p025_c1"
+  },
+  {
+   "scene": 120,
+   "perspective": 30,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    33,
+    19,
+    22
+   ],
+   "key": "s120_p030_c1"
+  },
+  {
+   "scene": 120,
+   "perspective": 35,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    33,
+    19,
+    22
+   ],
+   "key": "s120_p035_c1"
+  },
+  {
+   "scene": 120,
+   "perspective": 44,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    33,
+    19,
+    22
+   ],
+   "key": "s120_p044_c1"
+  },
+  {
+   "scene": 120,
+   "perspective": 53,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    33,
+    19,
+    22
+   ],
+   "key": "s120_p053_c1"
+  },
+  {
+   "scene": 120,
+   "perspective": 58,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    33,
+    19,
+    22
+   ],
+   "key": "s120_p058_c1"
+  },
+  {
+   "scene": 120,
+   "perspective": 63,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    33,
+    19,
+    22
+   ],
+   "key": "s120_p063_c1"
+  },
+  {
+   "scene": 120,
+   "perspective": 68,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    33,
+    19,
+    22
+   ],
+   "key": "s120_p068_c1"
+  },
+  {
+   "scene": 120,
+   "perspective": 77,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    33,
+    19,
+    22
+   ],
+   "key": "s120_p077_c1"
+  },
+  {
+   "scene": 120,
+   "perspective": 86,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    33,
+    19,
+    22
+   ],
+   "key": "s120_p086_c1"
+  },
+  {
+   "scene": 120,
+   "perspective": 91,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    33,
+    19,
+    22
+   ],
+   "key": "s120_p091_c1"
+  },
+  {
+   "scene": 120,
+   "perspective": 96,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    33,
+    19,
+    22
+   ],
+   "key": "s120_p096_c1"
+  },
+  {
+   "scene": 120,
+   "perspective": 107,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    33,
+    19,
+    22
+   ],
+   "key": "s120_p107_c1"
+  },
+  {
+   "scene": 120,
+   "perspective": 116,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    33,
+    19,
+    22
+   ],
+   "key": "s120_p116_c1"
+  },
+  {
+   "scene": 120,
+   "perspective": 121,
+   "camera": 1,
+   "scene_type": "isolated",
+   "model_list": [
+    33,
+    19,
+    22
+   ],
+   "key": "s120_p121_c1"
+  }
+ ]
+}

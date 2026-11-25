@@ -1,0 +1,41 @@
+# The whole pipeline in one tmux session, run inside the container:  rg-up
+#   PIPELINE=adapted rg-up    (default) segmenter mask + L_combo_both ReMake + SBG, transparent + raw-depth targets
+#   PIPELINE=baseline rg-up   SAM 3 transparency mask + official ReMake + SBG, the same targets
+#   PIPELINE=raw rg-up        raw sensor depth into SBG, no mask, no target filter
+# MASK=sam3|seg|none, REMAKE=official|L_combo_both|G_maskdrop|A_ft|none and TARGETS=depth|prompt|transparent|none
+# each override one setting of the preset, e.g.
+#   PIPELINE=adapted REMAKE=official rg-up   the segmenter's mask with the authors' weights
+#   PIPELINE=adapted REMAKE=none rg-up       ADAPTED minus ReMake: SBG on the raw depth, the same targets
+# DETECTOR=sbg|peggnet (default sbg); PEGG-Net takes SAM 3's grasp prompt as its input, so it needs
+# TARGETS=prompt. PROFILE=picking|picking20|picking15|perception (SBG's approach cone and empty-grasp check; default picking).
+# Set these after rg-down: the panes only see them from a fresh tmux server.
+# rg-adapted / rg-baseline / rg-raw load their presets exactly (shell overrides ignored); starting any
+# of the four sessions closes the others. Stop everything: rg-down (Ctrl-b d leaves it running).
+session_name: remake_grasp
+start_directory: /opt/remake_grasp
+before_script: /opt/remake_grasp/scripts/rg_session.sh remake_grasp
+windows:
+  - window_name: nodes
+    layout: tiled
+    panes:
+      - ros2 launch remake_grasp camera.launch.py camera:=${CAMERA:-l515}
+      - ros2 launch remake_grasp remake.launch.py pipeline:=${PIPELINE:-adapted}
+      - ros2 launch remake_grasp ${DETECTOR:-sbg}.launch.py profile:=${PROFILE:-picking} pipeline:=${PIPELINE:-adapted}
+      - ros2 launch remake_grasp pipeline.launch.py detector:=${DETECTOR:-sbg} pipeline:=${PIPELINE:-adapted}
+      - ros2 launch remake_grasp bridge.launch.py
+      - ros2 launch remake_grasp foxglove.launch.py
+  - window_name: run
+    layout: even-vertical
+    panes:
+      - shell_command:
+          - clear
+          - echo "rg-run    capture + masks + ReMake + detector + grasp pose  (pipeline=${PIPELINE:-adapted}${MASK:+ mask=$MASK}${REMAKE:+ remake=$REMAKE}${TARGETS:+ targets=$TARGETS})"
+          - echo "rg-pick   execute the best grasp on the FR3"
+          - echo "ros2 service call /live_pipeline/release std_srvs/srv/Trigger"
+          - echo "ros2 service call /live_pipeline/go_home std_srvs/srv/Trigger"
+          - echo "ros2 service call /live_pipeline/go_v2 std_srvs/srv/Trigger   # the side view; go_v1 = home"
+          - echo "echo 'bottle or mug' > data/live/sam3_grasp_prompt.txt   # DETECTOR=peggnet: change what may be grasped"
+      - watch -n2 -t ros2 run remake_grasp show_run
+  - window_name: nuc
+    panes:
+      - echo "ssh nuc   then start the controller / commander there (see nuc/README.md)"

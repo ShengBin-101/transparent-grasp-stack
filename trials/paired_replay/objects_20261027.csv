@@ -1,0 +1,7 @@
+run,condition,failed_stage,reproduces_live,sbg_raw,sbg_after_nms,sbg_collision_free,sbg_empty,sbg_accepted,executable,not_on_target,unseen_side,objects,best,executable_on_glass,best_on_glass,sbg_depth,cone_axis
+20261027_033154_auto,RAW,,True,57,34,28,0,26,26,0,0,0,0,7,False,depth_aligned_mm.npy,tool_pose
+20261027_033154_auto,BASELINE,,,172,86,64,0,32,23,9,0,5,6,16,True,remake_depth_mm.npy,tool_pose
+20261027_033154_auto,ADAPTED,,,129,62,46,0,27,20,7,0,5,2,12,True,remake_depth_mm.npy,tool_pose
+20261027_034839_auto,RAW,,True,74,44,30,0,17,17,0,0,0,0,6,False,depth_aligned_mm.npy,optical
+20261027_034839_auto,BASELINE,,,171,91,62,0,25,21,4,0,5,3,14,True,remake_depth_mm.npy,optical
+20261027_034839_auto,ADAPTED,,,151,78,57,0,24,21,3,0,5,4,12,True,remake_depth_mm.npy,optical

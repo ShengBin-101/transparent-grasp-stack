@@ -1,0 +1,214 @@
+{
+ "V1 (~5) RAW": {
+  "frames": 18,
+  "phantom": 0,
+  "raw": 237,
+  "cfree": 118,
+  "exe": 82,
+  "with_exe": 13,
+  "with_feasible": 10
+ },
+ "V1 (~5) BASELINE": {
+  "frames": 18,
+  "phantom": 0,
+  "raw": 623,
+  "cfree": 231,
+  "exe": 107,
+  "with_exe": 16,
+  "with_feasible": 13
+ },
+ "V1 (~5) ADAPTED": {
+  "frames": 18,
+  "phantom": 0,
+  "raw": 578,
+  "cfree": 205,
+  "exe": 97,
+  "with_exe": 15,
+  "with_feasible": 13
+ },
+ "V1 (~5) BASELINE-OBJECT-FILL": {
+  "frames": 18,
+  "phantom": 0,
+  "raw": 649,
+  "cfree": 236,
+  "exe": 113,
+  "with_exe": 17,
+  "with_feasible": 15
+ },
+ "V1 (~5) ADAPTED-OBJECT-FILL": {
+  "frames": 18,
+  "phantom": 0,
+  "raw": 594,
+  "cfree": 220,
+  "exe": 95,
+  "with_exe": 16,
+  "with_feasible": 15
+ },
+ "13-21 RAW": {
+  "frames": 12,
+  "phantom": 83,
+  "raw": 237,
+  "cfree": 116,
+  "exe": 109,
+  "with_exe": 12,
+  "with_feasible": 7
+ },
+ "13-21 BASELINE": {
+  "frames": 12,
+  "phantom": 935,
+  "raw": 281,
+  "cfree": 99,
+  "exe": 40,
+  "with_exe": 12,
+  "with_feasible": 11
+ },
+ "13-21 ADAPTED": {
+  "frames": 12,
+  "phantom": 720,
+  "raw": 236,
+  "cfree": 70,
+  "exe": 12,
+  "with_exe": 8,
+  "with_feasible": 5
+ },
+ "13-21 BASELINE-OBJECT-FILL": {
+  "frames": 12,
+  "phantom": 618,
+  "raw": 279,
+  "cfree": 101,
+  "exe": 45,
+  "with_exe": 9,
+  "with_feasible": 6
+ },
+ "13-21 ADAPTED-OBJECT-FILL": {
+  "frames": 12,
+  "phantom": 689,
+  "raw": 210,
+  "cfree": 80,
+  "exe": 21,
+  "with_exe": 8,
+  "with_feasible": 6
+ },
+ "V2 (36) RAW": {
+  "frames": 3,
+  "phantom": 0,
+  "raw": 49,
+  "cfree": 15,
+  "exe": 14,
+  "with_exe": 2,
+  "with_feasible": 1
+ },
+ "V2 (36) BASELINE": {
+  "frames": 3,
+  "phantom": 12420,
+  "raw": 32,
+  "cfree": 10,
+  "exe": 6,
+  "with_exe": 2,
+  "with_feasible": 0
+ },
+ "V2 (36) ADAPTED": {
+  "frames": 3,
+  "phantom": 14356,
+  "raw": 25,
+  "cfree": 9,
+  "exe": 9,
+  "with_exe": 2,
+  "with_feasible": 1
+ },
+ "V2 (36) BASELINE-OBJECT-FILL": {
+  "frames": 3,
+  "phantom": 0,
+  "raw": 65,
+  "cfree": 19,
+  "exe": 8,
+  "with_exe": 1,
+  "with_feasible": 1
+ },
+ "V2 (36) ADAPTED-OBJECT-FILL": {
+  "frames": 3,
+  "phantom": 0,
+  "raw": 53,
+  "cfree": 14,
+  "exe": 12,
+  "with_exe": 2,
+  "with_feasible": 1
+ },
+ "V3 (47) RAW": {
+  "frames": 6,
+  "phantom": 503,
+  "raw": 216,
+  "cfree": 44,
+  "exe": 40,
+  "with_exe": 5,
+  "with_feasible": 4
+ },
+ "V3 (47) BASELINE": {
+  "frames": 6,
+  "phantom": 17808,
+  "raw": 113,
+  "cfree": 22,
+  "exe": 7,
+  "with_exe": 3,
+  "with_feasible": 0
+ },
+ "V3 (47) ADAPTED": {
+  "frames": 6,
+  "phantom": 17600,
+  "raw": 110,
+  "cfree": 22,
+  "exe": 8,
+  "with_exe": 3,
+  "with_feasible": 0
+ },
+ "V3 (47) BASELINE-OBJECT-FILL": {
+  "frames": 6,
+  "phantom": 438,
+  "raw": 204,
+  "cfree": 31,
+  "exe": 16,
+  "with_exe": 4,
+  "with_feasible": 1
+ },
+ "V3 (47) ADAPTED-OBJECT-FILL": {
+  "frames": 6,
+  "phantom": 513,
+  "raw": 201,
+  "cfree": 31,
+  "exe": 17,
+  "with_exe": 3,
+  "with_feasible": 0
+ },
+ "v1_tests": {
+  "full -> object-only fill, BASELINE": {
+   "frames": 18,
+   "best_changed": 10,
+   "mean_abs_exe_change": 1.22,
+   "feasible_flipped": 4
+  },
+  "full -> object-only fill, ADAPTED": {
+   "frames": 18,
+   "best_changed": 11,
+   "mean_abs_exe_change": 1.0,
+   "feasible_flipped": 2
+  },
+  "noise floor: 0.2% blanked, RAW": {
+   "frames": 18,
+   "best_changed": 3,
+   "mean_abs_exe_change": 0.94,
+   "feasible_flipped": 6
+  },
+  "noise floor: 0.2% blanked, BASELINE-OBJECT-FILL": {
+   "frames": 18,
+   "best_changed": 10,
+   "mean_abs_exe_change": 1.89,
+   "feasible_flipped": 4
+  },
+  "noise floor: 0.2% blanked, ADAPTED-OBJECT-FILL": {
+   "frames": 18,
+   "best_changed": 7,
+   "mean_abs_exe_change": 1.56,
+   "feasible_flipped": 3
+  }
+ }
+}

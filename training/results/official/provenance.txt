@@ -1,0 +1,35 @@
+arm:        remake_official  (the ORIGINAL ReMake, authors' released checkpoint)
+checkpoint: remake/checkpoints_official/remake_official.tar, epoch 39
+tree:       remake/  (ReMake v1 path; eval/predict.py with no --config)
+reldepth:   depthanything vits, frozen
+trained on: TransCG, as the ReMake paper trains (the release does not say).
+input:      640x480, depth_range 0.3-1.5, dataset GT transparent mask (paper protocol)
+subset:     the frozen 1177-frame subset, native 1280x720 scoring
+device:     CPU, 20 threads, 1795.9 s. The GPU was busy training the skip arm
+            with 2.8 GiB free; taking that headroom risked killing a 6 h run to
+            save 20 min. CPU inference is numerically the same model.
+scored:     2026-09-19
+
+WHY THIS RUN EXISTS. The project's baseline report (a development document, not
+in this release) scored this checkpoint's masked
+RMSE on this subset but its concavity figure came from an early run over 80
+frames and 47 qualifying instances. Every other arm is quoted at 541. The two
+were not comparable and the original was being carried in tables at a number
+nobody could line up against the rest.
+
+RESULT
+  masked RMSE 11.2 mm   D435 9.0 / L515 13.4   FAIL 2.1 %   GOOD 67.6 %
+  concavity   89 % over 541 instances
+
+REPRODUCTION CHECK. Mean, median, p90, FAIL and GOOD, and both per-camera
+splits, all match the baseline report's row for these weights exactly.
+The CPU port and the map_location patch changed nothing.
+
+ON THE 10.8 mm THAT WAS BEING QUOTED. That is the baseline report's separate
+"native-res masked RMSE" column. eval/score.py reports 11.2 mm and matches the
+report's main column exactly. 11.2 is the number comparable with every other
+arm in results/, because it comes from the same script.
+
+THE RELEASED WEIGHTS
+  | model            | masked RMSE | concavity (n=541) | keeps under half |
+  | remake_official  | 11.2 mm     | 89 %              | 9 %              |

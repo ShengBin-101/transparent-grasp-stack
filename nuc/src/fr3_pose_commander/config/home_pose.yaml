@@ -1,0 +1,20 @@
+# The capture pose, as joint angles (rad).
+#
+# run_home.sh drives the arm here before the controller starts, and the commander's
+# go_home returns to its forward kinematics. Joint angles, not a tool pose, because
+# they fix the posture: one tool pose is reachable in postures of very different
+# authority. A fixed capture pose also keeps runs comparable, as the camera rides on
+# the gripper. Change it with ./run_home.sh --save or tools/home_from_viewpoint.py.
+#
+# Capture viewpoint 1 (tools/home_from_viewpoint.py), planned with the nominal hand-eye: camera
+# 0.50 m above the table, looking straight down at (0.50, 0.00). With the calibrated hand-eye
+# (camera_extrinsics.yaml) the camera here sits at (0.504, -0.009), 0.482 m above the
+# table and 1.75 deg off vertical; viewpoints 2-5 are planned live with the calibrated value.
+# The table height and these joints belong to one rig: re-measure both if the table moves.
+# Previous, hand-saved value:
+#   [0.164563000, -0.222906000, -0.123741000, -2.139510000, -0.029404400, 1.916490000, 0.839196000]
+home_joints: [0.148511274, -0.522616292, -0.123741000, -2.368825141, -0.064114728, 1.848978759, 0.844178383]
+
+# rad/s for the furthest-travelling joint (quintic, peak 1.875x; at least 500 ms).
+# Not read by run_home.sh, which passes MAX_DQ (default 0.2) to home.launch.
+max_dq: 0.2

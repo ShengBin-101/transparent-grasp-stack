@@ -1,0 +1,21 @@
+# Poses drawn by pins_node on /live_pipeline/pins (Foxglove: 3D panel, or the Image panel over the
+# colour camera). Edit and save: the node re-reads this file within 0.2 s, no restart.
+#
+# Each pin is held in its own frame -- any frame TF knows:
+#   fr3_link0                    robot base (x forward, y left, z up; the table is at z = -0.041)
+#   fr3_EE                       the TCP between the fingertips (moves with the arm)
+#   camera_color_optical_frame   the wrist camera (x right, y down, z forward, in the image)
+# With the calibration and TF right, a fr3_link0 pin sits on the same physical point from every viewpoint.
+#
+#   name:              label drawn next to it
+#   frame:             default fr3_link0
+#   position:          [x, y, z] m
+#   orientation_xyzw:  [qx, qy, qz, qw]      or   rpy_deg: [roll, pitch, yaw]   (default: identity)
+#   shape:             axes (x red, y green, z blue; default) | gripper | sphere
+#   size:              axes length / sphere diameter, m (default 0.05)
+#   width:             gripper opening, m (default 0.05); a gripper's z is its approach, y its jaw
+#   colour:            [r, g, b] 0..1
+pins:
+  - name: base origin on the table
+    position: [0.0, 0.0, -0.041]
+    size: 0.1

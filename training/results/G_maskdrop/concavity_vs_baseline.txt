@@ -1,0 +1,35 @@
+frames: 1177
+
+=== A_ft ===
+  instances scored: 2528  (D435 1312, L515 1216)
+  all instances, GT concavity median -11.5 mm, prediction -10.0 mm
+
+       GT band     n    GT med   pred med   reproduced
+     10-  25 mm   153     18.0      14.0          78%
+     25-  40 mm   137     33.0      30.0          91%
+     40-  60 mm   149     48.0      42.0          88%
+     60-  90 mm    80     67.0      60.0          90%
+     90- 400 mm    22    102.5      88.0          86%
+
+  overall (GT > 10 mm, n=541): 87% of concavity reproduced
+  instances keeping under half: 10%
+    D435: n=283  85%
+    L515: n=258  91%
+
+=== G_maskdrop ===
+  instances scored: 2528  (D435 1312, L515 1216)
+  all instances, GT concavity median -11.5 mm, prediction -10.0 mm
+
+       GT band     n    GT med   pred med   reproduced
+     10-  25 mm   153     18.0      15.0          83%
+     25-  40 mm   137     33.0      31.0          94%
+     40-  60 mm   149     48.0      42.0          88%
+     60-  90 mm    80     67.0      60.0          90%
+     90- 400 mm    22    102.5      88.5          86%
+
+  overall (GT > 10 mm, n=541): 87% of concavity reproduced
+  instances keeping under half: 10%
+    D435: n=283  85%
+    L515: n=258  92%
+
+  A_ft 87%  ->  G_maskdrop 87%   (+0 points)

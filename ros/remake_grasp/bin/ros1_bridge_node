@@ -1,0 +1,4 @@
+#!/usr/bin/env python3
+from remake_grasp.ros1_bridge_node import main
+
+main()

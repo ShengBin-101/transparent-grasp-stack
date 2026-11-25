@@ -1,0 +1,31 @@
+{
+ "source_run": "20260918_162551_auto",
+ "note": "a plastic bottle, an orange plate with a black foam handle and a cardboard box (rig, 18 Sep 2026): transparent and opaque targets; captured before SAM 3 was on the rig, so no baseline",
+ "arrays": {
+  "depth_aligned_mm": [
+   "<f4",
+   [
+    720,
+    1280
+   ]
+  ],
+  "depth_coverage": [
+   "|b1",
+   [
+    720,
+    1280
+   ]
+  ],
+  "color_intrinsics": [
+   "<f8",
+   [
+    3,
+    3
+   ]
+  ]
+ },
+ "presets": [
+  "adapted",
+  "raw"
+ ]
+}

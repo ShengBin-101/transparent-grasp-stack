@@ -1,0 +1,20 @@
+# Where the camera is on the wrist (hand-eye calibration).
+#
+# ee_to_camera is the camera optical frame in the controlled EE frame (O_T_EE, /tf
+# <arm_id>_EE), as [x, y, z, qx, qy, qz, qw] in metres: about +90 deg about EE z, on a
+# bracket ~109 mm beside the gripper and above the fingertip TCP (z < 0).
+# The Orin's ros/remake_grasp/config/eye_in_hand.yaml must hold the same values;
+# run_commander.sh warns if they differ, so recalibrate both together.
+#
+# fr3_EE comes from the end-effector config in Desk (the nominal Franka Hand puts it on
+# fr3_hand_tcp); changing the tool there moves it. Check with
+#     rosrun tf tf_echo fr3_hand_tcp camera_color_optical_frame
+ee_frame: fr3_EE
+camera_frame: camera_color_optical_frame
+# Calibrated on an AprilGrid (tag36h11, 9 x 6, 30 mm tags) from 23 arm poses, refined
+# on every tag corner (tools/hand_eye/): held-out board error 4.5 mm median, against 8.5 mm for the
+# nominal value. What the numbers put where, calibrated [nominal]:
+#   EE -> camera   x +109.2 mm, y +8.7 mm, z -30.2 mm   [+105, 0, -48]; rotation ~2.2 deg off +90 deg z
+# The camera is on a bracket ~109 mm beside the gripper, not coaxial with it, and ~30 mm above the
+# fingertip TCP. Nominal: [0.105, 0.0, -0.048, 0.0, 0.0, 0.7071067811865476, 0.7071067811865476]
+ee_to_camera: [0.109234, 0.008700, -0.030235, 0.002532, -0.015076, 0.715291, 0.698659]

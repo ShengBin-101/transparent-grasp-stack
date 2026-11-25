@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the dissertation it accompanies."
+title: "transparent-grasp-stack"
+abstract: >-
+  Code, weights and trial records for robotic grasping of transparent objects with a Franka
+  Research 3, a RealSense L515 and a Jetson AGX Orin: a prompt-free transparency segmenter,
+  ReMake depth completion and Scale-Balanced Grasp grasp detection.
+type: software
+authors:
+  - family-names: Chan
+    given-names: Sheng Bin
+    affiliation: National University of Singapore
+version: "1.0"
+license: MIT
+repository-code: "https://github.com/ShengBin-101/transparent-grasp-stack"
+keywords:
+  - transparent objects
+  - depth completion
+  - robotic grasping
+  - Franka Research 3
+preferred-citation:
+  type: thesis
+  thesis-type: "Bachelor's dissertation"
+  title: "Robotic Grasping of Transparent Objects: From Radar–Camera Fusion to Learned Depth Completion"
+  authors:
+    - family-names: Chan
+      given-names: Sheng Bin
+  institution:
+    name: "National University of Singapore"
+    city: Singapore
+  department: "Department of Electrical and Computer Engineering"
+  year: 2026

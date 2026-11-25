@@ -1,0 +1,24 @@
+# fr3_position_control/CartesianPoseTrackingController
+#
+# Per channel the smoother (pose_smoother.h) bounds speed by max_velocity, accel by
+# max_velocity * smoothing_rate and jerk by max_velocity * smoothing_rate^2. Following a
+# ramp at v it trails by 2 v / smoothing_rate (12 mm/s -> 4.8 mm) and lands on the target.
+# test/test_pose_smoother.cpp pins these values (its LIN/ANG). Slow on purpose:
+# pose_commander already ramps at 12 mm/s, so max_velocity only governs a jump.
+cartesian_pose_tracking_controller:
+  type: fr3_position_control/CartesianPoseTrackingController
+  arm_id: $(arg arm_id)
+  base_frame: $(arg arm_id)_link0
+  linear:
+    max_velocity: 0.10       # m/s    -> accel <= 0.5 m/s^2, jerk <= 2.5 m/s^3
+    smoothing_rate: 5.0      # 1/s
+  angular:
+    max_velocity: 0.50       # rad/s
+    smoothing_rate: 5.0      # 1/s
+  # Targets farther than this from the command are ignored with a warning (a frame or
+  # units bug: pose_commander's step_max is also 0.60 m, and it ramps).
+  max_target_jump: 0.60      # m
+  # Latch the commanded elbow (joint 3 angle, joint 4 flip) at start and hold it, as the
+  # planner's "elbow_locked" model assumes; false lets the firmware pick joint 3.
+  # Overridden by the launch arg hold_elbow.
+  hold_elbow: true

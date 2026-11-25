@@ -1,0 +1,61 @@
+<launch>
+  <!-- Drive to a joint configuration, then exit; run_home.sh reads config/home_pose.yaml
+       and passes the angles in. This is franka_ros's move_to_start.launch with the target
+       joints as arguments. It uses JointTrajectoryController because the move must be
+       interpolated inside the 1 kHz loop: joint commands published from a ROS node at
+       100 Hz jittered the arm, and libfranka's examples need realtime scheduling this
+       account lacks. move_to_start is required, so the launch exits when the move ends and
+       frees the single FCI connection; run it with the controller stopped. -->
+
+  <arg name="robot_ip"     default="172.16.0.2" />
+  <arg name="robot"        default="fr3" doc="panda or fr3" />
+  <arg name="arm_id"       default="$(arg robot)" />
+
+  <!-- Needs ros-noetic-joint-trajectory-controller (run_home.sh checks for it). Position
+       is the default as ros-noetic-position-controllers is already installed. -->
+  <arg name="transmission" default="position" doc="position or effort" />
+
+  <arg name="max_dq"       default="0.2"
+       doc="rad/s for the furthest-travelling joint; move_to_start paces the
+            whole trajectory by this and floors it at 500ms" />
+
+  <!-- Defaults are franka's generic ready pose; run_home.sh passes the capture pose. -->
+  <arg name="q1" default="0" />
+  <arg name="q2" default="-0.785398163397" />
+  <arg name="q3" default="0" />
+  <arg name="q4" default="-2.35619449019" />
+  <arg name="q5" default="0" />
+  <arg name="q6" default="1.57079632679" />
+  <arg name="q7" default="0.785398163397" />
+
+  <!-- No gripper: homing does not need it, and its node would hold a
+       connection the controller wants next. -->
+  <include file="$(find franka_control)/launch/franka_control.launch">
+    <arg name="robot_ip"     value="$(arg robot_ip)" />
+    <arg name="robot"        value="$(arg robot)" />
+    <arg name="arm_id"       value="$(arg arm_id)" />
+    <arg name="load_gripper" value="false" />
+  </include>
+
+  <node name="controller_spawner" pkg="controller_manager" type="spawner"
+        respawn="false" output="screen"
+        args="$(arg transmission)_joint_trajectory_controller" />
+
+  <node name="move_to_start" pkg="franka_example_controllers"
+        type="move_to_start.py" output="screen" required="true">
+    <rosparam subst_value="true">
+      joint_pose:
+        $(arg arm_id)_joint1: $(arg q1)
+        $(arg arm_id)_joint2: $(arg q2)
+        $(arg arm_id)_joint3: $(arg q3)
+        $(arg arm_id)_joint4: $(arg q4)
+        $(arg arm_id)_joint5: $(arg q5)
+        $(arg arm_id)_joint6: $(arg q6)
+        $(arg arm_id)_joint7: $(arg q7)
+    </rosparam>
+    <remap from="~follow_joint_trajectory"
+           to="$(arg transmission)_joint_trajectory_controller/follow_joint_trajectory" />
+    <remap from="~joint_states" to="franka_state_controller/joint_states" />
+    <param name="max_dq" value="$(arg max_dq)" />
+  </node>
+</launch>

@@ -1,0 +1,39 @@
+<launch>
+  <!-- Robot-free bringup: the drawn arm, the bridges, and the commander in dry
+       run. See run_mock.sh. Nothing in here can move anything. -->
+
+  <arg name="robot"     default="fr3" />
+  <arg name="animate"   default="true" />
+  <arg name="commander" default="true" />
+  <!-- Forwarded to the includes below; set both false for just the drawn arm and the
+       bridges, with nothing reporting a tool pose. -->
+  <arg name="franka_states" default="true" />
+  <arg name="tool_pose"     default="true" />
+  <!-- nominal Franka Hand F_T_EE; see mock_robot.launch -->
+  <arg name="ee_xyz"    default="0 0 0.1034" />
+  <arg name="ee_yaw"    default="-0.7853981633974483" />
+  <arg name="foxglove_port" default="8765" />
+  <arg name="port"          default="9090" />
+
+  <include file="$(find fr3_pose_commander)/launch/mock_robot.launch">
+    <arg name="robot"   value="$(arg robot)" />
+    <arg name="animate" value="$(arg animate)" />
+    <arg name="franka_states" value="$(arg franka_states)" />
+    <arg name="ee_xyz"  value="$(arg ee_xyz)" />
+    <arg name="ee_yaw"  value="$(arg ee_yaw)" />
+  </include>
+
+  <include file="$(find fr3_pose_commander)/launch/bridge.launch">
+    <arg name="foxglove_port" value="$(arg foxglove_port)" />
+    <arg name="port"          value="$(arg port)" />
+  </include>
+
+  <!-- Always dry run: there is no controller behind the mock. -->
+  <include if="$(arg commander)"
+           file="$(find fr3_pose_commander)/launch/pose_commander.launch">
+    <arg name="base_frame" value="$(arg robot)_link0" />
+    <arg name="dry_run"    value="true" />
+    <arg name="camera_tf"  value="false" />
+    <arg name="tool_pose"  value="$(arg tool_pose)" />
+  </include>
+</launch>

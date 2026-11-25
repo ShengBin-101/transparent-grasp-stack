@@ -1,0 +1,9 @@
+arm:        A_ft
+config:     configs/train/exp_A_ft.yaml
+commit:     bab3a81
+host:       training-workstation
+gpu:        NVIDIA GeForce RTX 3090
+started:    2026-09-25T16:01:28Z
+  NOTE: no best-loss snapshot; evaluating the LAST epoch
+  checkpoint: remake/results/A_ft/checkpoint.tar
+finished:   2026-09-25T16:06:40Z

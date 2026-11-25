@@ -1,0 +1,30 @@
+# Wrist camera mounting and the shape of a staged pick (read by the sequencer).
+
+# Camera optical frame in the controlled EE frame (fr3_EE = O_T_EE), [x, y, z, qx, qy, qz, qw], ~+90 deg about z.
+# The NUC's fr3_pose_commander/config/camera_extrinsics.yaml must hold the same values.
+# Hand-eye calibrated on an AprilGrid from 23 arm poses: 4.5 mm median held-out error vs 8.5 mm nominal.
+# Nominal: [0.105, 0.0, -0.048, 0.0, 0.0, 0.7071067811865476, 0.7071067811865476]
+ee_to_camera: [0.109234, 0.008700, -0.030235, 0.002532, -0.015076, 0.715291, 0.698659]
+
+# Where the fingertips close, in the EE frame. Identity: fr3_EE is already the hand TCP.
+ee_to_grasp: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+
+sequence:
+  standoff: 0.10          # m, back off along the approach axis before closing in
+  retreat: 0.10           # m, back out holding the object
+  do_retreat: true
+  guarded_grasp: true     # grasp leg stops on contact (NUC's guarded_move_to_pose)
+  open_width: 0.078       # m, fingers on the way in
+  max_width: 0.080        # m, jaw travel
+  drift_position: 0.005   # m, how far the arm may move between capture and pick
+  drift_angle: 0.02       # rad
+  cheaper_jaw: true       # take the finger order that turns the wrist less
+  # auto | required | off: ask the NUC planner which grasp is reachable. required refuses the pick when
+  # the planner is down or picks nothing (auto would send an unchecked grasp); tests/fake_nuc.py needs auto.
+  plan_pick: required
+  pick_from: home         # capture | home
+  return_home: true
+  settle: 1.0             # s, let a waypoint cross the bridge before triggering
+  pose_timeout: 120.0     # s, refuse grasps older than this
+  tool_timeout: 2.0       # s, refuse if the tool pose stops streaming
+  leg_timeout: 90.0       # s, per leg

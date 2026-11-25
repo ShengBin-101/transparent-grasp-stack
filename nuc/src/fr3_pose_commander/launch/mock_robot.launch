@@ -1,0 +1,52 @@
+<launch>
+  <!-- The arm, drawn, with no arm present: the real URDF, a mock posture on /joint_states
+       and robot_state_publisher, so Foxglove panels can be laid out before the robot is on.
+       Not a simulator: the arm does not follow commands, so watch the equilibrium_pose
+       topic for the commanded setpoint. -->
+
+  <arg name="robot"        default="fr3" />
+  <arg name="arm_id"       default="$(arg robot)" />
+  <arg name="load_gripper" default="true" />
+  <arg name="animate"      default="true"
+       doc="sweep the posture, so a frozen panel is obvious" />
+  <arg name="camera_tf"    default="true" />
+  <arg name="franka_states" default="true"
+       doc="report the drawn arm's tool pose as O_T_EE, so pose_commander can
+            run a whole command. Without it every execute_grasp refuses at the
+            first check and nothing downstream of it is ever exercised." />
+  <arg name="extrinsics"   default="$(find fr3_pose_commander)/config/camera_extrinsics.yaml" />
+
+  <param name="robot_description"
+         command="$(find xacro)/xacro $(find franka_description)/robots/$(arg robot)/$(arg robot).urdf.xacro hand:=$(arg load_gripper) arm_id:=$(arg arm_id)" />
+
+  <node name="mock_joint_states" pkg="fr3_pose_commander"
+        type="mock_joint_states.py" output="screen">
+    <param name="arm_id"  value="$(arg arm_id)" />
+    <param name="animate" value="$(arg animate)" />
+  </node>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher"
+        type="robot_state_publisher" output="screen" />
+
+  <!-- Reports the drawn arm's tool pose as franka_states so the commander's checks, ramp
+       and gripper ordering run; the arm still does not follow (mock_franka_states.py). -->
+  <node if="$(arg franka_states)" name="mock_franka_states"
+        pkg="fr3_pose_commander" type="mock_franka_states.py" output="screen">
+    <param name="arm_id" value="$(arg arm_id)" />
+  </node>
+
+  <!-- link8 -> EE comes from the end-effector config in Desk, which the mock cannot read,
+       so it asserts the nominal Franka Hand value: (0, 0, 0.1034), yaw -45 deg, putting
+       fr3_EE on fr3_hand_tcp. If Desk differs, override ee_xyz/ee_yaw; on the real robot
+       `rosrun tf tf_echo fr3_link8 fr3_EE` prints the truth. -->
+  <arg name="ee_xyz" default="0 0 0.1034" />
+  <arg name="ee_yaw" default="-0.7853981633974483" />
+  <node name="mock_ee_tf" pkg="tf2_ros" type="static_transform_publisher"
+        args="$(arg ee_xyz) $(arg ee_yaw) 0 0 $(arg arm_id)_link8 $(arg arm_id)_EE" />
+
+  <node if="$(arg camera_tf)" pkg="fr3_pose_commander"
+        type="publish_camera_tf.py" name="camera_tf_publisher" output="screen">
+    <rosparam command="load" file="$(arg extrinsics)" />
+    <param name="ee_frame" value="$(arg arm_id)_EE" />
+  </node>
+</launch>

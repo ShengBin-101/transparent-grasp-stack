@@ -1,0 +1,34 @@
+<launch>
+  <!-- Everything in one terminal: controller, commander, camera tf, the websocket bridges,
+       description server. Convenient for a bench run. For real work prefer
+       separate terminals so the controller survives restarting the commander. -->
+
+  <arg name="robot_ip" />
+  <arg name="robot"        default="fr3" />
+  <arg name="load_gripper" default="true" />
+  <arg name="dry_run"      default="false" />
+  <arg name="checks"       default="true" />
+  <arg name="port"         default="9090" />
+  <arg name="http_port"    default="8080" />
+  <arg name="public_host"  default="" />
+  <arg name="spawn_delay"  default="5.0" />
+
+  <include file="$(find fr3_pose_commander)/launch/controller.launch">
+    <arg name="robot_ip"     value="$(arg robot_ip)" />
+    <arg name="robot"        value="$(arg robot)" />
+    <arg name="load_gripper" value="$(arg load_gripper)" />
+    <arg name="spawn_delay"  value="$(arg spawn_delay)" />
+  </include>
+
+  <include file="$(find fr3_pose_commander)/launch/pose_commander.launch">
+    <arg name="base_frame" value="$(arg robot)_link0" />
+    <arg name="dry_run"    value="$(arg dry_run)" />
+    <arg name="checks"     value="$(arg checks)" />
+  </include>
+
+  <include file="$(find fr3_pose_commander)/launch/bridge.launch">
+    <arg name="port"        value="$(arg port)" />
+    <arg name="http_port"   value="$(arg http_port)" />
+    <arg name="public_host" value="$(arg public_host)" />
+  </include>
+</launch>

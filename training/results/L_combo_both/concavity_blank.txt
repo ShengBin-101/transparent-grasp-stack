@@ -1,0 +1,17 @@
+frames: 1177
+
+=== L_combo_both_blank ===
+  instances scored: 2528  (D435 1312, L515 1216)
+  all instances, GT concavity median -11.5 mm, prediction -9.0 mm
+
+       GT band     n    GT med   pred med   reproduced
+     10-  25 mm   153     18.0      15.0          83%
+     25-  40 mm   137     33.0      34.0         103%
+     40-  60 mm   149     48.0      41.0          85%
+     60-  90 mm    80     67.0      64.5          96%
+     90- 400 mm    22    102.5      85.5          83%
+
+  overall (GT > 10 mm, n=541): 89% of concavity reproduced
+  instances keeping under half: 15%
+    D435: n=283  87%
+    L515: n=258  95%

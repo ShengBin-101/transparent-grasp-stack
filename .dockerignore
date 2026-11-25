@@ -1,0 +1,15 @@
+# The build context is only what docker/Dockerfile copies; start.sh mounts the whole repo at run time.
+*
+!docker
+!ros
+!third_party
+!segmenter
+!scripts
+!tmuxp
+# Submodule metadata and SAM 3's demo media (the sam3 package reads only sam3/assets/)
+third_party/*/.git
+third_party/sam3/assets
+third_party/sam3/examples
+third_party/sam3/scripts
+**/__pycache__
+**/*.log

@@ -1,0 +1,12 @@
+arm:        L_combo_both
+config:     configs/train/exp_L_combo_both.yaml
+commit:     95c3499 (DIRTY)
+host:       training-workstation
+gpu:        NVIDIA GeForce RTX 3090
+seed:       1234
+finetune:   remake/checkpoints_official/remake_official.tar (md5 fd9ffb14b9c16fda7087ab35410166ed)
+started:    2026-10-01T18:05:35Z
+checkpoint: remake/results/L_combo_both/checkpoint43.tar
+selected:   best held-out val masked RMSE, epoch 43 (from the trainer's own summary line)
+final-epoch: remake/results/L_combo_both/checkpoint.tar  (test-selected above; score this too)
+finished:   2026-10-02T02:53:10Z

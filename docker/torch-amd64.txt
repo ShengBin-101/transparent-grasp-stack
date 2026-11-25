@@ -1,0 +1,3 @@
+# x86_64 + NVIDIA GPU (this path has never been built: README.md). These wheels bundle their own CUDA.
+torch==2.14.0
+torchvision==0.29.0

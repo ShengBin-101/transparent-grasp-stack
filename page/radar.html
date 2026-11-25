@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Before the Camera: A Radar Study</title>
+  <meta name="description" content="The first half of a transparent-object grasping project: a 60 GHz mmWave radar on the gripper, two experiments, and why its antenna array is too small to separate objects on a table.">
+  <meta name="author" content="Chan Sheng Bin">
+  <link rel="canonical" href="https://shengbin-101.github.io/transparent-grasp-stack/radar.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Before the Camera: A Radar Study">
+  <meta property="og:description" content="Why a 60 GHz radar on the gripper could not separate objects on a table, and why the project moved to the camera.">
+  <meta property="og:url" content="https://shengbin-101.github.io/transparent-grasp-stack/radar.html">
+  <meta property="og:image" content="https://shengbin-101.github.io/transparent-grasp-stack/static/images/social_preview.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f1318" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="static/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/index.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="crumb wrap" aria-label="Back to the project">
+  <a href="./">← Grasping Transparent Objects with Learned Depth Completion</a>
+</nav>
+
+<header class="hero sub">
+  <div class="wrap">
+    <h1>Before the camera: a radar study</h1>
+    <p class="affil">The first half of the project, to August 2026: a 60 GHz radar on the gripper, two experiments, and
+      why the project moved to the camera.</p>
+  </div>
+</header>
+
+<main id="main">
+  <section id="idea">
+    <div class="wrap">
+      <div class="hw portrait">
+        <figure><img src="static/images/radar_rig.jpg" width="720" height="960"
+          alt="A 3D-printed mount on the Franka arm holding a red radar board and a green capture board above a black stereo camera">
+          <figcaption>The interim radar rig: the TI IWR6843AOP radar and its DCA1000 capture board above an Orbbec
+            Gemini 336L RGB-D camera.</figcaption></figure>
+        <div>
+          <h3 style="margin-top:0">The idea</h3>
+          <p>The project began as fusion of a 60 GHz mmWave radar with an RGB-D camera on the gripper. At 60 GHz the
+            wavelength is about 5 mm, and glass and plastic reflect the radar's signal where they let a depth camera's light
+            through. The radar was to find the transparent objects the camera misses.</p>
+          <h3>The question</h3>
+          <p>The radar pipeline ran on the Jetson, from raw samples to range maps seen from above and from the side. The next
+            step would have been a labelled dataset of transparent objects to train a detector, which would have taken
+            months. So the project first tested whether this radar, at its best settings, could separate objects on a table
+            at all. A detector cannot find objects that the sensor itself merges.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="person" class="alt">
+    <div class="wrap">
+      <h2>A large target</h2>
+      <figure>
+        <div class="figcard narrow"><img src="static/images/radar_person.png" width="735" height="396" loading="lazy"
+          alt="Two radar maps of a person: from above, a bright arc at 1.1 m, and from the side, an arc spread over the whole height"></div>
+        <figcaption>A person about 1 m away. From above (b), the radar places them at 1.1 m. From the side (c) there is
+          no height detail, because the radar has only two antennas stacked vertically. The camera image of panel (a) is
+          not published.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="bottle">
+    <div class="wrap">
+      <h2>Experiment 1: one transparent bottle</h2>
+      <p>Can the radar measure the distance of an object the camera has already found? A transparent plastic bottle was placed
+        on a dark cloth. A segmentation model outlined the bottle in each camera frame, and the radar detections inside the
+        outline gave its distance.</p>
+      <figure>
+        <div class="figcard narrow"><img src="static/images/radar_exp1.png" width="610" height="440" loading="lazy"
+          alt="Histogram of the radar's distance to the bottle over 97 frames, centred at 0.380 m, with the cloth behind the bottle at 0.389 m inside the same shaded 4 cm distance step"></div>
+        <figcaption>In 97 of the 99 camera frames with a radar frame within 100 ms, a radar detection landed inside the
+          bottle's outline, at a median 0.380 m with an 11 mm spread. The cloth behind the bottle is at 0.389 m, only 9 mm
+          further and inside one of the radar's 4 cm distance steps.</figcaption>
+      </figure>
+      <p style="margin-top:16px">The radar measured a distance consistently, but it could not tell the bottle from the cloth
+        behind it. Nor did it locate the bottle: the camera found the bottle and selected its echo.</p>
+    </div>
+  </section>
+
+  <section id="two" class="alt">
+    <div class="wrap">
+      <h2>Experiment 2: two objects</h2>
+      <p>Grasping needs the radar to separate neighbouring objects. An opaque flask and a transparent bottle stood 25 cm
+        apart, centre to centre, at about 0.55 m. They were about one beam width apart, so the test was at about the
+        predicted limit.</p>
+      <figure>
+        <div class="figcard"><img src="static/images/radar_exp2.png" width="1161" height="509" loading="lazy"
+          alt="Three panels: a photo of a flask and a bottle, the radar's map with one bright band between the two circled objects, and the echo by direction with its dominant peak between the two objects"></div>
+        <figcaption>(a) The scene. (b) The radar's map seen from above, with the objects circled. (c) The echo by direction
+          at their distance.</figcaption>
+      </figure>
+      <p style="margin-top:16px">The radar did not separate them. Its map shows one broad band at their distance, and its
+        strongest echo comes from the gap between them, where there is no object. At that distance the echo peaks at +2°,
+        and both objects sit about 5 dB lower on either side with no clear dip between them. Because the one dominant peak lies between
+        the objects, no detector can find two objects in it, and objects that stand closer together would merge in the same
+        way.</p>
+    </div>
+  </section>
+
+  <section id="why">
+    <div class="wrap">
+      <h2>Why the radar work stopped</h2>
+      <ul>
+        <li><strong>The antenna array is too small.</strong> Cross-range resolution is roughly <i>Rλ/L</i> for an aperture
+          <i>L</i> at distance <i>R</i>. Separating 6 to 7 cm objects at 0.5 m needs an aperture of about 5 cm, and
+          separating them cleanly when they stand 5 cm apart needs about 25 cm. This chip's aperture is 1 cm, 5 to 25 times
+          too small, and no chirp profile, beamformer or detector changes it.</li>
+        <li><strong>Better processing did not help.</strong> On the single-bottle recording, the standard CFAR detector flagged 7 to 16 % of all cells at every
+          threshold, and Capon beamforming gave unstable output on a static scene. That recording's heatmap has a useful contrast of only
+          about 17 dB, spread across a few strong reflectors.</li>
+        <li><strong>The learned detector did not transfer.</strong> REXO had been trained on a radar with 1.3° resolution and
+          another rig's camera placement, and here it placed its box beside the person.</li>
+        <li><strong>A synthetic aperture is too slow.</strong> Moving one radar to emulate a wider array, as FuseGrasp does,
+          takes about 30 s per scan, and its depth error triples when the arm's position noise grows from 0.1 to 1 mm.</li>
+      </ul>
+      <p>Revisiting radar would need a cascaded radar with about 1° in azimuth, or a synthetic aperture fast and precise
+        enough for a grasping loop. Experiment 1 already had the shape of the camera approach that followed: find the
+        object with a segmenter, then recover its depth.</p>
+      <div class="links" style="justify-content:flex-start">
+        <a class="btn" href="./">← Back to the project</a>
+        <a class="btn light" href="https://github.com/ShengBin-101/xwr_raw_ros">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>
+          Radar code and figures</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>The radar plots are those of Chapter 2 of the dissertation, drawn by the scripts in
+      <a href="https://github.com/ShengBin-101/xwr_raw_ros/tree/ros2/figures">xwr_raw_ros/figures</a>. This page adapts the
+      <a href="https://github.com/eliahuhorwitz/Academic-project-page-template">Academic Project Page Template</a>, which was
+      adapted from the <a href="https://nerfies.github.io">Nerfies</a> project page. The page's design and code are licensed
+      under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, like the template.</p>
+  </div>
+</footer>
+</body>
+</html>

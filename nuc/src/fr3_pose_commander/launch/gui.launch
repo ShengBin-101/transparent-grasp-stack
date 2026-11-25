@@ -1,0 +1,12 @@
+<launch>
+  <!-- rviz and rqt_reconfigure against a running controller.launch; needs a display.
+       rqt_reconfigure sets the stiffness live. No interactive marker: it would be a second
+       writer to the equilibrium topic (see controller.launch). -->
+
+  <arg name="arm_id" default="fr3" />
+
+  <node pkg="rviz" type="rviz" name="rviz" output="screen"
+        args="-d $(find franka_example_controllers)/launch/rviz/franka_description_with_marker.rviz" />
+  <node pkg="rqt_reconfigure" type="rqt_reconfigure" name="rqt_reconfigure"
+        required="false" />
+</launch>

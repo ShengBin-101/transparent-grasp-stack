@@ -1,0 +1,22 @@
+# RealSense L515 driver settings (realsense-ros 4.51.1, SDK 2.53.1).
+/**:
+  ros__parameters:
+    # The RSUSB backend cannot service the error-polling control on the L515.
+    depth_module.error_polling_enabled: false
+
+    # Only depth + colour, at a rate the USB link carries (~46 MB/s).
+    enable_infra: false
+    enable_confidence: false
+    enable_gyro: false
+    enable_accel: false
+    depth_module.profile: 640x480x30
+    rgb_camera.profile: 1280x720x15
+
+    # Low Ambient Light preset, with the near clip lowered to the sensor's 250 mm minimum
+    # (the factory Max Range preset drops everything nearer than 490 mm).
+    depth_module.visual_preset: 3
+    depth_module.min_distance: 250
+
+    # System-time stamps, so colour and depth stay pairable and captures are not "stale".
+    depth_module.global_time_enabled: true
+    rgb_camera.global_time_enabled: true

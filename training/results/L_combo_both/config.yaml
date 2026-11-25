@@ -1,0 +1,91 @@
+# L_combo_both -- FINE-TUNE from remake_official.tar (epoch 39), six epochs to 45 at resume_lr 1e-4,
+# on BOTH TransCG cameras (the ladder's data), with the ladder's two passing knobs and its bug fix:
+#   p_blank_in_mask 0.5                      (F_blank: blanked 26.1 -> 15.6 mm, protocol 11.9 mm)
+#   p_mask_none/erode/dilate 0.25/0.15/0.15  (G_maskdrop: no-mask 43.6 -> 17.0, SAM-box 27.0 -> 23.1)
+#   rel_rgb_fix True                         (E_flipfix: null, kept as a bug fix)
+# Chosen over K_l515_combo after J_l515: training on L515 frames only cost 3-4 mm on
+# the blanked / no-mask / SAM-box L515 rows. The candidate for the rig. CONTROLS: A_ft, F_blank,
+# G_maskdrop (all both cameras).
+# PRE-REGISTERED, on the overall rows (n=1177); the L515 rows are reported alongside:
+#   PASS  : blanked masked RMSE <= F_blank + 2 mm (<= 17.6) AND no-mask <= G_maskdrop + 2 mm (<= 19.0)
+#           -- both gains survive the combination -- AND SAM-box <= G_maskdrop + 1 mm (<= 24.1).
+#   guard : protocol masked RMSE <= A_ft + 1 mm (<= 12.8).
+#   null  : either gain lost (blanked > 20 mm or no-mask > 25 mm): the knobs interfere when combined.
+#
+"model":
+  "type": "remake"
+  "params":
+    "lambda_val": 1
+    "res": True
+
+"optimizer":
+  "type": "AdamW"
+  "params":
+    "lr": 0.001 #
+
+"lr_scheduler":
+  "type": "MultiStepLR"
+  "params":
+    "milestones": [35, 65] #
+    "gamma": 0.1
+
+"dataset":
+  "train":
+    "type": "transcg"
+    "data_dir": "datasets/transcg/transcg"
+    "image_size": !!python/tuple  [640, 480]
+    "use_augmentation": True
+    "rgb_augmentation_probability": 0.8
+    "use_depth_augmentation": False
+    "no_mask_depth": False #True for ablation
+    "depth_min": 0.0
+    "depth_max": 10.0
+    "depth_norm": 1.0
+    "reldepth_model": depthanything
+    "p_blank_in_mask": 0.5
+    "p_mask_none": 0.25
+    "p_mask_erode": 0.15
+    "p_mask_dilate": 0.15
+    "rel_rgb_fix": True
+  "test":
+    "type": "transcg"
+    "data_dir": "datasets/transcg/transcg"
+    "image_size": !!python/tuple [640, 480]
+    "use_augmentation": False
+    "depth_min": 0.0
+    "depth_max": 1.5
+    "depth_norm": 1.0
+    "reldepth_model": depthanything
+    "rel_rgb_fix": True
+
+
+"dataloader":
+  "num_workers": 12 
+  "shuffle": True
+  "drop_last": False 
+
+"trainer":
+  "batch_size": 6 
+  "test_batch_size": 12
+  "resume_lr": 0.0001    # the official run's LR after its epoch-35 milestone
+  "val_list": "../eval/subset/val_list.json"
+  "multigpu": False
+  "max_epoch": 45 
+  "criterion":
+    "type": "l1_loss" #l1_loss custom_masked_l1_loss
+    "epsilon": 0.00000001
+    "combined_smooth": True #True & False 
+    "combined_beta": 0.1
+
+"metrics":
+  "types": ["MSE", "RMSE", "REL", "MAE", "Threshold@1.01", "Threshold@1.03", "Threshold@1.05", "Threshold@1.10", "Threshold@1.25", "MaskedMSE", "MaskedRMSE", "MaskedREL", "MaskedMAE", "MaskedThreshold@1.01", "MaskedThreshold@1.03", "MaskedThreshold@1.05", "MaskedThreshold@1.10", "MaskedThreshold@1.25", "ssim"] #"ChamferDist",
+  "epsilon": 0.00000001
+  "depth_scale": 1.0
+
+"states":
+  "states_dir": "results"
+  "states_exper": "L_combo_both"
+
+"tb_log":
+  "states_dir": "tb_log"
+  "states_exper": "train-tg-val-tg"

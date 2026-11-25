@@ -1,0 +1,180 @@
+# Limits, ramp, gripper, contact guard and planner settings for fr3_pose_commander.
+# Loaded into the node's private namespace: `limits: {z_min: ...}` is ~limits/z_min.
+
+base_frame: fr3_link0
+
+# Where go_home goes (in planned legs). home_pose: the forward kinematics of
+# home_pose.yaml's home_joints (capture viewpoint 1). startup: where this node first
+# saw the arm, also the fallback when home_pose.yaml cannot be read.
+home:
+  source: home_pose
+
+# The trials' views as services: /live_pipeline/go_<name> for each entry, planned as
+# run_viewpoint.sh plans them (same roll, same legs) and run like go_home. go_v1 is go_home
+# itself and is not listed. v2 = run_viewpoint.sh 4 --tilt 45 --height 0.35, the trials' side
+# view (commanded at 45 deg, reached at about 36 deg under impedance).
+views:
+  v2: {viewpoint: 4, tilt_deg: 45.0, height: 0.35}
+
+# Sanity limits on every commanded tool pose. They are not the safety system: the
+# contact guard and the FR3's collision reflex are.
+limits:
+  # m, lowest fingertip (fr3_EE) height: 5 mm above the table, which guarded contact
+  # measured at z = -0.041. A setpoint inside the table would push near the 20 N
+  # collision threshold at 1000 N/m. Re-measure by guarded descent if the table moves.
+  z_min: -0.036
+  radius_max: 0.85              # m from the base axis; the FR3 reaches 855 mm
+  step_max: 0.60                # m per command; a bigger jump is a bad transform, not a move
+  # rad (90 deg) of wrist turn per command. Camera-frame grasps often need large rolls (the
+  # camera sits rolled 90 deg on the wrist), so an unguarded move that turns further is
+  # ramped in pieces of <= 45 deg (planning.cut_over_cap); a guarded leg past it is refused.
+  rotation_max: 1.571
+  state_max_age: 0.5            # s; an older franka_states would check against a stale pose
+
+# The setpoint ramp. The controller turns the setpoint's offset from the arm into
+# force, so these bound how fast the setpoint may run away from it.
+ramp:
+  rate_hz: 100.0
+  linear_speed: 0.012    # m/s; faster moves drift the guard's wrench reading (2.8 N at 50 mm/s)
+  angular_speed: 0.40    # rad/s
+  # After the ramp the setpoint is held until the arm stops closing on it (_settle). The
+  # controllers have no integral term, so the arm may rest short (the grasp leg aims ~10 mm
+  # inside the object on purpose); these only decide when to stop waiting and what to report.
+  settle_time: 0.5          # s, minimum hold before any verdict
+  settle_tolerance: 0.002   # m; this close counts as arrived
+  settle_progress: 0.0005   # m of improvement that still counts as closing
+  settle_patience: 0.7      # s without that much progress before calling it
+  # Orientation is checked too: a pure roll never changes the position.
+  settle_angle_tolerance: 0.0087  # rad (0.5 deg); arrived needs both
+  settle_angle_progress: 0.0017   # rad (0.1 deg) of improvement that counts as closing
+  settle_timeout: 6.0       # s, the longest it will ever wait
+
+gripper:
+  force: 20.0          # N
+  speed: 0.05          # m/s
+  epsilon: 0.02        # m; fallback for both sides when the two below are absent
+  # The grasp holds only if the fingers stop inside [width - epsilon_inner,
+  # width + epsilon_outer]. Predicted widths run wide, so the inner side is loose; a
+  # stop more than 2 cm wider than predicted means the fingers hit something else.
+  epsilon_inner: 0.055 # m  (grasp_mode: predicted only)
+  epsilon_outer: 0.02  # m  (grasp_mode: predicted only)
+
+  # How the grasp is commanded (grasp_goal_params() in the node). The FR3 hand reopens
+  # when its fingers close well past the commanded width and holds when they stop at or
+  # before it (measured with gripper_test.py), so:
+  #   under      command under_width with a window up to full open; the fingers always stop
+  #              on the object first, and the predicted width only decides open-vs-close.
+  #   predicted  the detector's width and the epsilon window above (this dropped objects).
+  grasp_mode: under
+  under_width: 0.005          # m
+  under_epsilon_outer: 0.075  # m -> window 0-80 mm
+  # Fingers closed below this = nothing between them (the hand's success flag is not trusted).
+  miss_width: 0.003           # m
+  open_width: 0.08     # m, full open for /live_pipeline/release
+  # Used when a pose arrives with no width on /live_pipeline/grasp_width_best.
+  default_width: 0.04
+
+# Contact guard, used only by /live_pipeline/guarded_move_to_pose. It thresholds the
+# change in the robot's external-wrench estimate (O_F_ext_hat_K) from a reference, never
+# the absolute reading, which carries a standing offset of a few newtons (3.5 N measured with
+# the arm still; the bracket's mass is declared in Desk, README 6.6).
+# The thresholds sit above free-space guarded descents measured on the rig.
+guard:
+  force_threshold: 2.0      # N above the reference; free-space peak 1.41 N under position control
+  # N.m above the reference; set above the 0.3-0.6 N.m free-space residual, so light
+  # off-centre contact is left to the force channel.
+  torque_threshold: 1.5
+
+  # Consecutive samples over threshold before it counts (franka_states is ~30 Hz, so
+  # 2 is ~67 ms); it mainly helps the spiky torque channel. 1 disables it.
+  debounce: 2
+
+  # Contact checks are off for this long after the ramp starts, while the rolling
+  # reference fills and a stiff arm's start-of-motion step passes (~14 mm at 12 mm/s).
+  # Contact comes ~75 mm into the leg from the 100 mm standoff; re-check if `standoff`
+  # in ros/remake_grasp/config/eye_in_hand.yaml (on the Orin) shrinks.
+  warmup: 1.2               # s
+
+  # The reference. rolling: the mean of a window lagging the sample under test, which
+  # follows the slow posture-dependent drift of the estimate during a move (~0.13 N/s)
+  # but not a contact step (~50 ms); the lag keeps a contact out of its own reference.
+  # fixed: one average taken with the arm still before the ramp; it drifts with the move.
+  baseline_mode: rolling    # rolling | fixed
+  rolling_window: 0.5       # s averaged
+  rolling_lag: 0.2          # s between that window and the sample under test
+  rolling_min_samples: 5    # below this the fixed baseline is used instead
+
+  # Pre-guard settle: hold the setpoint at the measured pose until the wrench and the arm
+  # are still, then take the baseline and ramp from there, so force held from a leg that
+  # ended short is not released into the guard. Tolerances are ~2x the static noise peak.
+  # Never refuses: after the timeout it guards anyway and reports "NOT settled".
+  pre_settle: true              # false skips it
+  pre_settle_window: 0.3        # s the wrench and pose must stay still over
+  pre_settle_force_tol: 0.2     # N, max distance of any reading from the window mean
+  pre_settle_torque_tol: 0.15   # N.m
+  pre_settle_motion_tol: 0.001  # m, same for the measured tool position
+  pre_settle_timeout: 3.0       # s, then guard anyway and say so
+
+  bias_samples: 20          # readings averaged for the baseline
+  bias_timeout: 2.0         # s to collect them before giving up and refusing
+
+  # m: on contact the setpoint snaps to the measured pose (contact_hold), then backs off
+  # this far along the approach, so the arm stops pressing but the fingers still close around it.
+  backoff: 0.003
+
+# One JSON line per leg (move, guarded, home): joints and the robot's elbow fields at both
+# ends, the target and the controller topic (leg_log.py). A failed write only warns.
+leg_log:
+  enabled: true
+  directory: ""   # empty = the workspace's logs/ (nuc/logs); legs-YYYYMMDD.jsonl, not in git
+
+# The reachability planner (planning.py) walks every leg in joint space, catching joint
+# limits, posture flips and collisions the tool-pose limits cannot see. plan_pick chooses a
+# candidate from the Orin's /live_pipeline/pick_candidates whose legs and return home all
+# pass, and each leg is re-checked from the measured joints before it moves.
+#   enforce  no passing candidate stops the pick; a leg that fails its re-check is refused
+#   report   ranks and logs only;  off  disabled.  --no-checks overrules it like any check.
+# Its FK matches the robot's O_T_EE to 0.2 mm, and predicted joints land within joint_margin.
+planner:
+  mode: enforce                 # off | report | enforce
+  budget_s: 5.0                 # plan_pick stops evaluating after this
+  # A ceiling: each grasp is tried in both finger orders; budget_s bounds the work.
+  top_k: 64                     # candidates considered, most confident first
+  # utility: the feasible candidate with the best confidence x comfort (joint margin,
+  # clearance, sigma_min; util_* in planning.PlanConfig). confidence: the first feasible.
+  rank: utility                 # utility | confidence
+  candidates_max_age: 5.0       # s on THIS clock; an older list is a previous pick's
+  approved_tolerance: 0.002     # m: warn when a leg is not one plan_pick approved
+  joint_margin: 0.05            # rad inside every joint limit, joint 7 included
+  max_step_dq: 0.1              # rad per 1 cm sample; more is a posture flip
+  table_z: -0.041               # m, table surface, measured by guarded contact
+  clearance: 0.03               # m above it for links 4-7, flange and camera; the TCP
+                                # is left to limits/z_min.
+  max_speed_frac: 0.5           # of the joint velocity limit; position control only
+  min_sigma: 0.0                # recorded, not enforced -- see kinematics.py
+  # Arm vs scene (scene.py): links 6-7 and the hand as spheres sampled from their collision
+  # meshes, links 2-5 as the URDF's capsules (link 1 is not checked), and the camera as a disc
+  # behind its lens, against the occupied voxels sent with pick_candidates (none sent = not
+  # checked). The gripper's own volume at the grasp is cleared on the grasp and retreat legs.
+  scene_margin: 0.01            # m
+  # For the target's voxels: the voxel bound already overstates gaps by up to ~22 mm, and
+  # a margin here refused good grasps on the target's own rim. The guarded grasp stops on contact.
+  target_margin: 0.0            # m
+  # In labelled scenes the target margin and the gripper keep-out box apply to the grasped
+  # object only (others stay obstacles), and the open fingers are checked against those
+  # obstacles on every leg. Unlabelled scenes skip the finger check.
+  finger_check: true
+  finger_opening: 0.078         # m, the sequencer's open width
+  # plane: every moving part is checked against z = table_z and the voxels of the table
+  # seen in the scene (fitted per capture) are dropped. voxels: the table as voxels, which
+  # on replayed captures refused grasps well above it and missed some that went into it.
+  table_mode: plane             # plane | voxels
+  table_margin: 0.005           # m, on a bound that is already up to 14 mm low
+  table_band: 0.02              # m above the seen table: voxel centres below are table
+  joint_limits: ""              # "" = franka_description/robots/fr3/joint_limits.yaml
+  home_pose_file: ""            # "" = this package's config/home_pose.yaml
+  # What the impedance controller's nullspace term pulls toward, for the "pulled"
+  # prediction (the controller does not publish it). startup: the joints this node first
+  # saw (right when started after the controller, arm untouched). home: home_pose.yaml
+  # (right only if the arm was homed there first).
+  nullspace_reference: startup  # startup | home

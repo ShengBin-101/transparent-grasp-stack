@@ -1,0 +1,39 @@
+{
+ "source_run": "20260930_021814_auto",
+ "note": "a translucent mug SAM 3's transparency mask missed (rig, 30 Sep 2026); the segmenter finds it",
+ "arrays": {
+  "depth_aligned_mm": [
+   "<f4",
+   [
+    720,
+    1280
+   ]
+  ],
+  "depth_coverage": [
+   "|b1",
+   [
+    720,
+    1280
+   ]
+  ],
+  "color_intrinsics": [
+   "<f8",
+   [
+    3,
+    3
+   ]
+  ],
+  "sam3_masks": [
+   "<i4",
+   [
+    720,
+    1280
+   ]
+  ]
+ },
+ "presets": [
+  "adapted",
+  "raw",
+  "baseline"
+ ]
+}

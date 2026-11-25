@@ -1,0 +1,17 @@
+frames: 1177
+  200/1177  13s
+  400/1177  27s
+  600/1177  40s
+  800/1177  53s
+  1000/1177  67s
+
+=== G_maskdrop_sambox  (n=1177) ===
+  masked RMSE   mean   23.1 mm   median   19.6 mm   p90   43.0 mm
+  FAIL >25mm   36.4%        GOOD <12mm   22.5%
+    D435: mean   14.1 mm   median   12.7   FAIL   5.7%  (n=592)
+    L515: mean   32.3 mm   median   30.7   FAIL  67.4%  (n=585)
+    reflection (no return)           20.3 mm  (n=1175)
+    refraction (wrong return)        28.6 mm  (n=1177)
+    normal (sensor already right)     8.7 mm  (n=1176)
+
+wrote metrics/<model>.jsonl; run eval/analyze.py for the full report

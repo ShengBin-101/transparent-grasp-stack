@@ -1,0 +1,31 @@
+{
+ "source_run": "rig_mug_box_e2fixed",
+ "note": "tape-measured translucent mug (rim 110 mm) and box (90 mm), run 20260909_130411_auto (the pipeline before this repository). That run's capture code converted the depth-to-colour rotation with a sign error, which put its depth ~30 px above the colour image. The depth here is re-aligned without it: the faulty warp undone, the factory transform applied, and each reading written to its 2x2 footprint, nearest surface winning, as ros/remake_grasp/remake_grasp/align.py aligns depth today. depth_coverage is all True (the run did not save it).",
+ "arrays": {
+  "depth_aligned_mm": [
+   "<f4",
+   [
+    720,
+    1280
+   ]
+  ],
+  "depth_coverage": [
+   "|b1",
+   [
+    720,
+    1280
+   ]
+  ],
+  "color_intrinsics": [
+   "<f8",
+   [
+    3,
+    3
+   ]
+  ]
+ },
+ "presets": [
+  "adapted",
+  "raw"
+ ]
+}

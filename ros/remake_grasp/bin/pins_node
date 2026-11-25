@@ -1,0 +1,4 @@
+#!/usr/bin/env python3
+from remake_grasp.pins_node import main
+
+main()

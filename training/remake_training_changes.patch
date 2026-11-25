@@ -1,0 +1,1103 @@
+diff --git a/configs/test/cgsyn_remake.yaml b/configs/test/cgsyn_remake.yaml
+new file mode 100644
+index 0000000..55dc575
+--- /dev/null
++++ b/configs/test/cgsyn_remake.yaml
+@@ -0,0 +1,64 @@
++"model":
++  "type": "remake"
++  "params":
++    "lambda_val": 1
++    "res": True
++
++"optimizer":
++  "type": "AdamW"
++  "params":
++    "lr": 0.001
++
++"lr_scheduler":
++  "type": "MultiStepLR"
++  "params":
++    "milestones": [35, 65]
++    "gamma": 0.1
++
++"dataset":
++  "train":
++    "type": "cleargrasp-syn"
++    "data_dir": "datasets/cleargrasp"
++    "image_size": !!python/tuple [640, 480]
++    "use_augmentation": True
++    "rgb_augmentation_probability": 0.8
++    "use_depth_augmentation": False
++    "no_mask_depth": False
++    "depth_min": 0.3
++    "depth_max": 1.5
++    "depth_norm": 1.0
++    "reldepth_model": depthanything
++  "test":
++    "type": "cleargrasp-real"
++    "data_dir": "datasets/cleargrasp"
++    "image_size": !!python/tuple [640, 480]
++    "use_augmentation": False
++    "depth_min": 0.3
++    "depth_max": 1.5
++    "depth_norm": 1.0
++    "reldepth_model": depthanything
++
++"dataloader":
++  "num_workers": 8
++  "shuffle": False
++  "drop_last": False
++
++"trainer":
++  "batch_size": 6
++  "test_batch_size": 1
++  "multigpu": False
++  "max_epoch": 40
++  "criterion":
++    "type": "l1_loss"
++    "epsilon": 0.00000001
++    "combined_smooth": True
++    "combined_beta": 0.1
++
++"metrics":
++  "types": ["MSE", "RMSE", "REL", "MAE", "Threshold@1.01", "Threshold@1.03", "Threshold@1.05", "Threshold@1.10", "Threshold@1.25", "MaskedMSE", "MaskedRMSE", "MaskedREL", "MaskedMAE", "MaskedThreshold@1.01", "MaskedThreshold@1.03", "MaskedThreshold@1.05", "MaskedThreshold@1.10", "MaskedThreshold@1.25", "ssim"]
++  "epsilon": 0.00000001
++  "depth_scale": 1.0
++
++"states":
++  "states_dir": "results"
++  "states_exper": "test-cgsyn-remake"
+diff --git a/datasets/cleargrasp.py b/datasets/cleargrasp.py
+index 1dbc777..1683107 100755
+--- a/datasets/cleargrasp.py
++++ b/datasets/cleargrasp.py
+@@ -11,6 +11,7 @@ import os
+ import yaml
+ import json
+ import numpy as np
++import torch
+ from glob import glob
+ from PIL import Image
+ from torch.utils.data import Dataset
+@@ -111,7 +112,20 @@ class ClearGraspRealWorld(Dataset):
+         self.depth_norm = kwargs.get('depth_norm', 1.0)
+         
+         self.reldepth_model = kwargs.get('reldepth_model', None)
+-    
++        # EVAL CONDITIONS (2026-10-02, opt-in; the defaults reproduce the release exactly): the
++        # ClearGrasp counterparts of eval/predict.py's TransCG rows, for cross-dataset scoring.
++        #   input_condition  protocol (default) | blank: the sensor depth inside the mask is removed
++        #                    (predict.py --zero-in-mask) | nomask: the network is given no mask
++        #                    (--no-mask) | erode: the mask it is given is shrunk by input_mask_px --
++        #                    SAM 3's typical failure, under-segmentation (ClearGrasp has no SAM masks)
++        #   rel_rgb_fix      preprocess as an arm trained with it was (E_flipfix, L_combo_both)
++        # Only the network's INPUT changes. depth_gt_mask, which the masked metrics read, never does.
++        self.input_condition = kwargs.get('input_condition', 'protocol')
++        if self.input_condition not in ('protocol', 'blank', 'nomask', 'erode'):
++            raise AttributeError('Invalid input_condition: {}.'.format(self.input_condition))
++        self.input_mask_px = int(kwargs.get('input_mask_px', 15))
++        self.rel_rgb_fix = bool(kwargs.get('rel_rgb_fix', False))
++
+     def get_camera_intrinsics(self, id):
+         camera_intrinsics = None
+         for key in self.camera_intrinsics.keys():
+@@ -136,9 +150,18 @@ class ClearGraspRealWorld(Dataset):
+         
+         # depth[depth_gt_mask] = 0.0
+ 
+-        return process_data(rgb, depth, depth_gt, depth_gt_mask, camera_intrinsics, scene_type = "cluttered",
+-                            camera_type = 0, split = self.split, image_size = self.image_size, depth_min = self.depth_min,
+-                            depth_max = self.depth_max, depth_norm = self.depth_norm, use_aug = False, reldepth_model=self.reldepth_model)
++        d = process_data(rgb, depth, depth_gt, depth_gt_mask, camera_intrinsics, scene_type = "cluttered",
++                         camera_type = 0, split = self.split, image_size = self.image_size, depth_min = self.depth_min,
++                         depth_max = self.depth_max, depth_norm = self.depth_norm, use_aug = False, reldepth_model=self.reldepth_model,
++                         rel_rgb_fix = self.rel_rgb_fix)
++        if self.input_condition == 'blank':
++            d['depth'] = d['depth'] * (~d['depth_gt_mask']).to(d['depth'].dtype)
++        elif self.input_condition == 'nomask':
++            d['input_mask'] = torch.zeros_like(d['input_mask'])
++        elif self.input_condition == 'erode':
++            k = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * self.input_mask_px + 1,) * 2)
++            d['input_mask'] = torch.BoolTensor(cv2.erode(d['input_mask'].numpy().astype(np.uint8), k).astype(bool))
++        return d
+ 
+     def __len__(self):
+         return len(self.image_paths)
+diff --git a/datasets/transcg.py b/datasets/transcg.py
+index dd3e300..662dd28 100755
+--- a/datasets/transcg.py
++++ b/datasets/transcg.py
+@@ -19,6 +19,9 @@ class TransCG(Dataset):
+             raise AttributeError('Invalid split option.')
+         self.data_dir = data_dir
+         self.split = split
++        # cameras (2026-10-01, opt-in): which TransCG cameras to load, 1 = D435, 2 = L515. Default
++        # both, as upstream. The rig runs an L515; the J/K arms train on camera 2 alone.
++        self.cameras = tuple(int(c) for c in kwargs.get('cameras', (1, 2)))
+         with open(os.path.join(self.data_dir, 'metadata.json'), 'r') as fp:
+             self.dataset_metadata =json.load(fp)
+         self.scene_num = self.dataset_metadata['total_scenes']
+@@ -34,12 +37,14 @@ class TransCG(Dataset):
+             scene_type = self.scene_metadata[scene_id]['type']
+             scene_split = self.scene_metadata[scene_id]['split']
+             assert scene_split == split, "Error in scene {}, expect split property: {}, found split property: {}.".format(scene_id, split, scene_split)
+-            for perspective_id in self.scene_metadata[scene_id]['D435_valid_perspective_list']:
++            for perspective_id in (self.scene_metadata[scene_id]['D435_valid_perspective_list'] if 1 in self.cameras else []):
+                 self.sample_info.append([os.path.join(self.data_dir, 'scene{}'.format(scene_id), '{}'.format(perspective_id)), 1, scene_type])
+-            for perspective_id in self.scene_metadata[scene_id]['L515_valid_perspective_list']:
++            for perspective_id in (self.scene_metadata[scene_id]['L515_valid_perspective_list'] if 2 in self.cameras else []):
+                 self.sample_info.append([os.path.join(self.data_dir, 'scene{}'.format(scene_id), '{}'.format(perspective_id)), 2, scene_type])
+-        # double check
+-        assert len(self.sample_info) == self.total_samples, "Error in total samples, expect {} samples, found {} samples.".format(self.total_samples, len(self.sample_info))
++        # double check -- the full set only: a camera filter removes samples on purpose
++        if set(self.cameras) == {1, 2}:
++            assert len(self.sample_info) == self.total_samples, "Error in total samples, expect {} samples, found {} samples.".format(self.total_samples, len(self.sample_info))
++        self.total_samples = len(self.sample_info)
+         # other params
+         self.cam_intrinsics = [None, np.load(os.path.join(self.data_dir, 'camera_intrinsics', '1-camIntrinsics-D435.npy')),
+                                np.load(os.path.join(self.data_dir, 'camera_intrinsics', '2-camIntrinsics-L515.npy'))]
+@@ -53,6 +58,15 @@ class TransCG(Dataset):
+         self.no_mask_depth = kwargs.get('no_mask_depth', False)
+         
+         self.reldepth_model = kwargs.get('reldepth_model', None)
++        # Opt-in training knobs; all default to the upstream behaviour. See
++        # utils/data_preparation.py::process_data for what each one does.
++        self.align_rel_aug = kwargs.get('align_rel_aug', False)
++        self.rel_rgb_fix = kwargs.get('rel_rgb_fix', False)
++        self.p_blank_in_mask = kwargs.get('p_blank_in_mask', 0.0)
++        self.p_mask_none = kwargs.get('p_mask_none', 0.0)
++        self.p_mask_erode = kwargs.get('p_mask_erode', 0.0)
++        self.p_mask_dilate = kwargs.get('p_mask_dilate', 0.0)
++        self.mask_max_px = kwargs.get('mask_max_px', 15)
+         # print(self.reldepth_model)
+         
+     def __getitem__(self, id):
+@@ -86,7 +100,11 @@ class TransCG(Dataset):
+                             image_size=self.image_size, depth_min=self.depth_min, depth_max=self.depth_max,
+                             depth_norm=self.depth_norm, use_aug=self.use_aug,
+                             rgb_aug_prob=self.rgb_aug_prob, use_depth_aug=self.use_depth_aug,
+-                            no_mask_depth=self.no_mask_depth, reldepth_model=self.reldepth_model)
++                            no_mask_depth=self.no_mask_depth, reldepth_model=self.reldepth_model,
++                            align_rel_aug=self.align_rel_aug, rel_rgb_fix=self.rel_rgb_fix,
++                            p_blank_in_mask=self.p_blank_in_mask, p_mask_none=self.p_mask_none,
++                            p_mask_erode=self.p_mask_erode, p_mask_dilate=self.p_mask_dilate,
++                            mask_max_px=self.mask_max_px)
+     
+     def __len__(self):
+         return self.total_samples
+\ No newline at end of file
+diff --git a/main.py b/main.py
+index 2a4e167..f78fab6 100755
+--- a/main.py
++++ b/main.py
+@@ -1,10 +1,49 @@
+ import os
++import random
+ import torch
+ import torch.multiprocessing as mp
+ import argparse
++import numpy as np
+ from run_tools import train, ddp_train, test, inference, realworld_inference, live_inference
+ 
+ 
++def set_seed(seed, strict=False):
++    """Pin the RNGs so two runs of one config are repetitions, not samples.
++
++    Nothing upstream seeds anything, so data order and augmentation differ every
++    run and an A-vs-B difference is partly just a different shuffle. Seeding
++    every arm identically makes the comparison paired: B sees the same initial
++    weights, the same sample order and the same augmentation as A, so the delta
++    is the change under test.
++
++    One call covers more than it looks. torch derives each dataloader worker's
++    numpy and `random` seeds from a base_seed that it draws from this process's
++    torch generator (torch/utils/data/_utils/worker.py), so seeding torch here
++    also pins the augmentation drawn inside the 12 workers -- no worker_init_fn
++    needed. The numpy/random seeds below only matter for draws made in this
++    process.
++
++    What a seed does NOT pin is the GPU: cuDNN picks algorithms by autotuning
++    and some backward kernels reduce with non-deterministic atomics. `strict`
++    turns that off too, at a cost in speed, which is why it is not the default.
++    It uses warn_only so an op with no deterministic kernel warns instead of
++    killing a run that is hours in -- meaning strict is "as deterministic as
++    this model allows", and the warnings tell you where it fell short.
++    """
++    random.seed(seed)
++    np.random.seed(seed)
++    torch.manual_seed(seed)
++    torch.cuda.manual_seed_all(seed)
++    if not strict:
++        return
++    # Must be set before the cuBLAS handle is created; importing torch does not
++    # create it, so setting it here is early enough.
++    os.environ.setdefault('CUBLAS_WORKSPACE_CONFIG', ':4096:8')
++    torch.backends.cudnn.deterministic = True
++    torch.backends.cudnn.benchmark = False
++    torch.use_deterministic_algorithms(True, warn_only=True)
++
++
+ # def debug():
+ #     import debugpy
+ #     try:
+@@ -50,7 +89,23 @@ if __name__ == '__main__':
+     parser.add_argument('--reldepth_model', type=str, default=None,
+                         choices=['depthanything', 'leres'],
+                         help='rel depth model name')
++    parser.add_argument('--seed', type=int, default=None,
++                        help='RNG seed for weight init, shuffling and augmentation. '
++                             'Omitted = unseeded, which is the upstream behaviour. '
++                             'Use the SAME seed for every arm being compared.')
++    parser.add_argument('--strict-determinism', dest='strict_determinism',
++                        action='store_true',
++                        help='also pin cuDNN algorithm choice and refuse '
++                             'non-deterministic kernels. Slower; only meaningful '
++                             'together with --seed.')
+     
+     args = parser.parse_args()
++    if args.seed is not None:
++        set_seed(args.seed, args.strict_determinism)
++        print(f'seed: {args.seed}'
++              f'{" (strict determinism)" if args.strict_determinism else ""}')
++    elif args.strict_determinism:
++        print('WARNING: --strict-determinism without --seed pins the kernels but '
++              'not the data order or the augmentation; runs will still differ.')
+     # print(args.world_size)
+     main(args)
+\ No newline at end of file
+diff --git a/models/remake.py b/models/remake.py
+index 5ae7fc6..b02001a 100755
+--- a/models/remake.py
++++ b/models/remake.py
+@@ -79,8 +79,27 @@ class Decoder(nn.Module):
+ 
+ 
+ class ReMake(nn.Module):
+-    def __init__(self, lambda_val = 1, res = True):
++    def __init__(self, lambda_val = 1, res = True, predict_uncertainty = False):
++        """
++        predict_uncertainty : add a second head emitting per-pixel aleatoric
++            uncertainty in [0, 1]. OFF by default, and when off NO parameters
++            are created -- so `state_dict()` is byte-identical to the released
++            model and `checkpoints_official/remake_official.tar` still loads
++            with strict=True. Turning it on adds keys, so a baseline checkpoint
++            must then be loaded with strict=False.
++
++            Motivation (DESIGN_NOTE section 4.2): the shipped head asserts every
++            pixel with equal confidence, so a grasp planner cannot tell a
++            measured surface from an invented one. Measured on a live translucent mug,
++            SBG planned grasps on a hallucinated dome with no signal it was
++            hallucinated.
++
++            NOTE ON THE RETURN TYPE: with this off, forward() returns the depth
++            tensor exactly as before. With it on, forward() returns the tuple
++            (depth, uncertainty). Callers opt in together with the flag.
++        """
+         super(ReMake, self).__init__()
++        self.predict_uncertainty = predict_uncertainty
+         
+         self.encoder_img = SwinTransformer(patch_size=2, in_chans=4, embed_dim=24)
+         self.encoder_rel = SwinTransformer(patch_size=2, in_chans=1, embed_dim=24)
+@@ -96,6 +115,18 @@ class ReMake(nn.Module):
+             nn.ReLU(True)
+         )
+         
++        # Built after `final` so it sees the same decoder features. Sigmoid
++        # bounds it to [0, 1], matching the Laplace pseudo-target in
++        # utils/criterion.py::uncertainty_loss, which has no ground truth.
++        if predict_uncertainty:
++            self.unc_head = nn.Sequential(
++                nn.Conv2d(64, 64, kernel_size = 3, stride = 1, padding = 1),
++                nn.BatchNorm2d(64),
++                nn.ReLU(True),
++                nn.Conv2d(64, 1, kernel_size = 3, stride = 1, padding = 1),
++                nn.Sigmoid()
++            )
++
+         for m in self.modules():
+             if isinstance(m, nn.Conv2d):
+                 n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
+@@ -169,7 +200,9 @@ class ReMake(nn.Module):
+ 
+         decoder_x = self.decoder(encoder_rgb)
+         out = self.final(decoder_x)
+-        
++
++        if self.predict_uncertainty:
++            return out, self.unc_head(decoder_x)
+         return out
+     
+     
+diff --git a/relat_depth_models/load_reldepth_model.py b/relat_depth_models/load_reldepth_model.py
+index 82f86a9..3949d42 100755
+--- a/relat_depth_models/load_reldepth_model.py
++++ b/relat_depth_models/load_reldepth_model.py
+@@ -19,7 +19,7 @@ def load_depthanything(device):
+ 
+     # Initialize model
+     depth_anything = DepthAnythingV2(**model_configs[ENCODER_TYPE])
+-    depth_anything.load_state_dict(torch.load(f'checkpoints/depth_anything_v2_{ENCODER_TYPE}.pth', map_location='cuda'))
++    depth_anything.load_state_dict(torch.load(f'checkpoints/depth_anything_v2_{ENCODER_TYPE}.pth', map_location=device))
+     for param in depth_anything.parameters():
+         param.requires_grad = False
+     depth_anything = depth_anything.to(device).eval()
+diff --git a/run_tools/runner_test.py b/run_tools/runner_test.py
+index 284438b..af76642 100755
+--- a/run_tools/runner_test.py
++++ b/run_tools/runner_test.py
+@@ -42,7 +42,7 @@ def test(args):
+     checkpoint_file = args.checkpoints #os.path.join(states_dir, 'checkpoint4.tar') #results
+     logger.info(f'Using checkpoint: {checkpoint_file}')
+     if os.path.isfile(checkpoint_file):
+-        checkpoint = torch.load(checkpoint_file, map_location=device)
++        checkpoint = torch.load(checkpoint_file, map_location=device, weights_only=False)
+         model.load_state_dict(checkpoint['model_state_dict'])
+         start_epoch = checkpoint['epoch']
+         logger.info(f"Checkpoint {checkpoint_file} (epoch {start_epoch}) loaded.")
+diff --git a/run_tools/runner_train.py b/run_tools/runner_train.py
+index 6a6e713..1e89ed2 100755
+--- a/run_tools/runner_train.py
++++ b/run_tools/runner_train.py
+@@ -15,6 +15,62 @@ from utils.visualization import plot_realat_depth
+ from utils.data_preparation import plot_rgb_image
+ LOSS_INF = 1e18
+ 
++
++def build_val_loader(builder, val_list, logger):
++    """A held-out validation loader, so the best epoch is not chosen on the
++    TEST split (upstream has no val split; TRAINING.md "Which checkpoint gets
++    scored"). `val_list` is eval/subset/val_list.json: 600 frames from 8
++    training-distribution scenes that never enter the training loader here
++    because they are filtered OUT of it as well.
++
++    Built as a TRAIN-split TransCG dataset (the val scenes belong to the train
++    split) with every augmentation off, then restricted to the listed keys.
++    Returns (loader, held-out scene ids)."""
++    import json
++    from torch.utils.data import DataLoader
++    with open(val_list) as f:
++        vl = json.load(f)
++    keys = {s_["key"] for s_ in vl["samples"]}
++    params = dict(builder.dataset_params.get("test", builder.dataset_params.get("train")))
++    params.update(use_augmentation=False, use_depth_augmentation=False, no_mask_depth=False,
++                  p_blank_in_mask=0.0, p_mask_none=0.0, p_mask_erode=0.0, p_mask_dilate=0.0)
++    cams = (builder.dataset_params.get("train") or {}).get("cameras")
++    if cams:   # 2026-10-01: an L515-only arm selects its epoch on the L515 val frames alone
++        cams = {int(c) for c in cams}
++        keys = {k for k in keys if int(k.rsplit("_c", 1)[1]) in cams}
++        params["cameras"] = sorted(cams)
++    ds = builder.get_dataset({"train": params}, split="train", data_type=None)
++    keep, ds.sample_info = [], list(ds.sample_info)
++    for info in ds.sample_info:
++        parts = os.path.normpath(info[0]).split(os.sep)
++        key = f"s{int(parts[-2].replace('scene', '')):03d}_p{int(parts[-1]):03d}_c{info[1]}"
++        if key in keys:
++            keep.append(info)
++    if len(keep) != len(keys):
++        raise SystemExit(f"val list has {len(keys)} keys but only {len(keep)} resolve in this "
++                         f"TransCG build")
++    ds.sample_info, ds.total_samples = keep, len(keep)
++    dl_params = dict(builder.dataloader_params); dl_params["shuffle"] = False
++    loader = DataLoader(ds, builder.trainer_params.get("test_batch_size", 1), **dl_params)
++    logger.info(f"Held-out validation: {len(keep)} frames from scenes {vl.get('val_scenes')} "
++                f"({val_list}); best epoch is selected on their masked RMSE.")
++    return loader, set(vl.get("val_scenes", []))
++
++
++def masked_rmse_batch(data_dict):
++    """Per-frame masked RMSE in metres at the network's 640x480, over the
++    transparent mask AND valid GT -- the same region eval/common.py scores,
++    at the training resolution rather than native. Used only for selection."""
++    pred, gt = data_dict["pred"], data_dict["depth_gt"]
++    sel = data_dict["depth_gt_mask"] & data_dict["zero_mask"]
++    out = []
++    for i in range(pred.shape[0]):
++        m = sel[i]
++        if m.any():
++            out.append(torch.sqrt(((pred[i][m] - gt[i][m]) ** 2).mean()).item())
++    return out
++
++
+ def train(args):
+     
+     # config
+@@ -42,13 +98,32 @@ def train(args):
+     # dataloader
+     train_dataloader = builder.get_dataloader(split='train', data_type='synthetic-test')
+     test_dataloader = builder.get_dataloader(split='test', data_type='real-test')
++    # Optional held-out validation (trainer.val_list in the config). When set,
++    # the per-epoch snapshot checkpoint<N>.tar is written on the best VAL
++    # masked RMSE instead of the best TEST loss, and the val scenes are removed
++    # from the training loader so they are actually held out.
++    val_list = builder.trainer_params.get('val_list', None)
++    val_dataloader, min_val_rmse, min_val_epoch = None, LOSS_INF, None
++    if val_list:
++        val_list = val_list if os.path.isabs(val_list) else os.path.join(os.path.dirname(__file__), '..', val_list)
++        val_dataloader, val_scenes = build_val_loader(builder, val_list, logger)
++        ds = train_dataloader.dataset
++        before = len(ds.sample_info)
++        ds.sample_info = [info for info in ds.sample_info
++                          if int(os.path.normpath(info[0]).split(os.sep)[-2].replace('scene', '')) not in val_scenes]
++        ds.total_samples = len(ds.sample_info)
++        logger.info(f'Training loader: {before} -> {ds.total_samples} samples after holding out '
++                    f'{len(val_scenes)} val scenes.')
+     # checking checkpoints
+     start_epoch = 0
+     max_epoch = builder.get_max_epoch()
+     checkpoint_file = os.path.join(states_dir, 'checkpoint.tar') #stats
+     
+     if os.path.isfile(checkpoint_file):
+-        checkpoint = torch.load(checkpoint_file, map_location=device)
++        # weights_only=False: these checkpoints carry numpy scalars in
++        # 'metrics'/'loss', which PyTorch >= 2.6's default rejects. Same fix as
++        # runner_test.py. Safe: checkpoints here are our own.
++        checkpoint = torch.load(checkpoint_file, map_location=device, weights_only=False)
+         model.load_state_dict(checkpoint['model_state_dict'])
+         start_epoch = checkpoint['epoch']
+         checkpoint_metrics = checkpoint['metrics']
+@@ -165,6 +240,28 @@ def train(args):
+         metrics_result = metrics.get_results()
+         metrics.display_recorder_results()
+                 
++        # held-out validation
++        val_rmse = None
++        if val_dataloader is not None:
++            logger.info(f'Start validation process in epoch {epoch + 1}.')
++            per_frame = []
++            with tqdm(val_dataloader) as pbar:
++                for data_dict in pbar:
++                    data_dict = to_device(data_dict, device)
++                    with torch.no_grad():
++                        if args.reldepth_model is not None:
++                            if args.reldepth_model == 'depthanything':
++                                relative_depth = reldepth_model.forward(data_dict['rgb_relat']).unsqueeze(1)
++                            elif args.reldepth_model == 'leres':
++                                relative_depth = reldepth_model.inference(data_dict['rgb_relat'])
++                            trainer(model, data_dict, relative_depth)
++                        else:
++                            trainer(model, data_dict)
++                        per_frame.extend(masked_rmse_batch(data_dict))
++            val_rmse = float(np.mean(per_frame))
++            logger.info(f'Finish validation process in epoch {epoch + 1}, held-out masked RMSE: '
++                        f'{1000 * val_rmse:.3f} mm over {len(per_frame)} frames')
++
+         # update step
+         if lr_scheduler is not None:
+             lr_scheduler.step()
+@@ -174,13 +271,24 @@ def train(args):
+             'epoch': epoch + 1,
+             'model_state_dict': model.module.state_dict() if builder._multigpu() else model.state_dict(),
+             'loss': mean_loss,
+-            'metrics': metrics_result
++            'metrics': metrics_result,
++            'val_masked_rmse': val_rmse,
+         }
+         torch.save(save_dict, os.path.join(states_dir, f'checkpoint.tar'))
+         if mean_loss < min_loss:
+             min_loss = mean_loss
+             min_loss_epoch = epoch + 1
++        if val_dataloader is None:
++            is_best = (min_loss_epoch == epoch + 1)
++        else:
++            is_best = val_rmse < min_val_rmse
++            if is_best:
++                min_val_rmse, min_val_epoch = val_rmse, epoch + 1
++        if is_best:
+             torch.save(save_dict, os.path.join(states_dir, f'checkpoint{epoch + 1}.tar'))
+             logger.info(f'save current model as the best model...')
+             logger.info(f"save path: {os.path.join(states_dir, f'checkpoint{epoch + 1}.tar')}")
+-    logger.info(f'Training Finished. Min testing loss: {min_loss:.6f}, in epoch {min_loss_epoch}')
+\ No newline at end of file
++    logger.info(f'Training Finished. Min testing loss: {min_loss:.6f}, in epoch {min_loss_epoch}')
++    if val_dataloader is not None:
++        # scripts/run_3090.sh prefers this line over the one above when present.
++        logger.info(f'Min val masked RMSE: {1000 * min_val_rmse:.3f} mm, in epoch {min_val_epoch}')
+\ No newline at end of file
+diff --git a/run_utils/builder.py b/run_utils/builder.py
+index 9f8998d..a38cbf5 100755
+--- a/run_utils/builder.py
++++ b/run_utils/builder.py
+@@ -146,9 +146,15 @@ class ConfigBuilder():
+             if dataset_type == 'transcg':
+                 dataset = TransCG(split=split, **dataset_params)
+             elif dataset_type == 'cleargrasp-real':
+-                dataset = ClearGraspRealWorld(split = split, **dataset_params, data_type=data_type)
++                if data_type is not None:
++                    dataset = ClearGraspRealWorld(split = split, **dataset_params, data_type=data_type)
++                else:
++                    dataset = ClearGraspRealWorld(split = split, **dataset_params)
+             elif dataset_type == 'cleargrasp-syn':
+-                dataset = ClearGraspSynthetic(split = split, **dataset_params, data_type=data_type)
++                if data_type is not None:
++                    dataset = ClearGraspSynthetic(split = split, **dataset_params, data_type=data_type)
++                else:
++                    dataset = ClearGraspSynthetic(split = split, **dataset_params)
+             else:
+                 raise NotImplementedError('Invalid dataset type: {}.'.format(dataset_type))
+         elif type(dataset_params) == list:
+diff --git a/run_utils/inferencer.py b/run_utils/inferencer.py
+index c39ab20..8fa605f 100755
+--- a/run_utils/inferencer.py
++++ b/run_utils/inferencer.py
+@@ -44,7 +44,17 @@ class Inferencer():
+         checkpoint_file = self.builder.get_inference_checkpoint_path()
+         print(f'loading checkpoint: {checkpoint_file}')
+         if os.path.isfile(checkpoint_file):
+-            checkpoint = torch.load(checkpoint_file, map_location=self.device)
++            # This checkpoint predates torch 2.6's weights_only=True
++            # default and pickles a numpy scalar in its metadata. Tried
++            # allowlisting just that type (add_safe_globals) instead of
++            # disabling the check entirely, but numpy 2.x's internal
++            # numpy.core -> numpy._core rename breaks the qualname match
++            # against what's recorded in this (numpy-1.x-era) pickle, so
++            # that narrower fix doesn't work here. weights_only=False used
++            # instead, with explicit user confirmation (2026-08-18) --
++            # source is the paper authors' own official checkpoint (Google
++            # Drive link in their GitHub README), not an untrusted source.
++            checkpoint = torch.load(checkpoint_file, map_location=self.device, weights_only=False)
+             self.model.load_state_dict(checkpoint['model_state_dict'])  #strict=False
+             start_epoch = checkpoint['epoch']
+             if self.with_info:
+diff --git a/run_utils/trainer.py b/run_utils/trainer.py
+index 3b34ce1..f814aa6 100755
+--- a/run_utils/trainer.py
++++ b/run_utils/trainer.py
+@@ -21,8 +21,20 @@ def remake_trainer(model, data_dict, relative_depth):
+     relative_depth = F.interpolate(relative_depth, size=(480, 640), mode='bilinear', align_corners=False)
+ 
+     # res = model(data_dict['rgb'], relative_depth, data_dict['depth']) #only input non-transparent area depth
+-    res = model(data_dict['rgb'], relative_depth, data_dict['depth'], data_dict['depth_gt_mask']) #only input depth with mask
+-    
++    # `input_mask` is the mask the network is meant to see: identical to
++    # depth_gt_mask unless the dataset's mask-dropout knobs are on (see
++    # utils/data_preparation.py::mask_dropout). The loss masks are untouched.
++    # Falling back keeps callers that build data_dict themselves working.
++    input_mask = data_dict.get('input_mask', data_dict['depth_gt_mask'])
++    res = model(data_dict['rgb'], relative_depth, data_dict['depth'], input_mask) #only input depth with mask
++
+     n, h, w = data_dict['depth'].shape
++    # A model built with predict_uncertainty=True returns (depth, uncertainty);
++    # the baseline returns a bare tensor. Unpacking here is what lets the flag
++    # be switched on without touching the runner -- without it, .view() below
++    # raises AttributeError on a tuple and training dies on the first batch.
++    if isinstance(res, (tuple, list)):
++        res, uncertainty = res
++        data_dict['uncertainty'] = uncertainty.view(n, h, w)
+     data_dict['pred'] = res.view(n, h, w)
+     
+diff --git a/utils/criterion.py b/utils/criterion.py
+index ae7d601..0eeedc0 100755
+--- a/utils/criterion.py
++++ b/utils/criterion.py
+@@ -26,6 +26,27 @@ class Criterion(nn.Module):
+             for milestone in self.combined_beta_decay_milestones:
+                 if milestone <= self.cur_epoch:
+                     self.combined_beta = self.combined_beta * self.combined_beta_decay
++        # AISPO-style full-image + mask-reweighted L1 (arXiv 2606.25503 Eq. 14).
++        # OFF unless `type` selects it, so every shipped config is unaffected.
++        self.beta_full = kwargs.get('beta_full', 1.0)
++        self.beta_masked = kwargs.get('beta_masked', 0.8)
++        # Uncertainty supervision (DESIGN_NOTE 8.4, after PSD arXiv 2508.04984).
++        # OFF by default; requires a model built with predict_uncertainty=True.
++        # Which shape term `combined_smooth` uses. 'normal' is the shipped
++        # one-pixel surface-normal loss; 'multiscale_gradient' is SPNet's.
++        # Default 'normal' keeps every existing config bit-for-bit.
++        self.smooth_type = str.lower(kwargs.get('smooth_type', 'normal'))
++        self.msg_scales = kwargs.get('msg_scales', 4)
++        # Multi-scale gradient ALONGSIDE the shipped normal term, at its own
++        # weight. Default 0 = off, bit-for-bit. C_ft SUBSTITUTED it at 0.1 and
++        # lost 15 % of metric scale in one epoch: results/grad_share/
++        # remake_official.txt measures its gradient at 530x L1's, so 0.1 gave
++        # it 98 % of the pull. Set this from that file (8e-4 for a 30 % share).
++        self.msgrad_beta = kwargs.get('msgrad_beta', 0.0)
++        self.msg_scale_invariant = kwargs.get('msg_scale_invariant', True)
++        self.uncertainty = kwargs.get('uncertainty', False)
++        self.uncertainty_tau = kwargs.get('uncertainty_tau', 0.2)
++        self.uncertainty_beta = kwargs.get('uncertainty_beta', 1.0)
+         self.l2_loss = self.mse_loss
+         self.masked_l2_loss = self.masked_mse_loss
+         self.custom_masked_l2_loss = self.custom_masked_mse_loss
+@@ -107,6 +128,142 @@ class Criterion(nn.Module):
+         loss = safe_mean(self._l1(pred, gt), mask)
+         return loss
+     
++    def full_masked_l1_loss(self, data_dict, *args, **kwargs):
++        '''
++            Full-image L1 plus a mask-restricted L1, after AISPO (arXiv
++            2606.25503) Eq. 14:  L = beta_full * L_full + beta_masked * L_masked
++
++            NOT the same as adding a full-image term to a masked-only loss.
++            ReMake as shipped already trains `l1_loss`, which averages over
++            `zero_mask` -- every pixel with valid ground truth, the whole image,
++            not the transparent region (utils/data_preparation.py:402, 459). So
++            beta_full = 1.0 with beta_masked = 0.0 reproduces `l1_loss` exactly,
++            and what this adds is the RE-WEIGHTING: pixels inside the
++            transparent mask are counted (1 + beta_masked) times.
++
++            The mask term uses `loss_mask`, which for a cluttered scene is
++            (transparent mask AND valid GT) and for an isolated scene degrades
++            to `zero_mask` (data_preparation.py:404-412) -- in the isolated case
++            this loss is therefore just (beta_full + beta_masked) * L_full, a
++            scalar rescale of the learning rate, not a re-weighting. Worth
++            knowing before reading an isolated-scene ablation.
++
++            Whether the re-weighting helps is UNMEASURED: AISPO publishes no
++            beta ablation, and the masked-only camp (TDCNet, ClearPose) argues
++            the opposite -- that easy Lambertian pixels dominate. Sweeping
++            beta_masked on TransCG is the experiment this exists to enable.
++        '''
++        pred = data_dict['pred']
++        gt = data_dict['depth_gt']
++        per_pixel = self._l1(pred, gt)
++        loss = self.beta_full * safe_mean(per_pixel, data_dict['zero_mask'])
++        if self.beta_masked:
++            loss = loss + self.beta_masked * safe_mean(per_pixel,
++                                                       data_dict['loss_mask'])
++        return loss
++
++    def uncertainty_loss(self, data_dict, *args, **kwargs):
++        '''
++            Aleatoric uncertainty with no ground truth, after PSD
++            (arXiv 2508.04984). There is no uncertainty label to regress, so the
++            target is derived from the model's own error with a Laplace-inspired
++            saturating map:
++
++                U_target = 1 - exp(-|D_hat - D| / (tau * (D_hat + D))),  tau=0.2
++
++            RELATIVE, not absolute: dividing by (D_hat + D) makes a 10 mm error
++            at 0.4 m count far more than at 4 m, which is the right behaviour
++            for a tabletop manipulator. U_target -> 0 when the prediction is
++            right and saturates toward 1 as it degrades, so the head is bounded
++            in [0, 1] and matches the model-side Sigmoid.
++
++            The target is DETACHED. Without that, the network could lower this
++            loss by making its depth worse in a way that matched a confident
++            uncertainty, which is the opposite of what is wanted.
++
++            HONEST LIMITATION (DESIGN_NOTE 8.4): no verified source measures a
++            link from depth uncertainty to grasp-failure avoidance. That this
++            head produces a NUMBER is guaranteed; that a planner can usefully
++            threshold it is exactly what has to be measured.
++        '''
++        pred = data_dict['pred']
++        gt = data_dict['depth_gt']
++        unc = data_dict['uncertainty']
++        mask = data_dict['zero_mask']
++        denom = self.uncertainty_tau * (pred + gt).abs().clamp(min=1e-6)
++        target = (1.0 - torch.exp(-(pred - gt).abs() / denom)).detach()
++        return self.uncertainty_beta * safe_mean(self._l1(unc, target), mask)
++
++    @staticmethod
++    def _sobel_grad_abs(x):
++        """Mean |Sobel_x| + |Sobel_y| of a (N,1,H,W) map, per sample."""
++        kx = torch.tensor([[-1., 0., 1.], [-2., 0., 2.], [-1., 0., 1.]],
++                          dtype=x.dtype, device=x.device).view(1, 1, 3, 3)
++        ky = kx.transpose(2, 3)
++        # REPLICATE, not zero, padding. Zero padding makes a constant field look
++        # like a cliff at the image border, so a pure offset -- which this term
++        # must ignore, the L1 owns it -- would score 0.085 instead of 0.
++        xp = F.pad(x, (1, 1, 1, 1), mode='replicate')
++        gx = F.conv2d(xp, kx)
++        gy = F.conv2d(xp, ky)
++        return gx.abs() + gy.abs()
++
++    def multiscale_gradient_loss(self, data_dict, *args, **kwargs):
++        '''
++            SPNet's multi-scale scale-invariant gradient loss (TPAMI 2024,
++            arXiv 2410.18408): Sobel gradients of the RESIDUAL, taken at four
++            resolutions and summed.
++
++            Why this rather than the shipped surface-normal term. That term is a
++            ONE-PIXEL finite difference (utils/tools.py:42-54), so it constrains
++            local orientation only. A smooth dome can satisfy it almost
++            everywhere while accumulating tens of millimetres of error across a
++            region, which is exactly the measured failure: depth slope 0.90/0.93
++            and 86% of ground-truth concavity reproduced (DESIGN_NOTE 1, 3).
++            Downsampling the residual before differencing makes a one-pixel
++            operator reach across 2, 4 and 8 pixels, so regional drift becomes
++            visible to the gradient.
++
++            Taking gradients of the RESIDUAL rather than of the prediction is
++            what makes it scale-invariant in the sense that matters: a constant
++            offset between prediction and truth has zero gradient and is not
++            penalised here, leaving the L1 term to handle absolute depth. That
++            is deliberate division of labour, not an oversight.
++
++            HONEST LIMITATION (DESIGN_NOTE 8.3): this is multi-scale FIRST
++            order, not second order. No verified source in the survey supplies
++            curvature supervision, so this attacks regional drift but does not
++            directly supervise the sign of curvature that distinguishes a bowl
++            from a dome. If a beta sweep on this moves slope but not concavity,
++            that is the finding, and it is worth reporting.
++        '''
++        pred = data_dict['pred']
++        gt = data_dict['depth_gt']
++        mask = data_dict['loss_mask_dilated']
++        if pred.dim() == 3:
++            pred, gt, mask = pred.unsqueeze(1), gt.unsqueeze(1), mask.unsqueeze(1)
++        # NOT multiplied by the mask: zeroing outside it manufactures a cliff at
++        # the mask boundary that the Sobel then reports as shape error. The
++        # gradient is masked after the fact instead, below.
++        residual = pred - gt
++
++        if self.msg_scale_invariant:
++            # Standardise by the masked RMS so the term does not simply track
++            # scene scale; clamped so an almost-perfect batch cannot explode it.
++            denom = safe_mean(residual ** 2, mask).sqrt().clamp(min=1e-3)
++            residual = residual / denom
++
++        total, m = 0.0, mask.to(pred.dtype)
++        for k in range(self.msg_scales):
++            if k:
++                residual = F.avg_pool2d(residual, 2)
++                m = F.avg_pool2d(m, 2)
++            if residual.shape[-1] < 3 or residual.shape[-2] < 3:
++                break
++            g = self._sobel_grad_abs(residual)
++            total = total + safe_mean(g, m > 0.5)
++        return total / max(self.msg_scales, 1)
++
+     def smooth_loss(self, data_dict, *args, **kwargs):
+         '''
+             surface normal loss
+@@ -149,8 +306,13 @@ class Criterion(nn.Module):
+     
+     def forward(self, data_dict):
+         loss_dict = {self.type: self.main_loss(data_dict)}
++        if self.uncertainty:
++            loss_dict['uncertainty'] = self.uncertainty_loss(data_dict)
++            loss_dict[self.type] = loss_dict[self.type] + loss_dict['uncertainty']
+         if self.combined_smooth:
+-            loss_dict['smooth'] = self.smooth_loss(data_dict)
++            loss_dict['smooth'] = (self.multiscale_gradient_loss(data_dict)
++                                   if self.smooth_type == 'multiscale_gradient'
++                                   else self.smooth_loss(data_dict))
+             # loss_dict['cd'] = self.cd_loss(data_dict)
+             # plot_image_process(data_dict['depth'].cpu().detach().numpy(), data_dict['depth_gt'].cpu().detach().numpy(), data_dict['pred'].cpu().detach().numpy(),
+             #                    data_dict['rgb'].cpu().detach().numpy(), data_dict['depth_gt_mask'].cpu().detach().numpy(), data_dict['depth_gt_mask_original'].cpu().detach().numpy())
+@@ -158,4 +320,7 @@ class Criterion(nn.Module):
+             loss_dict['loss'] = loss_dict[self.type] + self.combined_beta * loss_dict['smooth'] #+ loss_dict['cd']
+         else:
+             loss_dict['loss'] = loss_dict[self.type]
++        if self.msgrad_beta and self.smooth_type != 'multiscale_gradient':
++            loss_dict['msgrad'] = self.multiscale_gradient_loss(data_dict)
++            loss_dict['loss'] = loss_dict['loss'] + self.msgrad_beta * loss_dict['msgrad']
+         return loss_dict
+\ No newline at end of file
+diff --git a/utils/data_preparation.py b/utils/data_preparation.py
+index 34bdc4c..b23f26c 100755
+--- a/utils/data_preparation.py
++++ b/utils/data_preparation.py
+@@ -91,8 +91,15 @@ def plot_numpy_rgb_image(img_np, title=None, save_path=None):
+     else:
+         plt.show()
+ 
+-def img_rel_preprocess(img, input_size=518):
+-    
++def img_rel_preprocess(img, input_size=518, input_is_rgb=False):
++    '''
++        input_is_rgb: the TransCG loader converts BGR->RGB before process_data
++        (datasets/transcg.py), and the cvtColor below converts AGAIN, so the
++        frozen DepthAnything branch has always been fed BGR. False keeps that
++        (every released and trained checkpoint saw BGR); True skips the second
++        swap. Opt in per dataset config with `rel_rgb_fix: True` and predict
++        with the same config, or train and test disagree.
++    '''
+     img = cv2.resize(img, (640, 480), interpolation=cv2.INTER_NEAREST)
+     transform = Compose([
+             Resize(
+@@ -108,7 +115,7 @@ def img_rel_preprocess(img, input_size=518):
+             PrepareForNet(),
+         ])
+     
+-    image = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) / 255.0
++    image = (img if input_is_rgb else cv2.cvtColor(img, cv2.COLOR_BGR2RGB)) / 255.0
+     image = transform({'image': image})['image']
+     return image
+ 
+@@ -209,7 +216,13 @@ def add_noise(image, level=0.1):
+     else:
+         #motion blur
+         sizes = [3, 5, 7, 9, 11, 15]
+-        size = sizes[int(np.random.randint(len(sizes), size=1))]
++        # NumPy 2 removed int() on a size-1 *array* ("only 0-dimensional arrays
++        # can be converted to Python scalars"); size=1 returns shape (1,), so
++        # upstream's int(...) is a hard TypeError here. Dropping size=1 draws
++        # the same value from the same global RandomState -- verified
++        # seed-for-seed, including the state left for the next draw -- so this
++        # is a compatibility fix and changes no augmentation numerics.
++        size = sizes[int(np.random.randint(len(sizes)))]
+         kernel_motion_blur = np.zeros((size, size))
+         if np.random.rand(1) < 0.5:
+             kernel_motion_blur[int((size - 1) / 2), :] = np.ones(size)
+@@ -221,6 +234,61 @@ def add_noise(image, level=0.1):
+     return noisy.astype('uint8')
+     
+ 
++def blank_in_mask(depth, mask, p=0.0):
++    '''
++        Remove the sensor reading INSIDE the transparent mask on a fraction p
++        of calls (train only; the caller gates on split). Ported from
++        sgdc/data/augment.py::blank_in_mask, which is the one augmentation the
++        project measured a need for: ReMakeV2 keeps 29 % of its concavity
++        without the in-mask reading (docs/PROBES_2026-09-20.md section 5) and
++        no ReMake arm was ever trained for that condition. The blanked pixels
++        stay supervised by the mesh-rendered ground truth like any other pixel.
++
++        `no_mask_depth: True` is the p = 1.0 special case (upstream's ablation).
++        Draws from np.random ONLY when p > 0, so p = 0 leaves the augmentation
++        RNG stream untouched and every shipped config is bit-for-bit unchanged.
++
++        Returns (depth, blanked: bool map of what was removed).
++    '''
++    blanked = np.zeros(depth.shape, bool)
++    if p <= 0 or np.random.rand(1)[0] >= p:
++        return depth, blanked
++    blanked = np.asarray(mask).astype(bool) & (depth > 0)
++    depth = depth.copy()
++    depth[blanked] = 0.0
++    return depth, blanked
++
++
++def mask_dropout(mask, p_none=0.0, p_erode=0.0, p_dilate=0.0, max_px=15):
++    '''
++        Sometimes no mask, sometimes a wrong one -- for the mask FED TO THE
++        NETWORK only; the loss masks are built from the true mask. Ported from
++        sgdc/data/augment.py::mask_dropout. ReMake scores 10.5 mm with the
++        oracle mask, 30.7 mm at SAM IoU 0.63 and 55.8 mm with none
++        (docs/report/sections/05_deployment.tex); this is what SGDCNet trains
++        with and why it degrades gracefully instead.
++
++        15 px is the under-segmentation measured to triple ReMake's error, so
++        it is the upper end of the range. Draws from np.random ONLY when some
++        probability is > 0 (see blank_in_mask).
++
++        Returns (mask, what: one of "exact", "dropped", "eroded", "dilated").
++    '''
++    if p_none + p_erode + p_dilate <= 0:
++        return mask, "exact"
++    r = np.random.rand(1)[0]
++    if r < p_none:
++        return np.zeros_like(mask), "dropped"
++    if r < p_none + p_erode or r < p_none + p_erode + p_dilate:
++        k = int(np.random.randint(3, max_px)) | 1
++        e = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (k, k))
++        m = np.asarray(mask).astype(np.uint8)
++        if r < p_none + p_erode:
++            return cv2.erode(m, e).astype(mask.dtype), "eroded"
++        return cv2.dilate(m, e).astype(mask.dtype), "dilated"
++    return mask, "exact"
++
++
+ def process_depth(depth, camera_type=0, depth_min=0.3, depth_max=1.5, depth_norm=1.0):
+     '''
+         Input:
+@@ -307,7 +375,8 @@ def process_data(
+     rgb, depth, depth_gt, depth_gt_mask, camera_intrinsics, scene_type='cluttered',
+     camera_type=0, split='train', image_size=(720, 1280), depth_min=0.3, depth_max=1.5,
+     depth_norm=10, use_aug=True, rgb_aug_prob=0.8, use_depth_aug=False, no_mask_depth=False,
+-    reldepth_model=None, **kwargs,
++    reldepth_model=None, align_rel_aug=False, rel_rgb_fix=False, p_blank_in_mask=0.0,
++    p_mask_none=0.0, p_mask_erode=0.0, p_mask_dilate=0.0, mask_max_px=15, **kwargs,
+ ):
+     """
+     Process images and perform data augmentation.
+@@ -329,10 +398,34 @@ def process_data(
+         depth_norm: float, optional, default: 1.0, the depth normalization coefficient;
+         use_aug: bool, optional, default: True, whether use data augmentation;
+         rgb_aug_prob: float, optional, default: 0.8, the rgb augmentation probability (only applies when use_aug is set to True).
++        align_rel_aug: bool, default False. UPSTREAM BUG, opt-in fix: `rgb_relat` (the
++            DepthAnything input) is copied BEFORE the random flips and never flipped,
++            so on 75 % of training samples the relative-depth prior is spatially
++            misaligned with rgb, depth and the ground truth. True flips it with the
++            rest. Off by default so shipped configs reproduce; the hypothesis it
++            tests is that this is why the prior branch collapses to a constant
++            (remake_v2/CHANGES.md section 1).
++        rel_rgb_fix: bool, default False. See img_rel_preprocess.
++        p_blank_in_mask: float, default 0. See blank_in_mask. Train only.
++        p_mask_none / p_mask_erode / p_mask_dilate / mask_max_px: see mask_dropout.
++            Train only; they perturb `input_mask` (fed to the network), never the
++            loss masks.
+     Returns:
+         data_dict for training and testing.
+     """
+     
++    # SELF-SUPERVISED HOLE PUNCHING (DESIGN_NOTE 9.4). Training only, opt-in,
++    # and a no-op unless the caller supplies opaque instance masks -- which the
++    # TransCG and ClearGrasp loaders do not currently carry, so this stays
++    # inert until a segmentation pass provides them. Applied to the RAW arrays
++    # before any processing, so the punched depth flows through the normal path.
++    instance_masks = kwargs.get('instance_masks', None)
++    if (kwargs.get('self_sup_holes', False) and split == 'train'
++            and instance_masks is not None):
++        from utils.hole_punching import punch_holes
++        depth, depth_gt, _sup = punch_holes(depth, depth_gt_mask.astype(bool),
++                                            instance_masks)
++
+     depth_original = process_depth(depth.copy(), camera_type=camera_type, depth_min=depth_min,
+                                   depth_max=depth_max, depth_norm=depth_norm)
+     depth_gt_original = process_depth(depth_gt.copy(), camera_type=camera_type, depth_min=depth_min,
+@@ -369,17 +462,22 @@ def process_data(
+             depth = np.flip(depth, axis = 0)
+             depth_gt = np.flip(depth_gt, axis = 0)
+             depth_gt_mask = np.flip(depth_gt_mask, axis = 0)
++            if align_rel_aug:
++                rgb_relat = np.flip(rgb_relat, axis = 0)
+         if np.random.rand(1) > 0.5:
+             has_aug = True
+             rgb = np.flip(rgb, axis = 1)
+             depth = np.flip(depth, axis = 1)
+             depth_gt = np.flip(depth_gt, axis = 1)
+             depth_gt_mask = np.flip(depth_gt_mask, axis = 1)
++            if align_rel_aug:
++                rgb_relat = np.flip(rgb_relat, axis = 1)
+         if has_aug:
+             rgb = rgb.copy()
+             depth = depth.copy()
+             depth_gt = depth_gt.copy()
+             depth_gt_mask = depth_gt_mask.copy()
++            rgb_relat = rgb_relat.copy()
+ 
+     # RGB normalization
+     rgb = rgb / 255.0
+@@ -412,7 +510,7 @@ def process_data(
+             # plot_numpy_rgb_image(rgb_relat)
+             
+             rgb_relat = cv2.resize(rgb_relat, (518, 686))
+-            rgb_relat = img_rel_preprocess(rgb_relat)
++            rgb_relat = img_rel_preprocess(rgb_relat, input_is_rgb=rel_rgb_fix)
+             # print(rgb_relat.shape)
+             # plot_rgb_image(rgb_relat.transpose(1, 2, 0))
+             
+@@ -434,6 +532,17 @@ def process_data(
+     if no_mask_depth is True:
+         depth = depth * (1 - depth_gt_mask) #no trans depth
+         print('no mask depth')
++
++    # In-mask blanking and mask dropout (DESIGN: plan of 2026-09-30). Train
++    # only, opt-in, and a no-op with the RNG untouched at their defaults. The
++    # loss masks above were built from the TRUE depth_gt_mask; only the depth
++    # handed to the network and the mask handed to the network change here.
++    input_mask = depth_gt_mask
++    if split == 'train':
++        depth, _blanked = blank_in_mask(depth, depth_gt_mask, p=p_blank_in_mask)
++        input_mask, _what = mask_dropout(depth_gt_mask, p_none=p_mask_none,
++                                         p_erode=p_mask_erode, p_dilate=p_mask_dilate,
++                                         max_px=mask_max_px)
+     
+     # cam_intrinsics = np.load('/home/cyf/remake/datasets/transcg/transcg/camera_intrinsics/1-camIntrinsics-D435.npy')
+     # pcd = depth_to_point_cloud_no_color(depth, cam_intrinsics)
+@@ -449,6 +558,9 @@ def process_data(
+         'depth_max': torch.tensor(depth_max),  #TDC少了max和min
+         'depth_gt': torch.FloatTensor(depth_gt),
+         'depth_gt_mask': torch.BoolTensor(depth_gt_mask),
++        # The mask the NETWORK sees. Equal to depth_gt_mask unless mask dropout
++        # is on; run_utils/trainer.py::remake_trainer feeds this one.
++        'input_mask': torch.BoolTensor(np.ascontiguousarray(input_mask)),
+         'scene_mask': torch.tensor(scene_mask),
+         'zero_mask': torch.BoolTensor(zero_mask),
+         'zero_mask_dilated': torch.BoolTensor(zero_mask_dilated),
+diff --git a/utils/hole_punching.py b/utils/hole_punching.py
+new file mode 100644
+index 0000000..f2a0c32
+--- /dev/null
++++ b/utils/hole_punching.py
+@@ -0,0 +1,97 @@
++"""Self-supervised hole punching: manufacture transparent-style supervision on
++OPAQUE regions, where the raw sensor depth is already correct and free.
++
++After arXiv 2512.05006. The idea is that a transparent object presents the
++network with a region of missing/void input depth that it must fill. Opaque
++objects give you the same *input* condition for free — punch their depth out —
++and unlike a transparent object you already know the answer, because the sensor
++measured it. So every opaque object in every frame becomes a supervised
++completion example at zero annotation cost.
++
++WHY THE EROSION. The source erodes each instance mask with a 5x5 rectangular
++element before punching, on the stated grounds that "the depth of the edge
++contours and the vicinity of the edges can be correctly perceived by the depth
++sensor". Keeping that rim of real measurements gives the network an anchor at
++the object boundary rather than a free-floating void.
++
++THE POLARITY TRAP
++-----------------
++The paper defines
++
++    M_final = J - (M'_non-trans OR M_trans)
++
++which is the **KEEP** mask -- the complement of what gets punched -- and then
++uses it as `D' = M_final (Hadamard) Depth`. Implementing from the prose alone,
++it is natural to read `M_final` as the region being removed and invert the whole
++transform: the network is then handed the transparent region as its ONLY input
++and asked to reconstruct the scene from nothing. This module names the two
++masks `punch` and `keep` so the direction cannot be misread, and
++`tests/test_hole_punching.py` asserts it.
++
++Note the asymmetry between input and target, which is the point of the method:
++
++    input  = depth * keep                      # opaque punched AND transparent removed
++    target = depth * (1 - transparent)         # opaque restored, transparent still gone
++
++The punched opaque pixels are absent from the input and PRESENT in the target.
++The transparent pixels are absent from both, because there the sensor is wrong
++and cannot supervise anything -- that is what the real ground truth is for.
++"""
++import cv2
++import numpy as np
++
++__all__ = ["punch_holes", "ERODE_KERNEL"]
++
++# 5x5 rectangular, as specified.
++ERODE_KERNEL = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
++
++
++def punch_holes(depth, transparent_mask, instance_masks, erode_kernel=None,
++                min_area=200):
++    """Build a self-supervised (input, target, supervised) triple.
++
++    depth            : HxW float, the RAW SENSOR depth. Zero/negative means no
++                       return, and stays that way -- nothing here invents data.
++    transparent_mask : HxW bool. Where the sensor is untrustworthy. Removed from
++                       both input and target.
++    instance_masks   : list of HxW bool, or an HxW integer label image, giving
++                       OPAQUE object instances (e.g. from SAM). Each is eroded
++                       and punched out of the input only.
++    erode_kernel     : structuring element; defaults to 5x5 rectangular.
++    min_area         : instances smaller than this many pixels after erosion are
++                       skipped -- punching a handful of pixels teaches nothing
++                       and mostly removes the edge anchor the erosion preserves.
++
++    Returns (input_depth, target_depth, supervised) where `supervised` marks the
++    pixels this augmentation newly supervises: punched, opaque, and carrying a
++    real sensor return.
++    """
++    depth = np.asarray(depth, dtype=np.float32)
++    transparent = np.asarray(transparent_mask, dtype=bool)
++    if transparent.shape != depth.shape:
++        raise ValueError(f"transparent_mask {transparent.shape} != depth {depth.shape}")
++    kernel = ERODE_KERNEL if erode_kernel is None else erode_kernel
++
++    if isinstance(instance_masks, np.ndarray) and instance_masks.ndim == 2 \
++            and instance_masks.dtype != bool:
++        labels = [instance_masks == v for v in np.unique(instance_masks) if v != 0]
++    else:
++        labels = [np.asarray(m, dtype=bool) for m in (instance_masks or [])]
++
++    punch = np.zeros_like(transparent)
++    for m in labels:
++        if m.shape != depth.shape:
++            raise ValueError(f"instance mask {m.shape} != depth {depth.shape}")
++        m = m & ~transparent                      # never punch a transparent region twice
++        eroded = cv2.erode(m.astype(np.uint8), kernel).astype(bool)
++        if eroded.sum() < min_area:
++            continue
++        punch |= eroded
++
++    keep = ~(punch | transparent)                 # M_final, the KEEP mask
++    input_depth = depth * keep
++    target_depth = depth * ~transparent
++    supervised = punch & (depth > 0)
++    return (input_depth.astype(np.float32),
++            target_depth.astype(np.float32),
++            supervised)

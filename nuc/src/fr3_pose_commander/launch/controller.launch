@@ -1,0 +1,73 @@
+<launch>
+  <!-- The Cartesian impedance controller, headless. Unlike franka_example_controllers'
+       own launch it starts no interactive_marker.py (a second writer to the
+       equilibrium_pose topic the commander drives), no rviz and no rqt_reconfigure
+       (both abort over SSH; use gui.launch on a display), and it spawns the
+       controller after a delay. -->
+
+  <arg name="robot_ip" />
+  <arg name="robot"        default="fr3" doc="panda or fr3" />
+  <arg name="arm_id"       default="$(arg robot)" />
+  <arg name="load_gripper" default="true" />
+  <!-- s; lets franka_state_controller come up before the 1 kHz controller loads. -->
+  <arg name="spawn_delay"  default="5.0" />
+  <arg name="controller"   default="cartesian_impedance_example_controller" />
+
+  <!-- Stiffness; the stock defaults are 200 N/m and 10 N.m/rad.
+       Rotational 50 N.m/rad: at 10 the wrist's own friction stalls orientation far short.
+       Translational 1000 N/m: at 200, free-space descents stopped 19-34 mm short on joint
+       friction. The cost is compliance: a depth error of ~20 mm now becomes a ~20 N push,
+       which is franka_control's collision reflex threshold, so the contact guard
+       (guarded_move_to_pose) is what stops the grasp leg first. translational_stiffness:=200
+       restores the soft arm. The patched cfg allows 0-1000 and 0-100
+       (patches/franka_ros-0.10.1-stiffness.patch) and dynamic_reconfigure clamps silently. -->
+  <arg name="translational_stiffness" default="1000" />
+  <arg name="rotational_stiffness"    default="50" />
+
+  <!-- Nullspace gain: holds the joint configuration the controller starts in, so home
+       first (run_home.sh). Kept low because it resists travel through the redundancy: at
+       15 the arm parked 71 mm short of a reachable target, at 0 it closed to 17 mm.
+       2 is interpolated between those, not measured. -->
+  <arg name="nullspace_stiffness"     default="2" />
+
+  <include file="$(find franka_control)/launch/franka_control.launch"
+           pass_all_args="true" />
+
+  <rosparam command="load" subst_value="true"
+      file="$(find franka_example_controllers)/config/franka_example_controllers.yaml" />
+
+  <node name="controller_spawner" pkg="controller_manager" type="spawner"
+        respawn="false" output="screen"
+        launch-prefix="bash -c 'sleep $(arg spawn_delay); $0 $@'"
+        args="$(arg controller)" />
+
+  <!-- Applied once the controller's reconfigure server exists: each waits for it (the
+       timeout option), or it would race the spawner and leave the stock values.
+       Out-of-range values are clamped silently; read them back with
+         rosrun dynamic_reconfigure dynparam get \
+           /cartesian_impedance_example_controller/dynamic_reconfigure_compliance_param_node
+  -->
+  <node name="set_translational_stiffness" pkg="dynamic_reconfigure"
+        type="dynparam" output="screen"
+        args="set --timeout=60 /$(arg controller)/dynamic_reconfigure_compliance_param_node
+              translational_stiffness $(arg translational_stiffness)" />
+  <node name="set_rotational_stiffness" pkg="dynamic_reconfigure"
+        type="dynparam" output="screen"
+        args="set --timeout=60 /$(arg controller)/dynamic_reconfigure_compliance_param_node
+              rotational_stiffness $(arg rotational_stiffness)" />
+  <node name="set_nullspace_stiffness" pkg="dynamic_reconfigure"
+        type="dynparam" output="screen"
+        args="set --timeout=60 /$(arg controller)/dynamic_reconfigure_compliance_param_node
+              nullspace_stiffness $(arg nullspace_stiffness)" />
+
+  <!-- Camera load on the flange, off by default: setting it restarts libfranka's control
+       loop, which aborted the controller (communication_constraints_violation). Prefer
+       Desk's end-effector profile (end-effector-camera.json, 1.03 kg). If set here, give
+       the difference from the plain hand in the flange frame: 0.30 kg at (0.093, 0, 0.030). -->
+  <arg name="load_mass"    default="0" />
+  <arg name="load_center"  default="[0.0930, 0.0, 0.0300]" />
+  <arg name="load_inertia" default="[8.333e-05, 0, 0, 0, 3.633e-04, 0, 0, 0, 3.867e-04]" />
+  <node name="set_load" pkg="rosservice" type="rosservice" output="screen"
+        if="$(eval arg('load_mass') > 0)"
+        args="call --wait /franka_control/set_load '{mass: $(arg load_mass), F_x_center_load: $(arg load_center), load_inertia: $(arg load_inertia)}'" />
+</launch>

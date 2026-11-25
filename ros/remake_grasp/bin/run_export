@@ -1,0 +1,5 @@
+#!/usr/bin/env python3
+import sys
+from remake_grasp.run_export import main
+
+sys.exit(main())

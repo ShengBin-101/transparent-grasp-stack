@@ -1,0 +1,94 @@
+# FINE-TUNE from remake_official.tar (epoch 39), six epochs to 45 at resume_lr 1e-4 --
+# the recipe of A_ft (results/finetune_msgrad/RESULT.md), which is this arm's CONTROL:
+# A_ft 11.8 mm masked RMSE / 87 % concavity, and (to be scored) its blanked / no-mask rows.
+# Run:  ./scripts/run_3090.sh --finetune-from remake/checkpoints_official/remake_official.tar <ARM>
+#
+# trainer.val_list turns on the per-epoch HELD-OUT pass (600 frames, 8 training scenes,
+# removed from the training loader) and selects checkpoint<N>.tar on it; the last epoch is
+# recorded in provenance.txt too. Score both. C_ft's training loss fell 15x while held-out
+# RMSE rose 7x -- this is the line that would have caught it.
+#
+# THE ONE CHANGE: mask dropout on the mask FED TO THE NETWORK (loss masks untouched):
+# p_mask_none 0.25 / p_mask_erode 0.15 / p_mask_dilate 0.15, kernels 3-15 px (SGDCNet's values;
+# 15 px is the under-segmentation measured to triple ReMake's error). ReMake: 10.5 mm at IoU 1.00,
+# 30.7 mm at SAM IoU 0.63, 55.8 mm with no mask (the report's deployment chapter) -- a cliff, not a slope.
+# PRE-REGISTERED, against A_ft:
+#   PASS  : no-mask masked RMSE (--no-mask) < 30 mm (an earlier retrain 55.8, official 46.4);
+#           SAM-box masked RMSE (--mask-dir, the SAM-box masks) < 22 mm (an earlier retrain 30.7).
+#   guard : protocol masked RMSE <= A_ft + 1 mm.
+#
+"model":
+  "type": "remake"
+  "params":
+    "lambda_val": 1
+    "res": True
+
+"optimizer":
+  "type": "AdamW"
+  "params":
+    "lr": 0.001 #
+
+"lr_scheduler":
+  "type": "MultiStepLR"
+  "params":
+    "milestones": [35, 65] #
+    "gamma": 0.1
+
+"dataset":
+  "train":
+    "type": "transcg"
+    "data_dir": "datasets/transcg/transcg"
+    "image_size": !!python/tuple  [640, 480]
+    "use_augmentation": True
+    "rgb_augmentation_probability": 0.8
+    "use_depth_augmentation": False
+    "no_mask_depth": False #True for ablation
+    "depth_min": 0.0
+    "depth_max": 10.0
+    "depth_norm": 1.0
+    "reldepth_model": depthanything
+    "p_mask_none": 0.25
+    "p_mask_erode": 0.15
+    "p_mask_dilate": 0.15
+    "mask_max_px": 15
+  "test":
+    "type": "transcg"
+    "data_dir": "datasets/transcg/transcg"
+    "image_size": !!python/tuple [640, 480]
+    "use_augmentation": False
+    "depth_min": 0.0
+    "depth_max": 1.5
+    "depth_norm": 1.0
+    "reldepth_model": depthanything 
+
+
+"dataloader":
+  "num_workers": 12 
+  "shuffle": True
+  "drop_last": False 
+
+"trainer":
+  "batch_size": 6 
+  "test_batch_size": 12
+  "resume_lr": 0.0001    # the official run's LR after its epoch-35 milestone
+  "val_list": "../eval/subset/val_list.json"
+  "multigpu": False
+  "max_epoch": 45 
+  "criterion":
+    "type": "l1_loss" #l1_loss custom_masked_l1_loss
+    "epsilon": 0.00000001
+    "combined_smooth": True #True & False 
+    "combined_beta": 0.1
+
+"metrics":
+  "types": ["MSE", "RMSE", "REL", "MAE", "Threshold@1.01", "Threshold@1.03", "Threshold@1.05", "Threshold@1.10", "Threshold@1.25", "MaskedMSE", "MaskedRMSE", "MaskedREL", "MaskedMAE", "MaskedThreshold@1.01", "MaskedThreshold@1.03", "MaskedThreshold@1.05", "MaskedThreshold@1.10", "MaskedThreshold@1.25", "ssim"] #"ChamferDist",
+  "epsilon": 0.00000001
+  "depth_scale": 1.0
+
+"states":
+  "states_dir": "results"
+  "states_exper": "G_maskdrop"
+
+"tb_log":
+  "states_dir": "tb_log"
+  "states_exper": "train-tg-val-tg"

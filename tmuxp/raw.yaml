@@ -1,0 +1,39 @@
+# The trials' RAW condition in one tmux session, run inside the container:
+#   rg-raw          (= tmuxp load -y /opt/remake_grasp/tmuxp/raw.yaml)
+# A plain RGB-D pipeline: the raw sensor depth into SBG, with no mask, no ReMake and no target filter
+# (every grasp counts; the NUC planner gets no object labels). Neither the segmenter nor SAM 3 is
+# loaded. One object per scene: with no targets it cannot tell which object a pick is for.
+# Label in show_run: raw
+# The preset exactly: MASK / REMAKE / TARGETS / DETECTOR in the shell are ignored (rg-up takes
+# overrides); PROFILE=picking|picking20|picking15|perception still applies.
+# Starting it stops every pipeline node and closes the other remake_grasp* sessions, so only one
+# pipeline runs. Stop everything: rg-down (Ctrl-b d leaves it running).
+# tests/test_tmuxp.py keeps the four session files in step.
+session_name: remake_grasp_raw
+start_directory: /opt/remake_grasp
+before_script: /opt/remake_grasp/scripts/rg_session.sh remake_grasp_raw
+windows:
+  - window_name: nodes
+    layout: tiled
+    panes:
+      - ros2 launch remake_grasp camera.launch.py camera:=${CAMERA:-l515}
+      - env -u MASK -u REMAKE -u TARGETS ros2 launch remake_grasp remake.launch.py pipeline:=raw
+      - env -u MASK -u REMAKE -u TARGETS ros2 launch remake_grasp sbg.launch.py profile:=${PROFILE:-picking} pipeline:=raw
+      - env -u MASK -u REMAKE -u TARGETS ros2 launch remake_grasp pipeline.launch.py detector:=sbg pipeline:=raw
+      - ros2 launch remake_grasp bridge.launch.py
+      - ros2 launch remake_grasp foxglove.launch.py
+  - window_name: run
+    layout: even-vertical
+    panes:
+      - shell_command:
+          - clear
+          - echo "RAW       raw sensor depth + SBG; no mask, no ReMake, no target filter"
+          - echo "rg-run    capture + SBG + grasp pose"
+          - echo "rg-pick   execute the best grasp on the FR3"
+          - echo "ros2 service call /live_pipeline/release std_srvs/srv/Trigger"
+          - echo "ros2 service call /live_pipeline/go_home std_srvs/srv/Trigger"
+          - echo "ros2 service call /live_pipeline/go_v2 std_srvs/srv/Trigger   # the side view; go_v1 = home"
+      - watch -n2 -t ros2 run remake_grasp show_run
+  - window_name: nuc
+    panes:
+      - echo "ssh nuc   then start the controller / commander there (see nuc/README.md)"

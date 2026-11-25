@@ -1,0 +1,11 @@
+# ROS 2 Humble packages installed into the container (final image stage).
+# One ROS package name per line, as in a package.xml (cv_bridge or cv-bridge); installed as
+# ros-humble-<name>. Text after # is ignored. Add yours at the bottom, then ./build.sh (a few minutes).
+# Message packages added here are not bridged to the NUC: ros1_bridge only knows the types it was built with.
+
+# needed by the pipeline
+foxglove_bridge
+tf2_ros_py              # Python tf2 for the orchestrator and grasp_pose_node
+image_transport_plugins # compressed image topics
+
+# your packages

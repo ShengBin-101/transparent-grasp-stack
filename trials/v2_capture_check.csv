@@ -1,0 +1,7 @@
+object,object_name,run,sbg_grasps,under_70mm,executable,planned,feasible_from_home
+T2,plastic bottle,20261104_025023_auto,18,1,1,2,0
+T1,translucent mug,20261104_025206_auto,15,0,0,0,0
+T3,plastic bowl,20261104_025259_auto,7,1,1,2,0
+T4,glass cup,20261104_025335_auto,12,5,3,6,0
+O1,tape roll,20261104_025427_auto,12,11,7,14,0
+O2,cardboard box,20261104_025639_auto,19,9,7,14,1

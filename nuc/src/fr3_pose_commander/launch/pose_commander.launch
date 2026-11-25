@@ -1,0 +1,47 @@
+<launch>
+  <!-- The commanding node, the wrist-camera tf and the tool-pose republisher, started by
+       run_commander.sh after the controller. dry_run:=true resolves and checks every pose
+       without publishing to the controller. rosbridge is in bridge.launch. -->
+
+  <arg name="config"      default="$(find fr3_pose_commander)/config/pose_commander.yaml" />
+  <arg name="extrinsics"  default="$(find fr3_pose_commander)/config/camera_extrinsics.yaml" />
+  <arg name="base_frame"  default="fr3_link0" />
+  <arg name="dry_run"     default="false" />
+  <!-- Where the setpoints go: the impedance controller's equilibrium by default, or
+       /cartesian_pose_tracking_controller/target_pose (run_commander.sh's position flag).
+       Same message, frame and ramp. -->
+  <arg name="command_topic" default="/cartesian_impedance_example_controller/equilibrium_pose" />
+  <!-- Overrides limits/z_min when set; empty = the config's value (-0.036, 5 mm above
+       the table measured at z = -0.041). -->
+  <arg name="z_min" default="" />
+  <!-- false = every refusal becomes a warning and the arm goes anyway (the ramp stays). -->
+  <arg name="checks"      default="true" />
+  <arg name="camera_tf"   default="true" />
+  <!-- Republish the measured tool pose for the Orin, which resolves a whole pick once,
+       in the base frame, from the pose the scene was captured at (publish_tool_pose.py). -->
+  <arg name="tool_pose"   default="true" />
+
+  <node pkg="fr3_pose_commander" type="pose_commander_node.py"
+        name="pose_commander" output="screen">
+    <rosparam command="load" file="$(arg config)" />
+    <!-- The same extrinsics camera_tf_publisher loads, so the planner's camera matches tf. -->
+    <rosparam command="load" file="$(arg extrinsics)" />
+    <param name="base_frame"     value="$(arg base_frame)" />
+    <param name="dry_run"        value="$(arg dry_run)" />
+    <param name="enforce_checks" value="$(arg checks)" />
+    <param name="command_topic"  value="$(arg command_topic)" />
+    <param if="$(eval arg('z_min') != '')" name="limits/z_min" value="$(arg z_min)" type="double" />
+  </node>
+
+  <!-- The camera -> base chain; without it every camera-frame pose is refused. Turn it
+       off only if something else publishes that transform. -->
+  <node if="$(arg camera_tf)" pkg="fr3_pose_commander"
+        type="publish_camera_tf.py" name="camera_tf_publisher" output="screen">
+    <rosparam command="load" file="$(arg extrinsics)" />
+  </node>
+
+  <node if="$(arg tool_pose)" pkg="fr3_pose_commander"
+        type="publish_tool_pose.py" name="tool_pose_publisher" output="screen">
+    <param name="base_frame" value="$(arg base_frame)" />
+  </node>
+</launch>

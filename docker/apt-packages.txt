@@ -1,0 +1,19 @@
+# apt packages installed into the container (final image stage).
+# One package per line; text after # is ignored. Add yours at the bottom, then ./build.sh
+# (only the last stages rerun, a few minutes). Python packages go in requirements.txt.
+
+# needed by the pipeline
+python3-psutil          # SAM 3
+
+# tools
+tmux
+tmuxp                   # rg-up
+openssh-client          # ssh nuc
+iproute2                # finds ROS_IP towards the NUC
+iputils-ping
+procps                  # pgrep / pkill in stop_nodes.sh
+less
+nano
+udev
+
+# your packages

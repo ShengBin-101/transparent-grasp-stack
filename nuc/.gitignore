@@ -1,0 +1,14 @@
+# catkin output: built on the NUC, never synced
+build/
+devel/
+install/
+.catkin_tools/
+# per-run logs stay on the machine that wrote them
+logs/
+__pycache__/
+*.pyc
+# fetched and built by setup_franka.sh
+src/franka_ros/
+local_libfranka_0_10_0/
+# created by catkin_make
+src/CMakeLists.txt

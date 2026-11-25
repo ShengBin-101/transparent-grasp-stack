@@ -1,0 +1,31 @@
+<launch>
+  <!-- Optional websocket bridges, for watching the arm (the pipeline uses ros1_bridge).
+       foxglove_bridge (8765) serves Foxglove and resolves the URDF's package:// meshes itself;
+       rosbridge (9090) serves other websocket clients. serve_description (an HTTP URDF server)
+       is only needed by a client on rosbridge. -->
+
+  <arg name="foxglove"      default="true" />
+  <arg name="foxglove_port" default="8765" />
+  <arg name="rosbridge"     default="true" />
+  <arg name="port"          default="9090" doc="rosbridge port" />
+  <arg name="description"   default="false"
+       doc="HTTP URDF+mesh server; only needed on the rosbridge path" />
+  <arg name="http_port"     default="8080" />
+  <arg name="public_host"   default="" />
+
+  <include if="$(arg foxglove)"
+           file="$(find foxglove_bridge)/launch/foxglove_bridge.launch">
+    <arg name="port" value="$(arg foxglove_port)" />
+  </include>
+
+  <include if="$(arg rosbridge)"
+           file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+    <arg name="port" value="$(arg port)" />
+  </include>
+
+  <node if="$(arg description)" pkg="fr3_pose_commander"
+        type="serve_description.py" name="serve_description" output="screen">
+    <param name="port"        value="$(arg http_port)" />
+    <param name="public_host" value="$(arg public_host)" />
+  </node>
+</launch>

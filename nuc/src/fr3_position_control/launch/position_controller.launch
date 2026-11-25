@@ -1,0 +1,39 @@
+<launch>
+  <!-- The Cartesian pose controller, headless: the position-control counterpart of
+       fr3_pose_commander/controller.launch. Started the same way:
+
+           ./run_position_controller.sh          (in place of ./run_controller.sh)
+           ./run_commander.sh with its position flag  (points pose_commander at it)
+
+       The robot's own stiff joint impedance tracks the commanded pose, so the arm lands
+       where told instead of stalling short on joint friction. What changes:
+       * no stiffness to reconfigure (run_stiffness.sh, stall_test.py part B are impedance-only);
+       * contact is resisted, not yielded to: pose_commander's guard stops guarded legs, and
+         franka_control's collision reflex (20 N / 20 N.m) is the hard stop;
+       * the load goes in Desk's end-effector-camera profile, as for controller.launch;
+       * the elbow is commanded (hold_elbow): joint 3 is held at its start angle, as the
+         planner's "elbow_locked" model assumes; an elbow reflex stops the motion like any other. -->
+
+  <arg name="robot_ip" />
+  <arg name="robot"        default="fr3" doc="panda or fr3" />
+  <arg name="arm_id"       default="$(arg robot)" />
+  <arg name="load_gripper" default="true" />
+  <!-- s; lets franka_state_controller come up before the 1 kHz controller loads. -->
+  <arg name="spawn_delay"  default="5.0" />
+  <arg name="controller"   default="cartesian_pose_tracking_controller" />
+  <!-- Hold the elbow latched at start (config/fr3_position_control.yaml); false = pose
+       only, the firmware picks joint 3. -->
+  <arg name="hold_elbow"   default="true" />
+
+  <include file="$(find franka_control)/launch/franka_control.launch" pass_all_args="true" />
+
+  <rosparam command="load" subst_value="true"
+      file="$(find fr3_position_control)/config/fr3_position_control.yaml" />
+  <!-- After the yaml, so the launch arg wins. -->
+  <param name="$(arg controller)/hold_elbow" value="$(arg hold_elbow)" />
+
+  <node name="controller_spawner" pkg="controller_manager" type="spawner"
+        respawn="false" output="screen"
+        launch-prefix="bash -c 'sleep $(arg spawn_delay); $0 $@'"
+        args="$(arg controller)" />
+</launch>

@@ -1,0 +1,32 @@
+franka_ros 0.10.1 (commit 30e598aa6fb703cc80a203481e6427f397337b4c), Apache-2.0, Copyright 2017 Franka Emika GmbH.
+
+Change notice (Apache-2.0, section 4(b)): this patch modifies one file of franka_ros,
+franka_example_controllers/cfg/compliance_param.cfg, in two places:
+
+  translational_stiffness upper bound  400 -> 1000 N/m
+  rotational_stiffness    upper bound   30 ->  100 N m/rad
+
+dynamic_reconfigure clamps a request above the bound without a warning. controller.launch in
+fr3_pose_commander asks for 1000 N/m and 50 N m/rad, which is what every reported run used, so
+without this patch the controller runs at 400 N/m and 30 N m/rad instead. Defaults are unchanged.
+Applied by nuc/setup_franka.sh.
+
+diff --git a/franka_example_controllers/cfg/compliance_param.cfg b/franka_example_controllers/cfg/compliance_param.cfg
+index 2cafd7a..15e6ca8 100755
+--- a/franka_example_controllers/cfg/compliance_param.cfg
++++ b/franka_example_controllers/cfg/compliance_param.cfg
+@@ -5,8 +5,12 @@ from dynamic_reconfigure.parameter_generator_catkin import *
+ 
+ gen = ParameterGenerator()
+ 
+-gen.add("translational_stiffness", double_t, 0, "Cartesian translational stiffness", 200, 0, 400)
+-gen.add("rotational_stiffness", double_t, 0, "Cartesian rotational stiffness", 10, 0, 30)
++# Modified for transparent-grasp-stack (2026): the upper bounds of translational_stiffness
++# (400 -> 1000 N/m) and rotational_stiffness (30 -> 100 N m/rad) are raised. dynamic_reconfigure
++# clamps a request above the bound without a warning, and fr3_pose_commander/controller.launch
++# asks for 1000 N/m and 50 N m/rad. The controller derives damping as 2*sqrt(K).
++gen.add("translational_stiffness", double_t, 0, "Cartesian translational stiffness", 200, 0, 1000)
++gen.add("rotational_stiffness", double_t, 0, "Cartesian rotational stiffness", 10, 0, 100)
+ gen.add("nullspace_stiffness", double_t, 0, "Stiffness of the joint space nullspace controller (the desired configuration is the one at startup)", 0.5, 0, 100)
+ 
+ exit(gen.generate(PACKAGE, "dynamic_compliance", "compliance_param"))

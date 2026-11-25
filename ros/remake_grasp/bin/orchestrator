@@ -1,0 +1,4 @@
+#!/usr/bin/env python3
+from remake_grasp.orchestrator import main
+
+main()

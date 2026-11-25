@@ -1,0 +1,46 @@
+{
+ "source_run": "20260928_171157_auto",
+ "note": "three transparent objects on the table (rig, 28 Sep 2026); SAM 3 found all three",
+ "arrays": {
+  "depth_aligned_mm": [
+   "<f4",
+   [
+    720,
+    1280
+   ]
+  ],
+  "depth_coverage": [
+   "|b1",
+   [
+    720,
+    1280
+   ]
+  ],
+  "color_intrinsics": [
+   "<f8",
+   [
+    3,
+    3
+   ]
+  ],
+  "sam3_masks": [
+   "<i4",
+   [
+    720,
+    1280
+   ]
+  ],
+  "sam3_masks_all": [
+   "<i4",
+   [
+    720,
+    1280
+   ]
+  ]
+ },
+ "presets": [
+  "adapted",
+  "raw",
+  "baseline"
+ ]
+}

@@ -1,0 +1,152 @@
+{
+ "what": "Recorded TransCG-subset scores (the frozen 1,177 frames of eval/sample_list.json), which scripts/benchmark.sh compares each row with: the training workstation's (RTX 3090, 2026-09-24 to 10-02, except the released weights' dataset row, scored on its CPU on 2026-09-19; the files under training/results/) and, for the released weights' blanked, no-mask and segmenter rows, the Orin's (2026-10-05; the SAM 3 text-mask row 2026-09-24). Masked RMSE is the mean of per-frame RMSE over pixels inside the dataset's transparent mask with ground truth (eval/score.py). Differences under about 2 mm masked RMSE or 5 concavity points are not treated as results (the dissertation's Section 6.1); the Orin's reruns of five rows matched to 0.1 mm.",
+ "rows": {
+  "A_ft|blanked": {
+   "masked_rmse_mm": 26.1,
+   "D435_mm": 22.5,
+   "L515_mm": 29.8,
+   "concavity_pct": 32,
+   "source": "training/results/A_ft/masked_rmse_blank.txt"
+  },
+  "A_ft|dataset": {
+   "masked_rmse_mm": 11.8,
+   "D435_mm": 9.7,
+   "L515_mm": 13.9,
+   "concavity_pct": 87,
+   "source": "training/results/A_ft/RESULT.md (the 26 Sep fine-tune table)"
+  },
+  "A_ft|nomask": {
+   "masked_rmse_mm": 43.6,
+   "D435_mm": 27.2,
+   "L515_mm": 60.2,
+   "concavity_pct": 82,
+   "source": "training/results/A_ft/masked_rmse_nomask.txt"
+  },
+  "A_ft|sambox": {
+   "masked_rmse_mm": 27.0,
+   "D435_mm": 17.2,
+   "L515_mm": 37.0,
+   "concavity_pct": 76,
+   "source": "training/results/A_ft/masked_rmse_sambox.txt"
+  },
+  "G_maskdrop|blanked": {
+   "masked_rmse_mm": 26.8,
+   "D435_mm": 23.6,
+   "L515_mm": 30.0,
+   "concavity_pct": 32,
+   "source": "training/results/G_maskdrop/masked_rmse_blank.txt"
+  },
+  "G_maskdrop|dataset": {
+   "masked_rmse_mm": 11.1,
+   "D435_mm": 8.9,
+   "L515_mm": 13.2,
+   "concavity_pct": 87,
+   "source": "training/results/G_maskdrop/masked_rmse.txt"
+  },
+  "G_maskdrop|nomask": {
+   "masked_rmse_mm": 17.0,
+   "D435_mm": 11.5,
+   "L515_mm": 22.5,
+   "concavity_pct": 66,
+   "source": "training/results/G_maskdrop/masked_rmse_nomask.txt"
+  },
+  "G_maskdrop|sambox": {
+   "masked_rmse_mm": 23.1,
+   "D435_mm": 14.1,
+   "L515_mm": 32.3,
+   "concavity_pct": 79,
+   "source": "training/results/G_maskdrop/masked_rmse_sambox.txt"
+  },
+  "G_maskdrop|seg_d0": {
+   "masked_rmse_mm": 14.6,
+   "D435_mm": 10.6,
+   "L515_mm": 18.7,
+   "concavity_pct": 79,
+   "source": "training/results/G_maskdrop/masked_rmse_seg_d0.txt"
+  },
+  "G_maskdrop|seg_d5": {
+   "masked_rmse_mm": 13.3,
+   "D435_mm": 10.3,
+   "L515_mm": 16.3,
+   "concavity_pct": 82,
+   "source": "training/results/G_maskdrop/masked_rmse_seg_d5.txt"
+  },
+  "L_combo_both|blanked": {
+   "masked_rmse_mm": 16.2,
+   "D435_mm": 15.1,
+   "L515_mm": 17.4,
+   "concavity_pct": 89,
+   "source": "training/results/L_combo_both/masked_rmse_blank.txt"
+  },
+  "L_combo_both|dataset": {
+   "masked_rmse_mm": 12.2,
+   "D435_mm": 9.7,
+   "L515_mm": 14.8,
+   "concavity_pct": 87,
+   "source": "training/results/L_combo_both/masked_rmse.txt"
+  },
+  "L_combo_both|nomask": {
+   "masked_rmse_mm": 18.8,
+   "D435_mm": 12.8,
+   "L515_mm": 25.0,
+   "concavity_pct": 63,
+   "source": "training/results/L_combo_both/masked_rmse_nomask.txt"
+  },
+  "L_combo_both|sambox": {
+   "masked_rmse_mm": 24.1,
+   "D435_mm": 14.8,
+   "L515_mm": 33.5,
+   "concavity_pct": 76,
+   "source": "training/results/L_combo_both/masked_rmse_sambox.txt"
+  },
+  "L_combo_both|seg_d0": {
+   "masked_rmse_mm": 15.4,
+   "D435_mm": 11.2,
+   "L515_mm": 19.6,
+   "concavity_pct": 79,
+   "source": "training/results/L_combo_both/masked_rmse_seg_d0.txt"
+  },
+  "L_combo_both|seg_d5": {
+   "masked_rmse_mm": 14.2,
+   "D435_mm": 10.8,
+   "L515_mm": 17.6,
+   "concavity_pct": 76,
+   "source": "training/results/L_combo_both/masked_rmse_seg_d5.txt"
+  },
+  "official|blanked": {
+   "masked_rmse_mm": 25.9,
+   "D435_mm": 22.8,
+   "L515_mm": 29.1,
+   "concavity_pct": 34,
+   "source": "recorded on the Orin with scripts/benchmark.sh, 2026-10-05 (data/eval/results/official_blanked)"
+  },
+  "official|dataset": {
+   "masked_rmse_mm": 11.2,
+   "D435_mm": 9.0,
+   "L515_mm": 13.4,
+   "concavity_pct": 89,
+   "source": "training/results/official/masked_rmse.txt"
+  },
+  "official|nomask": {
+   "masked_rmse_mm": 46.4,
+   "D435_mm": 28.9,
+   "L515_mm": 64.2,
+   "concavity_pct": 84,
+   "source": "recorded on the Orin with scripts/benchmark.sh, 2026-10-05 (data/eval/results/official_nomask)"
+  },
+  "official|sam3text": {
+   "masked_rmse_mm": 28.9,
+   "D435_mm": 17.6,
+   "L515_mm": 40.4,
+   "concavity_pct": null,
+   "source": "recorded on the Orin, 2026-09-24 (per-frame file in an earlier checkout of the training code, not shipped; concavity not recorded); reproduced frame for frame on 2026-11-23 from sam3_masks_text.zip"
+  },
+  "official|seg_d5": {
+   "masked_rmse_mm": 14.4,
+   "D435_mm": 11.1,
+   "L515_mm": 17.6,
+   "concavity_pct": 82,
+   "source": "recorded on the Orin with scripts/benchmark.sh, 2026-10-05 (data/eval/results/official_seg_d5)"
+  }
+ }
+}

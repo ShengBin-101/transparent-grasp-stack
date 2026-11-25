@@ -1,0 +1,81 @@
+# FINE-TUNE from remake_official.tar (epoch 39) -- ARM C: multi-scale gradient smooth term (SPNet) in place of the 1-px normal.
+# Written for scripts/run_3090.sh --finetune-from; see FINETUNE_BRIEF.md.
+#
+# runner_train.py resumes from results/<arm>/checkpoint.tar at its epoch (39) and trains to
+# max_epoch 45: SIX epochs, identical for both arms, so the arms differ ONLY in the smooth term.
+# resume_lr is the LR the optimiser restarts at. A MultiStepLR rebuilt at epoch 38 does not
+# re-apply the epoch-35 decay, so 1e-4 is set explicitly -- the rate the official run was
+# training at when it stopped. The next milestone (65) is never reached.
+# Evaluate the LAST epoch (checkpoint.tar): the per-epoch test pass runs on the TransCG test
+# split, which the evaluation subset is drawn from, so best-by-test selection is not used.
+"model":
+  "type": "remake"
+  "params":
+    "lambda_val": 1
+    "res": True
+
+"optimizer":
+  "type": "AdamW"
+  "params":
+    "lr": 0.001 #
+
+"lr_scheduler":
+  "type": "MultiStepLR"
+  "params":
+    "milestones": [35, 65] #
+    "gamma": 0.1
+
+"dataset":
+  "train":
+    "type": "transcg"
+    "data_dir": "datasets/transcg/transcg"
+    "image_size": !!python/tuple  [640, 480]
+    "use_augmentation": True
+    "rgb_augmentation_probability": 0.8
+    "use_depth_augmentation": False
+    "no_mask_depth": False #True for ablation
+    "depth_min": 0.0
+    "depth_max": 10.0
+    "depth_norm": 1.0
+    "reldepth_model": depthanything
+  "test":
+    "type": "transcg"
+    "data_dir": "datasets/transcg/transcg"
+    "image_size": !!python/tuple [640, 480]
+    "use_augmentation": False
+    "depth_min": 0.0
+    "depth_max": 1.5
+    "depth_norm": 1.0
+    "reldepth_model": depthanything 
+
+
+"dataloader":
+  "num_workers": 12 
+  "shuffle": True
+  "drop_last": False 
+
+"trainer":
+  "batch_size": 6 
+  "resume_lr": 0.0001  # = the official run's LR after its epoch-35 milestone; see header
+  "test_batch_size": 12
+  "multigpu": False
+  "max_epoch": 45 
+  "criterion":
+    "type": "l1_loss"
+    "smooth_type": "multiscale_gradient"
+    "epsilon": 0.00000001
+    "combined_smooth": True #True & False 
+    "combined_beta": 0.1
+
+"metrics":
+  "types": ["MSE", "RMSE", "REL", "MAE", "Threshold@1.01", "Threshold@1.03", "Threshold@1.05", "Threshold@1.10", "Threshold@1.25", "MaskedMSE", "MaskedRMSE", "MaskedREL", "MaskedMAE", "MaskedThreshold@1.01", "MaskedThreshold@1.03", "MaskedThreshold@1.05", "MaskedThreshold@1.10", "MaskedThreshold@1.25", "ssim"] #"ChamferDist",
+  "epsilon": 0.00000001
+  "depth_scale": 1.0
+
+"states":
+  "states_dir": "results"
+  "states_exper": "train-tg-val-tg-dfuse"
+
+"tb_log":
+  "states_dir": "tb_log"
+  "states_exper": "train-tg-val-tg"

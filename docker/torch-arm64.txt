@@ -1,0 +1,6 @@
+# Jetson (Jetson Linux R36, CUDA 12.6). Direct wheel URLs so pip never picks a CPU build from PyPI;
+# pip checks each wheel against the sha256 in its URL (from the index at pypi.jetson-ai-lab.io).
+https://pypi.jetson-ai-lab.io/jp6/cu126/+f/37d/7e156cfb4a646/torch-2.10.0-cp310-cp310-linux_aarch64.whl#sha256=37d7e156cfb4a646c4d7347597727db1529d184108f703324dfff1842cec094e
+https://pypi.jetson-ai-lab.io/jp6/cu126/+f/1b6/357c5532db61e/torchvision-0.25.0-cp310-cp310-linux_aarch64.whl#sha256=1b6357c5532db61e9bfe7ad69f73ba73e8214010de021da703d360d2cc16c3d7
+triton==3.7.1
+nvidia-cudss-cu12==0.8.0.10

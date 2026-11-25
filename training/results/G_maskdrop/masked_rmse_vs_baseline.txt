@@ -1,0 +1,38 @@
+frames: 1177
+  200/1177  13s
+  400/1177  27s
+  600/1177  40s
+  800/1177  54s
+  1000/1177  67s
+
+=== A_ft  (n=1177) ===
+  masked RMSE   mean   11.8 mm   median   10.3 mm   p90   19.6 mm
+  FAIL >25mm    2.1%        GOOD <12mm   63.6%
+    D435: mean    9.7 mm   median    8.7   FAIL   0.3%  (n=592)
+    L515: mean   13.9 mm   median   12.3   FAIL   3.9%  (n=585)
+    reflection (no return)           13.0 mm  (n=1175)
+    refraction (wrong return)        12.5 mm  (n=1177)
+    normal (sensor already right)    10.6 mm  (n=1176)
+  200/1177  13s
+  400/1177  27s
+  600/1177  40s
+  800/1177  54s
+  1000/1177  67s
+
+=== G_maskdrop  (n=1177) ===
+  masked RMSE   mean   11.1 mm   median    9.7 mm   p90   18.6 mm
+  FAIL >25mm    2.0%        GOOD <12mm   67.8%
+    D435: mean    8.9 mm   median    8.0   FAIL   0.2%  (n=592)
+    L515: mean   13.2 mm   median   11.9   FAIL   3.9%  (n=585)
+    reflection (no return)           12.2 mm  (n=1175)
+    refraction (wrong return)        11.9 mm  (n=1177)
+    normal (sensor already right)     9.3 mm  (n=1176)
+
+=== comparison (masked RMSE mean) ===
+  A_ft                         11.8 mm
+  G_maskdrop                   11.1 mm     -0.7 mm vs A_ft
+
+  A change is worth keeping only if masked RMSE does not rise AND
+  concavity rises -- run eval/measure_concavity.py as well.
+
+wrote metrics/<model>.jsonl; run eval/analyze.py for the full report

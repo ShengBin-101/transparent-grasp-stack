@@ -1,0 +1,692 @@
+{
+ "runs/trial/20261104_025023_auto": {
+  "capture_tool": [
+   [
+    0.38637057490608107,
+    0.3212520082448437,
+    0.2826263814798287
+   ],
+   [
+    0.945402008970956,
+    0.040085301207937296,
+    0.008859571533615539,
+    0.3233105597610292
+   ]
+  ],
+  "start": "home",
+  "model": "elbow_locked",
+  "scene_voxels": 5666,
+  "depth": "remake_depth_mm.npy",
+  "summary": {
+   "arm vs table": 1,
+   "scene: object": 1
+  },
+  "summary_text": "0 of 2 feasible; 1 arm vs table, 1 scene: object",
+  "candidates": [
+   {
+    "id": "4:direct",
+    "confidence": 0.1686,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "grasp",
+    "category": "arm vs table",
+    "reason": "camera comes within 23 mm of the table at 80% of the leg",
+    "scene_hit": null,
+    "tilt_deg": 26.9,
+    "tcp_above_table_mm": 23
+   },
+   {
+    "id": "4:flipped",
+    "confidence": 0.1686,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "grasp",
+    "category": "scene: object",
+    "reason": "hand comes within 5 mm of the scene at 80% of the leg",
+    "scene_hit": {
+     "part": "hand",
+     "voxel": [
+      0.575,
+      -0.009,
+      0.006
+     ],
+     "voxel_above_table_mm": 47,
+     "from_grasp_mm": 29,
+     "is_table": false
+    },
+    "tilt_deg": 26.9,
+    "tcp_above_table_mm": 23
+   }
+  ]
+ },
+ "runs/trial/20261104_025206_auto": {
+  "capture_tool": [
+   [
+    0.3863673118466132,
+    0.32125420053737014,
+    0.28262343468898293
+   ],
+   [
+    0.9454005255358221,
+    0.04008678254103126,
+    0.008857954999199126,
+    0.3233147581155734
+   ]
+  ],
+  "start": "home",
+  "model": "elbow_locked",
+  "scene_voxels": 5636,
+  "depth": "remake_depth_mm.npy",
+  "summary": {},
+  "summary_text": "0 of 0 feasible",
+  "candidates": []
+ },
+ "runs/trial/20261104_025259_auto": {
+  "capture_tool": [
+   [
+    0.38636792397460723,
+    0.3212563342800459,
+    0.28262714132937183
+   ],
+   [
+    0.9454015550876358,
+    0.0400864141309035,
+    0.008862672347448749,
+    0.32331166400064715
+   ]
+  ],
+  "start": "home",
+  "model": "elbow_locked",
+  "scene_voxels": 5663,
+  "depth": "remake_depth_mm.npy",
+  "summary": {
+   "arm vs table": 1,
+   "joint limit": 1
+  },
+  "summary_text": "0 of 2 feasible; 1 arm vs table, 1 joint limit  [table seen -6 mm, 3.0 deg]",
+  "candidates": [
+   {
+    "id": "0:direct",
+    "confidence": 0.0847,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "grasp",
+    "category": "arm vs table",
+    "reason": "camera comes within 24 mm of the table at 91% of the leg",
+    "scene_hit": null,
+    "tilt_deg": 23.0,
+    "tcp_above_table_mm": 30
+   },
+   {
+    "id": "0:flipped",
+    "confidence": 0.0847,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "standoff 3/4",
+    "category": "joint limit",
+    "reason": "joint 7 reaches 2.647 rad at 44% of the leg, 2.5 deg inside its limit [-2.689, 2.689]",
+    "scene_hit": null,
+    "tilt_deg": 23.0,
+    "tcp_above_table_mm": 30
+   }
+  ]
+ },
+ "runs/trial/20261104_025335_auto": {
+  "capture_tool": [
+   [
+    0.3863670964998262,
+    0.3212559779612235,
+    0.28262405925575873
+   ],
+   [
+    0.9454008803928277,
+    0.040086259624528456,
+    0.008859846888114848,
+    0.32331373347709874
+   ]
+  ],
+  "start": "home",
+  "model": "elbow_locked",
+  "scene_voxels": 5648,
+  "depth": "remake_depth_mm.npy",
+  "summary": {
+   "joint limit": 3,
+   "arm vs table": 2,
+   "arm vs target": 1
+  },
+  "summary_text": "0 of 6 feasible; 3 joint limit, 2 arm vs table, 1 arm vs target  [table seen -4 mm, 2.9 deg]",
+  "candidates": [
+   {
+    "id": "3:direct",
+    "confidence": 0.0893,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "standoff",
+    "category": "joint limit",
+    "reason": "joint 7 reaches 2.707 rad at 76% of the leg, past its limit [-2.689, 2.689]",
+    "scene_hit": null,
+    "tilt_deg": 24.3,
+    "tcp_above_table_mm": 6
+   },
+   {
+    "id": "3:flipped",
+    "confidence": 0.0893,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "grasp",
+    "category": "arm vs table",
+    "reason": "camera comes within 29 mm of the table at 60% of the leg",
+    "scene_hit": null,
+    "tilt_deg": 24.3,
+    "tcp_above_table_mm": 6
+   },
+   {
+    "id": "4:direct",
+    "confidence": 0.0378,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "standoff",
+    "category": "joint limit",
+    "reason": "joint 4 reaches -2.698 rad at 49% of the leg, 2.8 deg inside its limit [-2.748, -0.446]",
+    "scene_hit": null,
+    "tilt_deg": 24.3,
+    "tcp_above_table_mm": 30
+   },
+   {
+    "id": "4:flipped",
+    "confidence": 0.0378,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "grasp",
+    "category": "arm vs target",
+    "reason": "hand intersects the target object (5 mm) at 70% of the leg",
+    "scene_hit": null,
+    "tilt_deg": 24.3,
+    "tcp_above_table_mm": 30
+   },
+   {
+    "id": "5:direct",
+    "confidence": 0.0225,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "grasp",
+    "category": "arm vs table",
+    "reason": "camera comes within 25 mm of the table at 100% of the leg",
+    "scene_hit": null,
+    "tilt_deg": 29.9,
+    "tcp_above_table_mm": 29
+   },
+   {
+    "id": "5:flipped",
+    "confidence": 0.0225,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "standoff 2/4",
+    "category": "joint limit",
+    "reason": "joint 4 reaches -2.698 rad at 65% of the leg, 2.8 deg inside its limit [-2.748, -0.446]",
+    "scene_hit": null,
+    "tilt_deg": 29.9,
+    "tcp_above_table_mm": 29
+   }
+  ]
+ },
+ "runs/trial/20261104_025427_auto": {
+  "capture_tool": [
+   [
+    0.38636495917859875,
+    0.32126040023764235,
+    0.28262585973431975
+   ],
+   [
+    0.9454012220559334,
+    0.04008937843578336,
+    0.00886380081352556,
+    0.3233122393398037
+   ]
+  ],
+  "start": "home",
+  "model": "elbow_locked",
+  "scene_voxels": 5745,
+  "depth": "remake_depth_mm.npy",
+  "summary": {
+   "joint limit": 6,
+   "scene: object": 7,
+   "arm vs table": 1
+  },
+  "summary_text": "0 of 14 feasible; 7 scene: object, 6 joint limit, 1 arm vs table  [table seen -5 mm, 3.0 deg]",
+  "candidates": [
+   {
+    "id": "0:direct",
+    "confidence": 0.3717,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "standoff",
+    "category": "joint limit",
+    "reason": "joint 4 reaches -2.708 rad at 45% of the leg, 2.3 deg inside its limit [-2.748, -0.446]",
+    "scene_hit": null,
+    "tilt_deg": 26.1,
+    "tcp_above_table_mm": 30
+   },
+   {
+    "id": "0:flipped",
+    "confidence": 0.3717,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "grasp",
+    "category": "scene: object",
+    "reason": "finger comes within 9 mm of the scene at 60% of the leg",
+    "scene_hit": {
+     "part": "finger",
+     "voxel": [
+      0.427,
+      -0.044,
+      0.003
+     ],
+     "voxel_above_table_mm": 44,
+     "from_grasp_mm": 76,
+     "is_table": false
+    },
+    "tilt_deg": 26.1,
+    "tcp_above_table_mm": 30
+   },
+   {
+    "id": "1:direct",
+    "confidence": 0.2118,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "grasp",
+    "category": "scene: object",
+    "reason": "hand comes within 7 mm of the scene at 100% of the leg",
+    "scene_hit": {
+     "part": "hand",
+     "voxel": [
+      0.468,
+      -0.064,
+      0.006
+     ],
+     "voxel_above_table_mm": 47,
+     "from_grasp_mm": 85,
+     "is_table": false
+    },
+    "tilt_deg": 16.9,
+    "tcp_above_table_mm": 25
+   },
+   {
+    "id": "1:flipped",
+    "confidence": 0.2118,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "grasp",
+    "category": "scene: object",
+    "reason": "hand comes within 7 mm of the scene at 100% of the leg",
+    "scene_hit": {
+     "part": "hand",
+     "voxel": [
+      0.468,
+      -0.064,
+      0.006
+     ],
+     "voxel_above_table_mm": 47,
+     "from_grasp_mm": 85,
+     "is_table": false
+    },
+    "tilt_deg": 16.9,
+    "tcp_above_table_mm": 25
+   },
+   {
+    "id": "2:direct",
+    "confidence": 0.1883,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "grasp",
+    "category": "arm vs table",
+    "reason": "camera comes within 27 mm of the table at 90% of the leg",
+    "scene_hit": null,
+    "tilt_deg": 23.0,
+    "tcp_above_table_mm": 23
+   },
+   {
+    "id": "2:flipped",
+    "confidence": 0.1883,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "standoff 2/4",
+    "category": "joint limit",
+    "reason": "joint 7 reaches 2.659 rad at 100% of the leg, 1.8 deg inside its limit [-2.689, 2.689]",
+    "scene_hit": null,
+    "tilt_deg": 23.0,
+    "tcp_above_table_mm": 23
+   },
+   {
+    "id": "3:flipped",
+    "confidence": 0.1734,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "standoff",
+    "category": "joint limit",
+    "reason": "joint 7 reaches 2.656 rad at 93% of the leg, 1.9 deg inside its limit [-2.689, 2.689]",
+    "scene_hit": null,
+    "tilt_deg": 19.3,
+    "tcp_above_table_mm": 28
+   },
+   {
+    "id": "3:direct",
+    "confidence": 0.1734,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "grasp",
+    "category": "scene: object",
+    "reason": "finger comes within 7 mm of the scene at 70% of the leg",
+    "scene_hit": {
+     "part": "finger",
+     "voxel": [
+      0.484,
+      0.009,
+      0.003
+     ],
+     "voxel_above_table_mm": 44,
+     "from_grasp_mm": 73,
+     "is_table": false
+    },
+    "tilt_deg": 19.3,
+    "tcp_above_table_mm": 28
+   },
+   {
+    "id": "4:direct",
+    "confidence": 0.1118,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "standoff",
+    "category": "joint limit",
+    "reason": "joint 4 reaches -2.723 rad at 35% of the leg, 1.4 deg inside its limit [-2.748, -0.446]",
+    "scene_hit": null,
+    "tilt_deg": 26.1,
+    "tcp_above_table_mm": 30
+   },
+   {
+    "id": "4:flipped",
+    "confidence": 0.1118,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "standoff 2/3",
+    "category": "joint limit",
+    "reason": "joint 4 reaches -2.698 rad at 29% of the leg, 2.8 deg inside its limit [-2.748, -0.446]",
+    "scene_hit": null,
+    "tilt_deg": 26.1,
+    "tcp_above_table_mm": 30
+   },
+   {
+    "id": "5:flipped",
+    "confidence": 0.1067,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "grasp",
+    "category": "scene: object",
+    "reason": "finger comes within 8 mm of the scene at 70% of the leg",
+    "scene_hit": {
+     "part": "finger",
+     "voxel": [
+      0.467,
+      -0.056,
+      0.001
+     ],
+     "voxel_above_table_mm": 42,
+     "from_grasp_mm": 58,
+     "is_table": false
+    },
+    "tilt_deg": 25.7,
+    "tcp_above_table_mm": 24
+   },
+   {
+    "id": "5:direct",
+    "confidence": 0.1067,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "grasp",
+    "category": "scene: object",
+    "reason": "finger comes within 7 mm of the scene at 73% of the leg",
+    "scene_hit": {
+     "part": "finger",
+     "voxel": [
+      0.467,
+      -0.048,
+      -0.005
+     ],
+     "voxel_above_table_mm": 36,
+     "from_grasp_mm": 51,
+     "is_table": false
+    },
+    "tilt_deg": 25.7,
+    "tcp_above_table_mm": 24
+   },
+   {
+    "id": "6:direct",
+    "confidence": 0.0387,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "grasp",
+    "category": "scene: object",
+    "reason": "hand comes within 9 mm of the scene at 70% of the leg",
+    "scene_hit": {
+     "part": "hand",
+     "voxel": [
+      0.433,
+      0.02,
+      0.006
+     ],
+     "voxel_above_table_mm": 47,
+     "from_grasp_mm": 38,
+     "is_table": false
+    },
+    "tilt_deg": 13.1,
+    "tcp_above_table_mm": 16
+   },
+   {
+    "id": "6:flipped",
+    "confidence": 0.0387,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "standoff 2/4",
+    "category": "joint limit",
+    "reason": "joint 4 reaches -2.698 rad at 90% of the leg, 2.8 deg inside its limit [-2.748, -0.446]",
+    "scene_hit": null,
+    "tilt_deg": 13.1,
+    "tcp_above_table_mm": 16
+   }
+  ]
+ },
+ "runs/trial/20261104_025639_auto": {
+  "capture_tool": [
+   [
+    0.38636278469558355,
+    0.32126343623097503,
+    0.2826255987417304
+   ],
+   [
+    0.9454007548632584,
+    0.04009292004302782,
+    0.008866422130641089,
+    0.3233130944224282
+   ]
+  ],
+  "start": "home",
+  "model": "elbow_locked",
+  "scene_voxels": 5394,
+  "depth": "remake_depth_mm.npy",
+  "summary": {
+   "joint limit": 9,
+   "arm vs target": 4
+  },
+  "summary_text": "1 of 14 feasible; 9 joint limit, 4 arm vs target; chooses 9:flipped (utility 0.126)",
+  "candidates": [
+   {
+    "id": "0:flipped",
+    "confidence": 0.4639,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "standoff",
+    "category": "joint limit",
+    "reason": "joint 4 reaches -2.700 rad at 47% of the leg, 2.7 deg inside its limit [-2.748, -0.446]",
+    "scene_hit": null,
+    "tilt_deg": 26.1,
+    "tcp_above_table_mm": 136
+   },
+   {
+    "id": "0:direct",
+    "confidence": 0.4639,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "standoff 2/3",
+    "category": "joint limit",
+    "reason": "joint 4 reaches -2.704 rad at 94% of the leg, 2.5 deg inside its limit [-2.748, -0.446]",
+    "scene_hit": null,
+    "tilt_deg": 26.1,
+    "tcp_above_table_mm": 136
+   },
+   {
+    "id": "4:direct",
+    "confidence": 0.2283,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "grasp",
+    "category": "arm vs target",
+    "reason": "hand intersects the target object (4 mm) at 20% of the leg",
+    "scene_hit": null,
+    "tilt_deg": 23.0,
+    "tcp_above_table_mm": 13
+   },
+   {
+    "id": "4:flipped",
+    "confidence": 0.2283,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "standoff 3/4",
+    "category": "joint limit",
+    "reason": "joint 7 reaches 2.654 rad at 39% of the leg, 2.0 deg inside its limit [-2.689, 2.689]",
+    "scene_hit": null,
+    "tilt_deg": 23.0,
+    "tcp_above_table_mm": 13
+   },
+   {
+    "id": "5:direct",
+    "confidence": 0.2244,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "standoff",
+    "category": "joint limit",
+    "reason": "joint 7 reaches 2.701 rad at 76% of the leg, past its limit [-2.689, 2.689]",
+    "scene_hit": null,
+    "tilt_deg": 24.3,
+    "tcp_above_table_mm": 29
+   },
+   {
+    "id": "5:flipped",
+    "confidence": 0.2244,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "grasp",
+    "category": "arm vs target",
+    "reason": "hand intersects the target object (2 mm) at 10% of the leg",
+    "scene_hit": null,
+    "tilt_deg": 24.3,
+    "tcp_above_table_mm": 29
+   },
+   {
+    "id": "6:direct",
+    "confidence": 0.2214,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "grasp",
+    "category": "arm vs target",
+    "reason": "hand intersects the target object (1 mm) at 36% of the leg",
+    "scene_hit": null,
+    "tilt_deg": 23.0,
+    "tcp_above_table_mm": 68
+   },
+   {
+    "id": "6:flipped",
+    "confidence": 0.2214,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "standoff 3/4",
+    "category": "joint limit",
+    "reason": "joint 7 reaches 2.670 rad at 44% of the leg, 1.1 deg inside its limit [-2.689, 2.689]",
+    "scene_hit": null,
+    "tilt_deg": 23.0,
+    "tcp_above_table_mm": 68
+   },
+   {
+    "id": "8:direct",
+    "confidence": 0.1729,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "standoff",
+    "category": "joint limit",
+    "reason": "joint 4 reaches -2.707 rad at 50% of the leg, 2.3 deg inside its limit [-2.748, -0.446]",
+    "scene_hit": null,
+    "tilt_deg": 24.3,
+    "tcp_above_table_mm": 83
+   },
+   {
+    "id": "8:flipped",
+    "confidence": 0.1729,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "standoff 4/4",
+    "category": "joint limit",
+    "reason": "joint 4 reaches -2.698 rad at 11% of the leg, 2.8 deg inside its limit [-2.748, -0.446]",
+    "scene_hit": null,
+    "tilt_deg": 24.3,
+    "tcp_above_table_mm": 83
+   },
+   {
+    "id": "9:direct",
+    "confidence": 0.1566,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "standoff",
+    "category": "joint limit",
+    "reason": "joint 7 reaches 2.665 rad at 78% of the leg, 1.4 deg inside its limit [-2.689, 2.689]",
+    "scene_hit": null,
+    "tilt_deg": 24.3,
+    "tcp_above_table_mm": 83
+   },
+   {
+    "id": "9:flipped",
+    "confidence": 0.1566,
+    "ok": true,
+    "utility": 0.1262,
+    "failed_leg": null,
+    "category": null,
+    "reason": "ok",
+    "scene_hit": null,
+    "tilt_deg": 24.3,
+    "tcp_above_table_mm": 83
+   },
+   {
+    "id": "10:direct",
+    "confidence": 0.1548,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "standoff",
+    "category": "joint limit",
+    "reason": "joint 4 reaches -2.698 rad at 43% of the leg, 2.8 deg inside its limit [-2.748, -0.446]",
+    "scene_hit": null,
+    "tilt_deg": 24.3,
+    "tcp_above_table_mm": 24
+   },
+   {
+    "id": "10:flipped",
+    "confidence": 0.1548,
+    "ok": false,
+    "utility": null,
+    "failed_leg": "grasp",
+    "category": "arm vs target",
+    "reason": "hand intersects the target object (3 mm) at 18% of the leg",
+    "scene_hit": null,
+    "tilt_deg": 24.3,
+    "tcp_above_table_mm": 24
+   }
+  ]
+ }
+}

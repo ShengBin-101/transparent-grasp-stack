@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>fr3_pose_commander</name>
+  <version>0.1.0</version>
+  <description>
+    Command an FR3 to a desired Cartesian pose. Takes the poses the ROS 2 side
+    publishes over ros1_bridge, checks each against workspace limits and a
+    reachability planner, and ramps the equilibrium of franka_example_controllers'
+    Cartesian impedance controller to it, so the arm is never told to teleport.
+  </description>
+
+  <maintainer email="ShengBin-101@users.noreply.github.com">Chan Sheng Bin</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>actionlib</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>std_srvs</exec_depend>
+  <exec_depend>tf2_ros</exec_depend>
+  <exec_depend>tf2_geometry_msgs</exec_depend>
+  <exec_depend>franka_msgs</exec_depend>
+  <exec_depend>franka_gripper</exec_depend>
+  <exec_depend>franka_control</exec_depend>
+  <exec_depend>franka_example_controllers</exec_depend>
+  <exec_depend>franka_description</exec_depend>
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>dynamic_reconfigure</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>rospkg</exec_depend>
+  <exec_depend>rosgraph</exec_depend>
+  <exec_depend>xacro</exec_depend>
+  <exec_depend>python3-numpy</exec_depend>
+  <exec_depend>python3-yaml</exec_depend>
+  <exec_depend>python3-scipy</exec_depend>
+  <!-- Optional, for Foxglove (bridge.launch): foxglove_bridge, rosbridge_server. -->
+</package>

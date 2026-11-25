@@ -1,0 +1,12 @@
+{
+ "grasps": 25,
+ "executable": 17,
+ "executable_transparent": 17,
+ "executable_opaque": 0,
+ "targets": [
+  [
+   "transparent",
+   "seg"
+  ]
+ ]
+}

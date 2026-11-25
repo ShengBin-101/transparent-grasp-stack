@@ -1,0 +1,52 @@
+# Leading "/" anchors a pattern to the repo root. Without it, "data/" would also
+# drop third_party/sam3/sam3/train/data/, which SAM 3 imports.
+
+# Model weights (fetched by scripts/get_checkpoints.sh)
+/checkpoints/*
+!/checkpoints/README.md
+!/checkpoints/SHA256SUMS
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.onnx
+*.engine
+
+# Pipeline output (created by start.sh, the nodes, the demo and the benchmark)
+/data/
+/datasets/
+/runs/
+/segmenter/runs/
+*.log
+# ...except the logs that are part of a record
+!/training/**/*.log
+
+# ROS bags
+*.bag
+*.db3
+*.mcap
+rosbag2_*/
+
+# colcon, if built on the host instead of in the container
+/build/
+/install/
+/log/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+
+# Local secrets (HF_TOKEN etc.)
+.env
+.env.*
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store

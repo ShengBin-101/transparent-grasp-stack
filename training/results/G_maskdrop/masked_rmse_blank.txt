@@ -1,0 +1,17 @@
+frames: 1177
+  200/1177  14s
+  400/1177  27s
+  600/1177  40s
+  800/1177  54s
+  1000/1177  67s
+
+=== G_maskdrop_blank  (n=1177) ===
+  masked RMSE   mean   26.8 mm   median   22.8 mm   p90   47.3 mm
+  FAIL >25mm   43.8%        GOOD <12mm    6.6%
+    D435: mean   23.6 mm   median   21.0   FAIL  36.1%  (n=592)
+    L515: mean   30.0 mm   median   25.8   FAIL  51.5%  (n=585)
+    reflection (no return)           25.2 mm  (n=1175)
+    refraction (wrong return)        27.9 mm  (n=1177)
+    normal (sensor already right)    26.9 mm  (n=1176)
+
+wrote metrics/<model>.jsonl; run eval/analyze.py for the full report

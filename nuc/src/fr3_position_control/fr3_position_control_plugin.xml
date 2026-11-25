@@ -1,0 +1,10 @@
+<library path="lib/libfr3_position_control">
+  <class name="fr3_position_control/CartesianPoseTrackingController"
+         type="fr3_position_control::CartesianPoseTrackingController"
+         base_class_type="controller_interface::ControllerBase">
+    <description>
+      Cartesian pose controller that tracks targets on ~target_pose (base frame)
+      through a rate-limited, overshoot-free smoother.
+    </description>
+  </class>
+</library>

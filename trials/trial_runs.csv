@@ -1,0 +1,61 @@
+attempt,block,view,condition,object,object_name,object_attempt,status,held,fail,first_capture_outcome,run,folder,pick_records
+a1,1,V1,RAW,T4,glass cup,1,counted,N,N,,20261027_042724_failed_grasp_poses,runs/trial/20261027_042724_failed_grasp_poses,
+a2,1,V1,RAW,T1,translucent mug,1,counted,N,W,,20261027_043227_auto,runs/trial/20261027_043227_auto,pick_043444.json
+a3,1,V1,RAW,O2,cardboard box,1,counted,Y,,,20261027_043710_auto,runs/trial/20261027_043710_auto,pick_043909.json
+a4,1,V1,RAW,O1,tape roll,1,counted,N,P,,20261027_044049_auto,runs/trial/20261027_044049_auto,pick_044106.json
+a5,1,V1,RAW,O2,cardboard box,2,counted,Y,,,20261027_044329_auto,runs/trial/20261027_044329_auto,pick_044537.json
+a6,1,V1,RAW,T2,plastic bottle,1,counted,Y,,,20261027_044619_auto,runs/trial/20261027_044619_auto,pick_044826.json
+a7,1,V1,RAW,T4,glass cup,2,counted,N,N,,20261027_044906_failed_grasp_poses,runs/trial/20261027_044906_failed_grasp_poses,
+a8,1,V1,RAW,T3,plastic bowl,1,counted,N,N,,20261027_044957_failed_grasp_poses,runs/trial/20261027_044957_failed_grasp_poses,
+a9,1,V1,RAW,T3,plastic bowl,2,counted,N,N,,20261027_045040_failed_grasp_poses,runs/trial/20261027_045040_failed_grasp_poses,
+a10,1,V1,RAW,O1,tape roll,2,counted,Y,,,20261027_045134_auto,runs/trial/20261027_045134_auto,pick_045345.json
+a11,1,V1,RAW,T3,plastic bowl,3,counted,N,N,,20261027_045533_failed_grasp_poses,runs/trial/20261027_045533_failed_grasp_poses,
+a12,1,V1,RAW,T2,plastic bottle,2,counted,N,W,,20261027_045622_auto,runs/trial/20261027_045622_auto,pick_045907.json
+a13,1,V1,RAW,T4,glass cup,3,counted,N,N,,20261027_045952_failed_grasp_poses,runs/trial/20261027_045952_failed_grasp_poses,
+a14,1,V1,RAW,O1,tape roll,3,counted,N,P,,20261027_050134_auto,runs/trial/20261027_050134_auto,pick_050315.json pick_050400.json
+a15,1,V1,RAW,T1,translucent mug,2,counted,N,P,,20261027_050519_auto,runs/trial/20261027_050519_auto,pick_050556.json
+a16,1,V1,RAW,T1,translucent mug,3,counted,N,W,,20261027_050631_auto,runs/trial/20261027_050631_auto,pick_050837.json
+a17,1,V1,RAW,O2,cardboard box,3,counted,Y,,,20261027_050922_auto,runs/trial/20261027_050922_auto,pick_051107.json
+a18,1,V1,RAW,T2,plastic bottle,3,counted,N,P,,20261027_051204_auto,runs/trial/20261027_051204_auto,pick_051222.json
+,2,V1,BASELINE,O1,tape roll,,"block 2 warm-up before the 12 mm restart (tape not a target), not logged",,,,20261027_051427_auto,runs/trial/20261027_051427_auto,
+,2,V1,BASELINE,O1,tape roll,,"block 2 warm-up, not logged",,,,20261027_052240_auto,runs/trial/20261027_052240_auto,
+a19,2,V1,BASELINE,T1,translucent mug,1,counted,N,N,,20261027_052512_auto,runs/trial/20261027_052512_auto,
+a20,2,V1,BASELINE,T2,plastic bottle,1,counted,Y,,,20261027_052617_auto,runs/trial/20261027_052617_auto,pick_052811.json
+a21,2,V1,BASELINE,T4,glass cup,1,counted,Y,,,20261027_052859_auto,runs/trial/20261027_052859_auto,pick_053105.json
+a22,2,V1,BASELINE,T3,plastic bowl,1,counted,Y,,,20261027_053147_auto,runs/trial/20261027_053147_auto,pick_053351.json
+a23,2,V1,BASELINE,O2,cardboard box,1,counted,Y,,,20261027_053447_auto,runs/trial/20261027_053447_auto,pick_053637.json
+a24,2,V1,BASELINE,O1,tape roll,1,"superseded first capture of a24, not counted (tape not a target; the speck rule)",,,,20261027_053707_auto,runs/trial/20261027_053707_auto,
+a24,2,V1,BASELINE,O1,tape roll,1,counted (technical re-run under the speck rule),N,P,,20261027_054302_auto,runs/trial/20261027_054302_auto,pick_054326.json pick_054355.json
+a25,2,V1,BASELINE,T3,plastic bowl,2,counted,Y,,,20261027_054518_auto,runs/trial/20261027_054518_auto,pick_054723.json
+a26,2,V1,BASELINE,T4,glass cup,2,counted,N,N,,20261027_054756_auto,runs/trial/20261027_054756_auto,
+a27,2,V1,BASELINE,T2,plastic bottle,2,counted,N,C,,20261027_054918_auto,runs/trial/20261027_054918_auto,pick_055123.json
+a28,2,V1,BASELINE,T1,translucent mug,2,counted,Y,,,20261027_055136_auto,runs/trial/20261027_055136_auto,pick_055412.json
+a29,2,V1,BASELINE,T1,translucent mug,3,"superseded first capture of a29, not picked (tmux closed by accident)",,,,20261027_055511_auto,runs/trial/20261027_055511_auto,
+a29,2,V1,BASELINE,T1,translucent mug,3,counted (technical re-run: tmux closed by accident),Y,,,20261027_055641_auto,runs/trial/20261027_055641_auto,pick_055832.json
+a30,2,V1,BASELINE,O2,cardboard box,2,counted,N,N,,20261027_055909_auto,runs/trial/20261027_055909_auto,
+a31,2,V1,BASELINE,O1,tape roll,2,counted,Y,,,20261027_060000_auto,runs/trial/20261027_060000_auto,pick_060203.json
+a32,2,V1,BASELINE,T3,plastic bowl,3,counted,Y,,,20261027_060235_auto,runs/trial/20261027_060235_auto,pick_060444.json
+a33,2,V1,BASELINE,T2,plastic bottle,3,counted,Y,,,20261027_060518_auto,runs/trial/20261027_060518_auto,pick_060714.json
+a34,2,V1,BASELINE,O2,cardboard box,3,counted,N,N,,20261027_060754_auto,runs/trial/20261027_060754_auto,
+a35,2,V1,BASELINE,O1,tape roll,3,counted,Y,,,20261027_060848_auto,runs/trial/20261027_060848_auto,pick_061049.json
+a36,2,V1,BASELINE,T4,glass cup,3,counted,N,N,,20261027_061119_auto,runs/trial/20261027_061119_auto,
+,3,V1,ADAPTED,O1,tape roll,,"block 3 warm-up, not logged",,,,20261027_061310_auto,runs/trial/20261027_061310_auto,
+a37,3,V1,ADAPTED,O1,tape roll,1,counted,N,C,,20261027_061356_auto,runs/trial/20261027_061356_auto,pick_061536.json
+a38,3,V1,ADAPTED,T3,plastic bowl,1,counted,Y,,,20261027_061608_auto,runs/trial/20261027_061608_auto,pick_061813.json
+a39,3,V1,ADAPTED,T1,translucent mug,1,counted,N,P,,20261027_061844_auto,runs/trial/20261027_061844_auto,pick_061900.json
+a40,3,V1,ADAPTED,T4,glass cup,1,counted,Y,,,20261027_062003_auto,runs/trial/20261027_062003_auto,pick_062154.json
+a41,3,V1,ADAPTED,O1,tape roll,2,counted,Y,,,20261027_062223_auto,runs/trial/20261027_062223_auto,pick_062423.json
+a42,3,V1,ADAPTED,T3,plastic bowl,2,counted,Y,,,20261027_062450_auto,runs/trial/20261027_062450_auto,pick_062655.json
+a43,3,V1,ADAPTED,T1,translucent mug,2,counted,Y,,,20261027_062735_auto,runs/trial/20261027_062735_auto,pick_062924.json
+a44,3,V1,ADAPTED,T2,plastic bottle,1,counted,Y,,,20261027_062953_auto,runs/trial/20261027_062953_auto,pick_063201.json
+a45,3,V1,ADAPTED,T2,plastic bottle,2,counted,Y,,,20261027_063226_auto,runs/trial/20261027_063226_auto,pick_063418.json
+a46,3,V1,ADAPTED,T4,glass cup,2,counted,N,P,,20261027_063457_auto,runs/trial/20261027_063457_auto,pick_063515.json
+a47,3,V1,ADAPTED,O2,cardboard box,1,counted,Y,,,20261027_063602_auto,runs/trial/20261027_063602_auto,pick_063750.json
+a48,3,V1,ADAPTED,O1,tape roll,3,counted,Y,,,20261027_063821_auto,runs/trial/20261027_063821_auto,pick_064020.json
+a49,3,V1,ADAPTED,T3,plastic bowl,3,counted,N,P,,20261027_064056_auto,runs/trial/20261027_064056_auto,pick_064118.json pick_064145.json
+a50,3,V1,ADAPTED,T1,translucent mug,3,counted,Y,,,20261027_064235_auto,runs/trial/20261027_064235_auto,pick_064428.json
+a51,3,V1,ADAPTED,T4,glass cup,3,counted,N,N,,20261027_064502_auto,runs/trial/20261027_064502_auto,
+a52,3,V1,ADAPTED,O2,cardboard box,2,counted,N,P,,20261027_064552_auto,runs/trial/20261027_064552_auto,pick_064634.json
+a53,3,V1,ADAPTED,O2,cardboard box,3,counted,N,P,,20261027_064726_auto,runs/trial/20261027_064726_auto,pick_064749.json pick_064812.json
+a54,3,V1,ADAPTED,T2,plastic bottle,3,counted,N,S,,20261027_064856_auto,runs/trial/20261027_064856_auto,pick_065106.json
+,4,V3,BASELINE,O1,tape roll,,"block 4 warm-up, not logged",,,,20261027_065835_auto,runs/trial/20261027_065835_auto,

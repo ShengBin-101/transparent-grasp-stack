@@ -1,0 +1,14 @@
+# Python packages shared by every model (both architectures).
+# numpy, scipy, opencv, matplotlib and Pillow come from apt (the venv sees system packages).
+numpy==1.26.4
+einops==0.8.2
+timm==1.0.28
+ftfy==6.1.1
+regex==2026.7.19
+iopath==0.1.10
+portalocker==4.2.0
+huggingface_hub==1.28.0
+safetensors==0.8.0
+tqdm==4.70.0
+pycocotools==2.0.11
+gdown==6.4.1          # scripts/get_checkpoints.sh: the ReMake and SBG releases are on Google Drive

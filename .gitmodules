@@ -1,0 +1,9 @@
+[submodule "third_party/remake"]
+	path = third_party/remake
+	url = https://github.com/ChengYaofeng/ReMake.git
+[submodule "third_party/sbg"]
+	path = third_party/sbg
+	url = https://github.com/mahaoxiang822/Scale-Balanced-Grasp.git
+[submodule "third_party/sam3"]
+	path = third_party/sam3
+	url = https://github.com/facebookresearch/sam3.git

@@ -1,0 +1,30 @@
+frames: 1177
+  200/1177  69s
+  400/1177  138s
+  600/1177  205s
+  800/1177  275s
+  1000/1177  345s
+
+=== G_maskdrop  (n=1177) ===
+  masked RMSE   mean   11.1 mm   median    9.7 mm   p90   18.6 mm
+  FAIL >25mm    2.0%        GOOD <12mm   67.8%
+    D435: mean    8.9 mm   median    8.0   FAIL   0.2%  (n=592)
+    L515: mean   13.2 mm   median   11.9   FAIL   3.9%  (n=585)
+    reflection (no return)           12.2 mm  (n=1175)
+    refraction (wrong return)        11.9 mm  (n=1177)
+    normal (sensor already right)     9.3 mm  (n=1176)
+  shape (median over frames):
+    normal angle vs mesh normals, median deg           12.4   D435 12.2   L515 12.9   (n=1177)
+      % of pixels within 11.25 deg                     45.3   (n=1177)
+    normal angle vs GT-depth normals, median deg       13.4   (n=1177)
+      (the two references disagree by, deg)             6.6   (n=1177)
+    Laplacian sign agreement at 1/4 scale, %           82.9   (n=1177)
+    per-instance depth slope (1 = range reproduced)    0.86   D435 0.82   L515 0.92   (n=1177)
+    per-instance AbsRel after affine alignment       0.0097   (n=1177)
+    per-instance RMSE after affine alignment, mm        6.5   (n=1177)
+    point F-score @ 5 mm, %                            67.8   (n=1177)
+    point F-score @ 10 mm, %                           89.9   D435 94.2   L515 82.4   (n=1177)
+    symmetric chamfer, mm                               4.7   (n=1177)
+    boundary F1 (Depth Pro, t-weighted)               0.041   (n=1177)
+
+wrote metrics/<model>.jsonl; run eval/analyze.py for the full report

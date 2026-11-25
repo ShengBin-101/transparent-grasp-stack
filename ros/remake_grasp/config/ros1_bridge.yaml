@@ -1,0 +1,29 @@
+# What ros1_bridge carries between this container (ROS 2) and the NUC (ROS 1).
+# Topic types use ROS 2 names; service types use ROS 1 names. Names must match on both sides.
+
+topics:   # bridged in both directions
+  # to the NUC: one pick leg at a time, plus every candidate for its planner
+  - {topic: /live_pipeline/grasp_pose_best,   type: geometry_msgs/msg/PoseStamped,   queue_size: 1}
+  - {topic: /live_pipeline/grasp_width_best,  type: std_msgs/msg/Float64,            queue_size: 1}
+  - {topic: /live_pipeline/pick_candidates,   type: std_msgs/msg/String,             queue_size: 1}
+  - {topic: /live_pipeline/grasp_pose_camera, type: geometry_msgs/msg/PoseStamped,   queue_size: 1,
+     qos: {durability: transient_local}}   # latched here, like our publisher
+  # from the NUC
+  - {topic: /live_pipeline/tool_pose,         type: geometry_msgs/msg/PoseStamped,   queue_size: 1}
+  - {topic: /live_pipeline/execution_status,  type: std_msgs/msg/String,             queue_size: 10}
+  - {topic: /live_pipeline/contact_pose,      type: geometry_msgs/msg/PoseStamped,   queue_size: 1}
+  - {topic: /live_pipeline/contact_wrench,    type: geometry_msgs/msg/WrenchStamped, queue_size: 1}
+  # /tf is not bridged (this ros1_bridge build has no tf2_msgs pair); pins_node publishes
+  # fr3_link0 -> fr3_EE -> camera_link here from tool_pose instead.
+
+services_2_to_1:   # served by the NUC, called from ROS 2
+  - {service: /live_pipeline/move_to_pose,         type: std_srvs/Trigger}
+  - {service: /live_pipeline/guarded_move_to_pose, type: std_srvs/Trigger}
+  - {service: /live_pipeline/plan_pick,            type: std_srvs/Trigger}
+  - {service: /live_pipeline/release,              type: std_srvs/Trigger}
+  - {service: /live_pipeline/go_home,              type: std_srvs/Trigger}
+  - {service: /live_pipeline/go_v1,                type: std_srvs/Trigger}   # the trials' V1: go_home itself
+  - {service: /live_pipeline/go_v2,                type: std_srvs/Trigger}   # the trials' V2 (side view)
+  - {service: /live_pipeline/measure_load,         type: std_srvs/Trigger}   # load before/after (weight check)
+
+services_1_to_2: []
